@@ -259,7 +259,7 @@
                     &= br - b + c \\
         \end{split}
     \end{equation}
-    In the first expression, the part $b(r-1)$ highlights the first $r$ rows where only $c$ number of cells are only highlighted on the last row. The second expression, highlights the $r$ number of rows then a $(b - c)$ number of cells will be un-highlighted thereafter. The last one is the simplest form amongst the expressions.
+    In the first expression, the part $b(r-1)$ highlights the first $r$ rows where only $c$ number of cells are only highlighted on the last row. The second expression, highlights the $r$ number of rows then the last $(b - c)$ number of cells will be un-highlighted thereafter. The last one is the simplest form amongst the expressions.
 
     In the only example of Chapter \ref{1_square_grid} (Section \ref{1_example_1}), we used the functions $r$ and $c$ to determine the matrix notation for $i_{17}$ which is $a_{4,2}$. Cell index 17 belongs to row index 4 and column index 2. We shall use function $i$ to test if the intersection of $a_{4,*}$ and $a_{*,2}$ is $i_{17}$ when the $b$ is 5.
     \begin{equation*}
@@ -271,4 +271,6 @@
             i(5,4,2) &= 17
         \end{split}
     \end{equation*}
+
+    This function can be used to enumerate the cells in a chosen row or column.
 \end{document}
