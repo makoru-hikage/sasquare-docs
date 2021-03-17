@@ -33,7 +33,7 @@
 
     \newpage
     \pagenumbering{arabic}
-    \section{The Square Grid}
+    \section{The Square Grid} \label{1_square_grid}
     We will represent a single array with square number of indices using a row vector. The array elements shall be indexed from 1 up to the number of elements.\footnote{Programming languages, such as Python or C, often start their array indices from 0 rather than 1. Since this is a math paper, we will start with 1}
     \begin{figure}[ht]
     \centering
@@ -63,20 +63,20 @@
         a_{1,1} & a_{1,2} & a_{1,3} & a_{1,4} & a_{1,5} & a_{1,6} & a_{1,7} & a_{1,8} & a_{1,9}
         \end{bmatrix}
         $}
-        \caption{The array is represented as a row vector} \label{1f2}
+        \caption{The array is represented as a row vector} \label{row_vector_form}
     \end{figure}
 
-    Let $i_n$ be an array element of sequence $I$; this is the notation for an ordered list of numbers. Since the row vector has only one row, we will use this indexing notation to represent an element of the row vector. For example, we will represent the 7th element of the array as $i_7$ which is $a_{1,7}$ when indexed as an element of a row vector. The sequence form of the array in Figure \ref{1f1} is:
+    Let $i_n$ be an array element of sequence $I$; this is the notation for an ordered list of numbers. Since the row vector has only one row, we will use this indexing notation to represent an element of the row vector. For example, we will represent the 7th element of the array as $i_7$ which is $a_{1,7}$ when indexed as an element of a row vector. The sequence form of the array in Figure \ref{row_vector_form} is:
     \begin{equation}
         I = (i_1,i_2,i_3,i_4,i_5,i_6,i_7,i_8,i_9)
     \end{equation}
 
-    \subsection{The Base of the Square}
+    \subsection{The Base of the Square} \label{base}
     The base of a square is the root of the square. We will use it in most of the following expressions to determine particular parts of a square grid. Throughout the paper, we'll represent the base as $b$. 
 
     Let $b^2$ be any positive non-zero integer. The root of a perfect square can be positive or negative; for the sake of simplicity, we will use positive bases only. The number of elements in a matrix or an array is always an integer.
 
-    \subsection{The Cells}
+    \subsection{The Cells} \label{cells}
     The cells are the basic building blocks of a grid. Since a square matrix can be thought of as a grid, we will call the elements of an array or a matrix as cells. The number of cells in a square grid counts from 1 up to $b^2$ in either its row vector form or its square matrix form. We shall use integers to index each cell and call each index a cell index.
 
     \begin{equation}
@@ -108,12 +108,12 @@
             \end{tikzpicture}
         \end{minipage}
 
-        \caption{Two square grids are labeled differently, they are indexed as elements of a sequence and a matrix respectively} \label{1.1f1}
+        \caption{Two square grids are labeled differently, they are indexed as elements of a sequence and a matrix respectively} \label{2forms1grid}
     \end{figure}
 
-    In Figure \ref{1.1f1}, the base of the square grids is 3 and the total number of cells is 9. In matrix notation, the rows and columns are indexed accordingly. We denote the elements of the right grid with $a_{r,c}$ where $r$ is the row index and $c$ is the column index. In this example, we assume that both grids represent the same array.
+    In Figure \ref{2forms1grid}, the base of the square grids is 3 and the total number of cells is 9. In matrix notation, the rows and columns are indexed accordingly. We denote the elements of the right grid with $a_{r,c}$ where $r$ is the row index and $c$ is the column index. In this example, we assume that both grids represent the same array.
 
-    \subsection{The Rows}
+    \subsection{The Rows} \label{rows}
     The rows are the horizontal arrangement of elements in a matrix. In a row, there are $b$ number of cells. We shall denote a row index as $a_{r,*}$. We shall use function $r$ to determine the row of cell index $n$ in a square grid of base $b$.
     \begin{equation}
         r(b,n) = \left\lceil \frac{n}{b} \right\rceil
@@ -123,7 +123,7 @@
         a_{r,b} = b\left\lceil \frac{n}{b} \right\rceil
     \end{equation}
 
-    \subsection{The Columns}
+    \subsection{The Columns} \label{columns}
     The columns are the vertical arrangement of elements in a matrix. In a column, there are $b$ number of cells. We shall denote a column index as $a_{*,c}$. To find the column where a cell belongs, we must first identify the row where it belongs and find the rightmost cell of the row. After finding the rightmost cell of the row, we shall subtract it from the sum of the cell index $n$ and the base. We shall use function $c$.
     \begin{equation}
         c(b,n) = n + b - b\left\lceil \frac{n}{b} \right\rceil
@@ -133,7 +133,8 @@
 
     \newpage
 
-    \subsubsection*{Example: Row and Column of Cell 17 in 5-Square}
+    \subsubsection{Example: Row and Column of Cell 17 in 5-Square}
+    \label{1_example_1}
     \begin{figure*}[ht]
         \centering
         \setcounter{MaxMatrixCols}{25}
@@ -248,5 +249,26 @@
     \newpage
 
     \section{The Intersection}
-    All cells belong to only one row and one column, hence $i_n$ can become $a_{r,c}$. An intersection is where a row and a column meet; they can only meet in one cell. 
+    All cells belong to only one row and one column, hence $i_n$ can become $a_{r,c}$. An intersection is where a row and a column meet; they can only meet in one cell. The result of an intersection can be represented as either $i_n$ or $a_{r,c}$.
+
+    If we can determine the row and column index of a cell index with a given base, we can also determine the cell index that results of intersection a row and a column. To do so, we'll use the function $i$ which can be expressed in three ways. Let $r$ and $c$ be the row and column index respectively.
+    \begin{equation}
+        \begin{split}
+            i(b,r,c) &= b(r-1) + c \\
+                    &= br + (b - c) \\
+                    &= br - b + c \\
+        \end{split}
+    \end{equation}
+    In the first expression, the part $b(r-1)$ highlights the first $r$ rows where only $c$ number of cells are only highlighted on the last row. The second expression, highlights the $r$ number of rows then a $(b - c)$ number of cells will be un-highlighted thereafter. The last one is the simplest form amongst the expressions.
+
+    In the only example of Chapter \ref{1_square_grid} (Section \ref{1_example_1}), we used the functions $r$ and $c$ to determine the matrix notation for $i_{17}$ which is $a_{4,2}$. Cell index 17 belongs to row index 4 and column index 2. We shall use function $i$ to test if the intersection of $a_{4,*}$ and $a_{*,2}$ is $i_{17}$ when the $b$ is 5.
+    \begin{equation*}
+        \begin{split}
+            i(b,r,c) &= br - b + c \\
+            i(5,4,2) &= (5)(4) - (5) + (2) \\
+                &= 20 - 5 + 2 \\
+                &= 15 + 2 \\
+            i(5,4,2) &= 17
+        \end{split}
+    \end{equation*}
 \end{document}
