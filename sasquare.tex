@@ -249,7 +249,7 @@
     \newpage
 
     \section{The Intersection} \label{intersection}
-    All cells belong to only one row and one column, hence $i_n$ can become $a_{r,c}$. An intersection is where a row and a column meet; they can only meet in one cell. The result of an intersection can be represented as either $i_n$ or $a_{r,c}$.
+    All cells belong to only one row and one column, hence $i_n$ can become $a_{r,c}$. An intersection is where a row and a column meet; they can only meet in one cell. The result of an intersection can be represented as either $i_n$ or $a_{r,c}$. As long as $r=c$ in matrix $A_{r \times c}$, any given pair of row and column index will always have an intersection.
 
     If we can determine the row and column index of a cell index with a given base, we can also determine the cell index that results of intersection a row and a column. To do so, we'll use the function $i$ which can be expressed in three ways. Let $r$ and $c$ be the row and column index respectively.
     \begin{equation}
@@ -295,4 +295,130 @@
         \end{split}
     \end{equation}
     The expression $a_{*,c}b$ simply means `Column $c$ of $b$-square'. Numbers $b$ and $c$ are constants inside the set builder notation.
+
+    \section{Example: The Cells of Row 4 and Column 2 in 5-square}
+    To enumerate the cell indices of $a_{4,*}5$ we shall use function $i$ in a set builder notation where $r$ and $b$ is constant.
+    \begin{equation}
+        \begin{split}
+            i(b,r,c) &= br - b + c \\
+            a_{r,*}b &= \{ i(b,r,c) : c \in (1, \dots, b) \} \\
+            a_{4,*}5 &= \{ i(5,4,c) : c \in (1,2,3,4,5) \} \\
+            \\
+            i(5,4,1) &= (5)(4) - 5 + 1 = 16 \\
+            i(5,4,2) &= (5)(4) - 5 + 2 = 17 \\
+            i(5,4,3) &= (5)(4) - 5 + 3 = 18 \\
+            i(5,4,4) &= (5)(4) - 5 + 4 = 19 \\
+            i(5,4,5) &= (5)(4) - 5 + 5 = 20 \\
+            a_{4,*}5 &= \{16, 17, 18, 19, 20 \} \\
+        \end{split}
+    \end{equation}
+
+    The set $a_{4,*}5$ has cell indices $i_{16}, i_{17}, i_{18}, i_{19}$, and $i_{20}$.
+
+    To enumerate the cell indices of $a_{*,2}5$ we shall use function $i$ in a set builder notation where $c$ and $b$ is constant.
+    \begin{equation}
+        \begin{split}
+            i(b,r,c) &= br - b + c \\
+            a_{r,*}b &= \{ i(b,r,c) : r \in (1, \dots, b) \} \\
+            a_{4,*}5 &= \{ i(5,r,2) : r \in (1,2,3,4,5) \} \\
+            \\
+            i(5,1,2) &= (5)(1) - 5 + 2 = 2 \\
+            i(5,2,2) &= (5)(2) - 5 + 2 = 7 \\
+            i(5,3,2) &= (5)(3) - 5 + 2 = 12 \\
+            i(5,4,2) &= (5)(4) - 5 + 2 = 17 \\
+            i(5,5,2) &= (5)(5) - 5 + 2 = 22 \\
+            a_{*,2}5 &= \{2, 7, 12, 17, 22 \} \\
+        \end{split}
+    \end{equation}
+
+    The set $a_{*,2}5$ has cell indices $i_{2}, i_{7}, i_{12}, i_{17}$, and $i_{22}$.
+
+    Set $a_{4,*}5$ and set $a_{*,2}5$, will always meet at one cell; all pairs of $a_{r,*}b$ and $a_{*,c}b$ shall always have an intersection.
+
+    \begin{equation}
+        \begin{split}
+            a_{4,*}5 &= \{16, 17, 18, 19, 20 \} \\
+            a_{*,2}5 &= \{2, 7, 12, 17, 22 \} \\
+            a_{4,*}5 \cap a_{*,2}5 &= \{17\}
+        \end{split}
+    \end{equation}
+
+    The intersection of $a_{4,*}5$ and $a_{*,2}5$ is $i_{17}$ or $a_{4,2}$.
+
+    \begin{figure*}[ht]
+        \centering
+        \begin{minipage}{0.45\textwidth}
+            \setcounter{MaxMatrixCols}{5}
+                \tikzset{row_hl/.style={
+                    line width=0.8pt,
+                    draw=gray!80,
+                    rectangle,
+                    fill=gray!55,
+                    blend mode = multiply,
+                    rounded corners = 0.7 mm,
+                    inner sep=1pt,
+                    fit = #1}
+                }
+                \tikzset{col_hl/.style={
+                    rectangle,
+                    fill=black!45,
+                    blend mode = multiply,
+                    rounded corners = 0.7 mm,
+                    inner sep=1pt,
+                    fit = #1}
+                }
+                \centering
+                \resizebox{\textwidth}{!}{$
+                I =
+                \begin{bNiceMatrix}
+                    i_{1} & i_{2} & i_{3} & i_{4} & i_{5} \\
+                    i_{6} & i_{7} & i_{8} & i_{9} & i_{10} \\
+                    i_{11} & i_{12} & i_{13} & i_{14} & i_{15} \\
+                    i_{16} & i_{17} & i_{18} & i_{19} & i_{20} \\
+                    i_{21} & i_{22} & i_{23} & i_{24} & i_{25}
+                    \CodeAfter 
+                        \tikz \node [row_hl=(4-1)(4-5)] {};
+                        \tikz \node [col_hl=(1-2)(5-2)] {};
+                \end{bNiceMatrix}
+                $}
+        \end{minipage}
+        \hfill
+        \begin{minipage}{0.45\textwidth}
+            \tikzset{row_hl/.style={
+                    line width=0.8pt,
+                    draw=gray!80,
+                    rectangle,
+                    fill=gray!55,
+                    blend mode = multiply,
+                    rounded corners = 0.7 mm,
+                    inner sep=1pt,
+                    fit = #1}
+                }
+            \tikzset{col_hl/.style={
+                rectangle,
+                fill=black!45,
+                blend mode = multiply,
+                rounded corners = 0.7 mm,
+                inner sep=1pt,
+                fit = #1}
+            }
+            \centering
+            \resizebox{\textwidth}{!}{$
+            =
+            \begin{bNiceMatrix}
+                a_{1,1} & a_{1,2} & a_{1,3} & a_{1,4} & a_{1,5} \\
+                a_{2,1} & a_{2,2} & a_{2,3} & a_{2,4} & a_{2,5} \\
+                a_{3,1} & a_{3,2} & a_{3,3} & a_{3,4} & a_{3,5} \\
+                a_{4,1} & a_{4,2} & a_{4,3} & a_{4,4} & a_{4,5} \\
+                a_{5,1} & a_{5,2} & a_{5,3} & a_{5,4} & a_{5,5}
+                \CodeAfter 
+                \tikz \node [row_hl=(4-1)(4-5)] {};
+                \tikz \node [col_hl=(1-2)(5-2)] {};
+            \end{bNiceMatrix}
+            $}
+        \end{minipage}
+    \end{figure*}
+
+    \newpage
+
 \end{document}
