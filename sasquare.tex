@@ -273,4 +273,26 @@
     \end{equation*}
 
     This function can be used to enumerate the cells in a chosen row or column.
+
+    \newpage
+
+    \subsection{Cells of a Row}
+    To enumerate the cells of a row, we will use the Intersection function $i$. A row shall be considered a set of cell indices. Per Chapter \ref{1_square_grid}, the number of cells in a certain row is always $b$.
+    \begin{equation}
+        \begin{split}
+            i(b,r,c) &= br - b + c \\
+            a_{r,*}b &= \{ i(b,r,c) : c \in (1, \dots, b) \}
+        \end{split}
+    \end{equation}
+    The expression $a_{r,*}b$ simply means `Row $r$ of $b$-square'. Numbers $b$ and $r$ are constants inside the set builder notation.
+
+    \subsection{Cells of a Column}
+    To enumerate the cells of a column, we will use the Intersection function $i$. Just like a row, a column is also a set of cell indices. Just like rows, a column has only $b$ number of cells.
+    \begin{equation}
+        \begin{split}
+            i(b,r,c) &= br - b + c \\
+            a_{*,c}b &= \{ i(b,r,c) : r \in (1, \dots, b) \}
+        \end{split}
+    \end{equation}
+    The expression $a_{*,c}b$ simply means `Column $c$ of $b$-square'. Numbers $b$ and $c$ are constants inside the set builder notation.
 \end{document}
