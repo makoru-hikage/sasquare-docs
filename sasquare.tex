@@ -298,7 +298,7 @@
 
     \section{Example: The Cells of Row 4 and Column 2 in 5-square}
     To enumerate the cell indices of $a_{4,*}5$ we shall use function $i$ in a set builder notation where $r$ and $b$ is constant.
-    \begin{equation}
+    \begin{equation*}
         \begin{split}
             i(b,r,c) &= br - b + c \\
             a_{r,*}b &= \{ i(b,r,c) : c \in (1, \dots, b) \} \\
@@ -311,12 +311,12 @@
             i(5,4,5) &= (5)(4) - 5 + 5 = 20 \\
             a_{4,*}5 &= \{16, 17, 18, 19, 20 \} \\
         \end{split}
-    \end{equation}
+    \end{equation*}
 
     The set $a_{4,*}5$ has cell indices $i_{16}, i_{17}, i_{18}, i_{19}$, and $i_{20}$.
 
     To enumerate the cell indices of $a_{*,2}5$ we shall use function $i$ in a set builder notation where $c$ and $b$ is constant.
-    \begin{equation}
+    \begin{equation*}
         \begin{split}
             i(b,r,c) &= br - b + c \\
             a_{r,*}b &= \{ i(b,r,c) : r \in (1, \dots, b) \} \\
@@ -329,19 +329,19 @@
             i(5,5,2) &= (5)(5) - 5 + 2 = 22 \\
             a_{*,2}5 &= \{2, 7, 12, 17, 22 \} \\
         \end{split}
-    \end{equation}
+    \end{equation*}
 
     The set $a_{*,2}5$ has cell indices $i_{2}, i_{7}, i_{12}, i_{17}$, and $i_{22}$.
 
     Set $a_{4,*}5$ and set $a_{*,2}5$, will always meet at one cell; all pairs of $a_{r,*}b$ and $a_{*,c}b$ shall always have an intersection.
 
-    \begin{equation}
+    \begin{equation*}
         \begin{split}
             a_{4,*}5 &= \{16, 17, 18, 19, 20 \} \\
             a_{*,2}5 &= \{2, 7, 12, 17, 22 \} \\
             a_{4,*}5 \cap a_{*,2}5 &= \{17\}
         \end{split}
-    \end{equation}
+    \end{equation*}
 
     The intersection of $a_{4,*}5$ and $a_{*,2}5$ is $i_{17}$ or $a_{4,2}$.
 
