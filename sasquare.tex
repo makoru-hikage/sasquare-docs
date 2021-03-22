@@ -421,4 +421,108 @@
 
     \newpage
 
+    \section{The Slants}
+    A slant is a special kind of set of cells. We shall define a slant\footnote{We can also use the word `slope', but some readers may confuse it with the mathematical definition of a slope.} with these traits:
+    \begin{itemize}
+        \item None of the cells in the set belong in the same row
+        \item None of the cells in the set belong in the same column
+        \item Only one slant has $b$ number of cells; it is the longest slant
+        \item Unlike rows and columns, different slants have different number of cells
+        \item Two kinds of slants exist, the descending and ascending slants
+    \end{itemize}
+
+    In a square grid, there are $2b-1$ number of slants of each kind in a square grid. For example, if the square has a base of 5, there shall be 9 slants for each kind. Let $l$ be a function that takes $b$ as an argument to determine the number of slants in a square.
+    \begin{equation}
+        \begin{split}
+            l(b) &= 2b - 1 \\
+            l(5) &= 2(5) - 1 \\
+            l(5) &= 9
+        \end{split}
+    \end{equation}
+
+    \subsection{The Intersection Sum}
+    There are equations that determine the slant a cell belongs to.
+
+    By adding the row and the column index of a cell, we do an intersection sum. If two cells have the same intersection sums, they belong in the same ascending slant. Let $\sigma$ be the intersection sum function and $n$ be the cell index number.
+    \begin{equation}
+        \begin{split}
+            \sigma(b,n) &= r(b,n) + c(b,n) \\
+            r(b,n) &= \left\lceil \frac{n}{b} \right\rceil \\
+            c(b,n) &= b + n - b\left\lceil \frac{n}{b} \right\rceil \\
+            \sigma(b,n) &= ( \left\lceil \frac{n}{b} \right\rceil ) + (b + n - b\left\lceil \frac{n}{b} \right\rceil)\\
+            \sigma(b,n) &= \left\lceil \frac{n}{b} \right\rceil + b + n - b\left\lceil \frac{n}{b} \right\rceil\\
+        \end{split}
+    \end{equation}
+
+    \subsection{The Intersection Difference}
+    To do an intersection difference, we shall subtract the row index of a cell from the column index of the same cell. If two cells have the same intersection difference, they belong in the same descending slant. Let $\delta$ be the intersection difference function and $n$ be the cell index number.
+    \begin{equation}
+        \begin{split}
+            \delta(b,n) &= c(b,n) - r(b,n)\\
+            r(b,n) &= \left\lceil \frac{n}{b} \right\rceil \\
+            c(b,n) &= b + n - b\left\lceil \frac{n}{b} \right\rceil \\
+            \delta(b,n) &= (b + n - b\left\lceil \frac{n}{b} \right\rceil) - (\left\lceil \frac{n}{b} \right\rceil)\\
+            \delta(b,n) &= b + n - b\left\lceil \frac{n}{b} \right\rceil - \left\lceil \frac{n}{b} \right\rceil\\
+        \end{split}
+    \end{equation}
+
+    A reverse intersection difference occurs when we subtract the column index of a cell from the row index of the same cell. Let $\alpha$ be the reverse intersection difference.
+    \begin{equation}
+        \begin{split}
+            \alpha(b,n) &= r(b,n) - c(b,n)\\
+            r(b,n) &= \left\lceil \frac{n}{b} \right\rceil \\
+            c(b,n) &= b + n - b\left\lceil \frac{n}{b} \right\rceil \\
+            \alpha(b,n) &= \left\lceil \frac{n}{b} \right\rceil - (b + n - b\left\lceil \frac{n}{b} \right\rceil)\\
+            \alpha(b,n) &= \left\lceil \frac{n}{b} \right\rceil - b - n + b\left\lceil \frac{n}{b} \right\rceil
+        \end{split}
+    \end{equation}
+
+    A reverse intersection difference is a negated version of an intersection difference
+    \begin{equation}
+        \begin{split}
+            \alpha(b,n) &= -(\delta(b,n))\\
+            \left\lceil \frac{n}{b} \right\rceil - (b + n - b\left\lceil \frac{n}{b} \right\rceil) &= - ( b + n - b\left\lceil \frac{n}{b} \right\rceil - \left\lceil \frac{n}{b} \right\rceil)\\
+            \left\lceil \frac{n}{b} \right\rceil - b - n + b\left\lceil \frac{n}{b} \right\rceil &= - b - n + b\left\lceil \frac{n}{b} \right\rceil + \left\lceil \frac{n}{b} \right\rceil\\
+        \end{split}
+    \end{equation}
+    If we rearrange the terms of the right expression:
+    \begin{equation*}
+        \left\lceil \frac{n}{b} \right\rceil - b - n + b\left\lceil \frac{n}{b} \right\rceil = \left\lceil \frac{n}{b} \right\rceil - b - n + b\left\lceil \frac{n}{b} \right\rceil
+    \end{equation*}
+
+    \subsection{The Diagonals}
+    A matrix has a special set of elements called a diagonal. A diagonal consists of elements where $r = c$. In a square grid, a diagonal is the longest descending slant.
+
+    \begin{figure}[ht]
+        \tikzset{highlight/.style={
+            line width=0.8pt,
+            draw=gray!80,
+            rectangle,
+            fill=gray!55,
+            blend mode = multiply,
+            rounded corners = 0.7 mm,
+            inner sep=1pt,
+            fit = #1}
+        }
+        \centering
+        {$
+        A =
+        \begin{bNiceMatrix}
+            a_{1,1} & a_{1,2} & a_{1,3} & a_{1,4} & a_{1,5} \\
+            a_{2,1} & a_{2,2} & a_{2,3} & a_{2,4} & a_{2,5} \\
+            a_{3,1} & a_{3,2} & a_{3,3} & a_{3,4} & a_{3,5} \\
+            a_{4,1} & a_{4,2} & a_{4,3} & a_{4,4} & a_{4,5} \\
+            a_{5,1} & a_{5,2} & a_{5,3} & a_{5,4} & a_{5,5}
+            \CodeAfter 
+            \tikz \node [highlight=(1-1)] {};
+            \tikz \node [highlight=(2-2)] {};
+            \tikz \node [highlight=(3-3)] {};
+            \tikz \node [highlight=(4-4)] {};
+            \tikz \node [highlight=(5-5)] {};
+        \end{bNiceMatrix}
+        $}
+        \caption{A diagonal is highlighted in a 5-square matrix} \label{diagonal}
+    \end{figure}
+
+
 \end{document}
