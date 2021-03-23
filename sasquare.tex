@@ -454,6 +454,21 @@
         \end{split}
     \end{equation}
 
+    The intersection sum is crucial to finding all the ascending slants in a square grid.
+    \begin{figure}[ht]
+        \centering
+        {$
+        \begin{bNiceMatrix}
+            2 & 3 & 4 & 5 & 6 \\
+            3 & 4 & 5 & 6 & 7 \\
+            4 & 5 & 6 & 7 & 8 \\
+            5 & 6 & 7 & 8 & 9 \\
+            6 & 7 & 8 & 9 & 10
+        \end{bNiceMatrix}
+        $}
+        \caption{This matrix has elements where $i_{n}b$ = $\sigma(b,n)$. $i_{n}b$ means cell index $n$ of $b$-square.}
+    \end{figure}
+
     \subsection{The Intersection Difference} \label{intersection_diff}
     To do an intersection difference, we shall subtract the row index of a cell from the column index of the same cell. If two cells have the same intersection difference, they belong in the same descending slant. Let $\delta$ be the intersection difference function and $n$ be the cell index number.
     \begin{equation}
@@ -490,6 +505,42 @@
         \left\lceil \frac{n}{b} \right\rceil - b - n + b\left\lceil \frac{n}{b} \right\rceil = \left\lceil \frac{n}{b} \right\rceil - b - n + b\left\lceil \frac{n}{b} \right\rceil
     \end{equation*}
 
+    The intersection difference is crucial to finding all the descending slants in a square grid.
+
+    \begin{figure}[ht]
+        \centering
+        \begin{minipage}{0.45\textwidth}
+            \centering
+            {$
+            A =
+            \begin{bNiceMatrix}
+                0 & 1 & 2 & 3 & 4 \\
+                -1 & 0 & 1 & 2 & 3 \\
+                -2 & -1 & 0 & 1 & 2 \\
+                -3 & -2 & -1 & 0 & 1 \\
+                -4 & -3 & -2 & -1 & 0
+            \end{bNiceMatrix}
+            $}
+        \end{minipage}
+        \hfill
+        \begin{minipage}{0.45\textwidth}
+            \centering
+            {$
+            B =
+            \begin{bNiceMatrix}
+                0 & -1 & -2 & -3 & -4 \\
+                1 & 0 & -1 & -2 & -3 \\
+                2 & 1 & 0 & -1 & -2 \\
+                3 & 2 & 1 & 0 & -1 \\
+                4 & 3 & 2 & 1 & 0
+            \end{bNiceMatrix}
+            $}
+        \end{minipage}
+        \caption{Matrix $A$ has elements where $i_{n}b = \delta(b,n)$, whilst matrix B has elements where $i_{n}b = \alpha(b,n)$.}
+    \end{figure}
+
+    \newpage
+
     \subsection{The Diagonals} \label{diagonals}
     A matrix has a special set of elements called a diagonal; it is also called the main diagonal. A diagonal consists of elements where $r = c$. In a square grid, a diagonal is the longest descending slant. Its two end cells are always $a_{1,1}$ and $a_{b,b}$.
 
@@ -524,7 +575,7 @@
         \caption{A diagonal is highlighted in a 5-square matrix} \label{diagonal}
     \end{figure}
 
-    An anti-diagonal is the opposite of the diagonal. An anti-diagonal has cells where $r = b - c + 1$ where $b$ is the base, where $b = r + c$. It is the longest ascending slant. Its two end cells are always $a_{b,1}$ and $a_{1,b}$
+    An anti-diagonal is the opposite of the diagonal. An anti-diagonal has cells where $r = b - c + 1$ where $b$ is the base, where $b = r + c$. The intersection sum of all its cells is always $b + 1$. It is the longest ascending slant. Its two end cells are always $a_{b,1}$ and $a_{1,b}$
 
     \begin{figure}[ht]
         \tikzset{highlight/.style={
@@ -556,4 +607,15 @@
         $}
         \caption{An anti-diagonal is highlighted in a 5-square matrix} \label{antidiagonal}
     \end{figure}
+
+
+    \subsection{The Off-diagonal Cells}
+    The off-diagonal cells are the cells not found in the main diagonal. There are two kinds of off-diagonal cells: the superdiagonal and the subdiagonal cells. The superdiagonal cells are found above and left of the main diagonal whilst the subdiagonal cells are found below and right the main diagonal.
+
+    Superdiagonal cells has their row index lower than their column index whilst subdiagonal cells have their row index greater than their column index. Using the intersection difference function (see section \ref{intersection_diff}), we can determine if a cell belongs to the main diagonal, is a superdiagonal cell, or is a subdiagonal cell. Given that $n$ is a cell index:
+    \begin{itemize}
+        \item If $\delta(b,n) < 0$, it is a subdiagonal cell.
+        \item If $\delta(b,n) > 0$, it is a superdiagonal cell.
+        \item If $\delta(b,n) = 0$, it belongs to the main diagonal.
+    \end{itemize}
 \end{document}
