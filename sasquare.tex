@@ -276,7 +276,7 @@
 
     \newpage
 
-    \subsection{Cells of a Row}
+    \subsection{Cells of a Row} \label{row_cells}
     To enumerate the cells of a row, we will use the Intersection function $i$. A row shall be considered a set of cell indices. Per Chapter \ref{1_square_grid}, the number of cells in a certain row is always $b$.
     \begin{equation}
         \begin{split}
@@ -286,7 +286,7 @@
     \end{equation}
     The expression $a_{r,*}b$ simply means `Row $r$ of $b$-square'. Numbers $b$ and $r$ are constants inside the set builder notation.
 
-    \subsection{Cells of a Column}
+    \subsection{Cells of a Column} \label{column_cells}
     To enumerate the cells of a column, we will use the Intersection function $i$. Just like a row, a column is also a set of cell indices. Just like rows, a column has only $b$ number of cells.
     \begin{equation}
         \begin{split}
@@ -296,7 +296,7 @@
     \end{equation}
     The expression $a_{*,c}b$ simply means `Column $c$ of $b$-square'. Numbers $b$ and $c$ are constants inside the set builder notation.
 
-    \subsection{Example: The Cells of Row 4 and Column 2 in 5-square}
+    \subsection{Example: The Cells of Row 4 and Column 2 in 5-square} \label{2_example_1}
     To enumerate the cell indices of $a_{4,*}5$ we shall use function $i$ in a set builder notation where $r$ and $b$ is constant.
     \begin{equation*}
         \begin{split}
@@ -421,7 +421,7 @@
 
     \newpage
 
-    \section{The Slants}
+    \section{The Slants} \label{slants}
     A slant is a special kind of set of cells. We shall define a slant\footnote{We can also use the word `slope', but some readers may confuse it with the mathematical definition of a slope.} with these traits:
     \begin{itemize}
         \item None of the cells in the set belong in the same row
@@ -440,7 +440,7 @@
         \end{split}
     \end{equation}
 
-    \subsection{The Intersection Sum}
+    \subsection{The Intersection Sum} \label{intersection_sum}
     There are equations that determine the slant a cell belongs to.
 
     By adding the row and the column index of a cell, we do an intersection sum. If two cells have the same intersection sums, they belong in the same ascending slant. Let $\sigma$ be the intersection sum function and $n$ be the cell index number.
@@ -454,7 +454,7 @@
         \end{split}
     \end{equation}
 
-    \subsection{The Intersection Difference}
+    \subsection{The Intersection Difference} \label{intersection_diff}
     To do an intersection difference, we shall subtract the row index of a cell from the column index of the same cell. If two cells have the same intersection difference, they belong in the same descending slant. Let $\delta$ be the intersection difference function and $n$ be the cell index number.
     \begin{equation}
         \begin{split}
@@ -490,7 +490,7 @@
         \left\lceil \frac{n}{b} \right\rceil - b - n + b\left\lceil \frac{n}{b} \right\rceil = \left\lceil \frac{n}{b} \right\rceil - b - n + b\left\lceil \frac{n}{b} \right\rceil
     \end{equation*}
 
-    \subsection{The Diagonals}
+    \subsection{The Diagonals} \label{diagonals}
     A matrix has a special set of elements called a diagonal; it is also called the main diagonal. A diagonal consists of elements where $r = c$. In a square grid, a diagonal is the longest descending slant. Its two end cells are always $a_{1,1}$ and $a_{b,b}$.
 
     \begin{figure}[ht]
