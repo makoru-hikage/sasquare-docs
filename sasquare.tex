@@ -618,4 +618,86 @@
         \item If $\delta(b,n) > 0$, it is a superdiagonal cell.
         \item If $\delta(b,n) = 0$, it belongs to the main diagonal.
     \end{itemize}
+
+    To further illustrate the superdiagonal and subdiagonal cells, we will show two matrices where the highlighted cells together resembles two triangles.
+
+    \begin{figure}[ht]
+        \centering
+        \begin{minipage}{0.45\textwidth}
+            \tikzset{row_hl/.style={
+            line width=0.8pt,
+            draw=gray!80,
+            rectangle,
+            fill=gray!55,
+            blend mode = multiply,
+            inner sep=1pt,
+            fit = #1}
+            }
+            \tikzset{col_hl/.style={
+                rectangle,
+                fill=black!45,
+                blend mode = multiply,
+                inner sep=1pt,
+                fit = #1}
+            }
+            \centering
+            {$
+            \begin{bNiceMatrix}
+                i_{1} & i_{2} & i_{3} & i_{4} & i_{5} \\
+                i_{6} & i_{7} & i_{8} & i_{9} & i_{10} \\
+                i_{11} & i_{12} & i_{13} & i_{14} & i_{15} \\
+                i_{16} & i_{17} & i_{18} & i_{19} & i_{20} \\
+                i_{21} & i_{22} & i_{23} & i_{24} & i_{25}
+                \CodeAfter 
+                \tikz \node [row_hl=(1-2)(1-5)] {};
+                \tikz \node [row_hl=(2-3)(2-5)] {};
+                \tikz \node [row_hl=(3-4)(3-5)] {};
+                \tikz \node [row_hl=(4-5)] {};
+                \tikz \node [col_hl=(2-1)] {};
+                \tikz \node [col_hl=(3-1)(3-2)] {};
+                \tikz \node [col_hl=(4-1)(4-3)] {};
+                \tikz \node [col_hl=(5-1)(5-4)] {};
+            \end{bNiceMatrix}
+            $}
+        \end{minipage}
+        \hfill
+        \begin{minipage}{0.45\textwidth}
+            \tikzset{row_hl/.style={
+            line width=0.8pt,
+            draw=gray!80,
+            rectangle,
+            fill=gray!55,
+            blend mode = multiply,
+            inner sep=1pt,
+            fit = #1}
+            }
+            \tikzset{col_hl/.style={
+                rectangle,
+                fill=black!45,
+                blend mode = multiply,
+                inner sep=1pt,
+                fit = #1}
+            }
+            \centering
+            {$
+            \begin{bNiceMatrix}
+                0 & 1 & 2 & 3 & 4 \\
+                -1 & 0 & 1 & 2 & 3 \\
+                -2 & -1 & 0 & 1 & 2 \\
+                -3 & -2 & -1 & 0 & 1 \\
+                -4 & -3 & -2 & -1 & 0
+                \CodeAfter 
+                \tikz \node [row_hl=(1-2)(1-5)] {};
+                \tikz \node [row_hl=(2-3)(2-5)] {};
+                \tikz \node [row_hl=(3-4)(3-5)] {};
+                \tikz \node [row_hl=(4-5)] {};
+                \tikz \node [col_hl=(2-1)] {};
+                \tikz \node [col_hl=(3-1)(3-2)] {};
+                \tikz \node [col_hl=(4-1)(4-3)] {};
+                \tikz \node [col_hl=(5-1)(5-4)] {};
+            \end{bNiceMatrix}
+            $}
+        \end{minipage}
+        \caption{The cells with highlighted with a light shade of gray are the superdiagonal cells. The rest of the highlighted cells are the subdiagonal cells. The right matrix has elements where $i_{n}b = \delta(b,n)$ or $a_{r,c}b = \delta(b,n)$.} \label{fig:offdiagonal_cells}
+    \end{figure}
 \end{document}
