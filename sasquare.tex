@@ -702,4 +702,100 @@
     \end{figure}
 
     In Figure \ref{fig:offdiagonal_cells}, the cells highlighted with a light shade of gray are the superdiagonal cells. The rest of the highlighted cells are the subdiagonal cells. The unhighlighted cells are the diagonal cells. The left matrix has elements where $i_{n}b = \delta(b,n)$ where $n$ is the cell index and $b$ is the base of the square.
+
+    \subsection{The Anti-offdiagonal Cells}
+    The Anti-offdiagonal cells are the cells not found in the anti-diagonal. Like the off-diagonal cells, there are two kinds of anti-offdiagonal cells: the anti-superdiagonal and the anti-subdiagonal cells. The anti-superdiagonal cells are above and left of the anti-diagonal whilst the anti-subdiagonal cells are below and right of the anti-diagonal.
+
+    \newpage
+
+    Using the intersection sum (see section \ref{intersection_sum}) of a cell index, we can determine whether a cell belongs to the anti-diagonal, is an anti-superdiagonal cell, or is an anti-subdiagonal cell. Given that $n$ is a cell index:
+    \begin{itemize}
+        \item If $\alpha(b,n) < (b + 1)$, it is an anti-subdiagonal cell.
+        \item If $\alpha(b,n) > (b + 1)$, it is an anti-superdiagonal cell.
+        \item If $\alpha(b,n) = (b + 1)$, it belongs to the anti-diagonal.
+    \end{itemize}
+
+    Like the off-diagonal cells, they can resemble triangles.
+
+    \begin{figure}[ht]
+        \centering
+        \begin{minipage}{0.45\textwidth}
+            \tikzset{row_hl/.style={
+            line width=0.8pt,
+            draw=gray!80,
+            rectangle,
+            fill=gray!55,
+            blend mode = multiply,
+            inner sep=1pt,
+            fit = #1}
+            }
+            \tikzset{col_hl/.style={
+                rectangle,
+                fill=black!45,
+                blend mode = multiply,
+                inner sep=1pt,
+                fit = #1}
+            }
+            \centering
+            {$
+            \begin{bNiceMatrix}
+                i_{1} & i_{2} & i_{3} & i_{4} & i_{5} \\
+                i_{6} & i_{7} & i_{8} & i_{9} & i_{10} \\
+                i_{11} & i_{12} & i_{13} & i_{14} & i_{15} \\
+                i_{16} & i_{17} & i_{18} & i_{19} & i_{20} \\
+                i_{21} & i_{22} & i_{23} & i_{24} & i_{25}
+                \CodeAfter 
+                \tikz \node [row_hl=(1-1)(1-4)] {};
+                \tikz \node [row_hl=(2-1)(2-3)] {};
+                \tikz \node [row_hl=(3-1)(3-2)] {};
+                \tikz \node [row_hl=(4-1)] {};
+                \tikz \node [col_hl=(2-5)] {};
+                \tikz \node [col_hl=(3-4)(3-5)] {};
+                \tikz \node [col_hl=(4-3)(4-5)] {};
+                \tikz \node [col_hl=(5-2)(5-5)] {};
+            \end{bNiceMatrix}
+            $}
+        \end{minipage}
+        \hfill
+        \begin{minipage}{0.45\textwidth}
+            \tikzset{row_hl/.style={
+            line width=0.8pt,
+            draw=gray!80,
+            rectangle,
+            fill=gray!55,
+            blend mode = multiply,
+            inner sep=1pt,
+            fit = #1}
+            }
+            \tikzset{col_hl/.style={
+                rectangle,
+                fill=black!45,
+                blend mode = multiply,
+                inner sep=1pt,
+                fit = #1}
+            }
+            \centering
+            {$
+            \begin{bNiceMatrix}
+                2 & 3 & 4 & 5 & 6 \\
+                3 & 4 & 5 & 6 & 7 \\
+                4 & 5 & 6 & 7 & 8 \\
+                5 & 6 & 7 & 8 & 9 \\
+                6 & 7 & 8 & 9 & 10
+                \CodeAfter 
+                \tikz \node [row_hl=(1-1)(1-4)] {};
+                \tikz \node [row_hl=(2-1)(2-3)] {};
+                \tikz \node [row_hl=(3-1)(3-2)] {};
+                \tikz \node [row_hl=(4-1)] {};
+                \tikz \node [col_hl=(2-5)] {};
+                \tikz \node [col_hl=(3-4)(3-5)] {};
+                \tikz \node [col_hl=(4-3)(4-5)] {};
+                \tikz \node [col_hl=(5-2)(5-5)] {};
+            \end{bNiceMatrix}
+            $}
+        \end{minipage}
+        \caption{The highlighted anti-offdiagonal cells in two matrices.} \label{fig:antioffdiagonal_cells}
+    \end{figure}
+
+    In Figure \ref{fig:antioffdiagonal_cells}, the cells highlighted with a light shade of gray are the anti-superdiagonal cells. The rest of the highlighted cells are the anti-subdiagonal cells. The unhighlighted cells are the anti-diagonal cells. The left matrix has elements where $i_{n}b = \alpha(b,n)$ where $n$ is the cell index and $b$ is the base of the square.
 \end{document}
