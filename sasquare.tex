@@ -896,7 +896,7 @@
     \end{itemize}
     Function $u$ is a function that either yields a multiple of $b$ or subtracts $b$ from $x$ depending on whether $x$ exceeds or fall short of $b$.
     \begin{equation}
-        u(b,x) = b^{2 + \left\lceil -\frac{x}{b} \right\rceil }|b-x|
+        u(b,x) = b^{2 + \left\lfloor -\frac{x}{b} \right\rfloor }|b-x|
     \end{equation}
     \begin{equation}
         U = \{ u(b,x) : x \in \mathbb{N}, 0 \leq x \leq 2b \}
@@ -909,7 +909,7 @@
 
     Function $w$ is a function that either yields a multiple of $b$ or subtracts $x$ from $b$ depending on whether $x$ exceeds or fall short of $b$.
     \begin{equation}
-        w(b,x) = |b-x|(b-1) + b^{\left\lceil \frac{x}{b} \right\rceil}(b-x)
+        w(b,x) = |b-x|(b-1) + b^{\left\lfloor \frac{x}{b} \right\rfloor}(b-x)
     \end{equation}
     \begin{equation}
         W = \{ w(b,x) : x \in \mathbb{N}, 0 \leq x \leq 2b \}
