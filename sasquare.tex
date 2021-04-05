@@ -920,4 +920,46 @@
         \item When $b \leq x \leq 2b$ then $w(b,x) = b - x$
     \end{itemize}
 
+    \subsection{The Cells of a Slant} \label{cells_of_a_slant}
+    We will use several notations to describe the different kind of slants and their cells.
+    \begin{itemize}
+        \item A descending slant is denoted as $\kappa_{x,*}b$ where $x$ is the index of the descending slant. This can be also called as ``descending slant x"
+        \item A cell in a descending slant is denoted as $\kappa_{x,o}b$ where $o$ is the nth cell of descending slant x.
+        \item To depict the nth cells of each descending slants we will denote it as $\kappa_{*,o}b$. (eg. All the 1st cells of each descending slant in 5-square is denoted as $\kappa_{*,1}5$.)
+        \item An ascending slant is denoted as $\upsilon_{x,*}b$ where $x$ is the index of the ascending slant. This can be also called as ``ascending slant x"
+        \item A cell in an ascending slant is denoted as $\upsilon_{x,o}b$ where $n$ is the nth cell of ascending slant x.
+        \item To depict the nth cells of each ascending slants we will denote it as $\upsilon_{*,o}b$. (eg. All the 1st cells of each ascending slant in 5-square is denoted as $\upsilon_{*,1}5$.)
+    \end{itemize}
+
+    Before enumerating all the cells of a chosen slant, we must first find the cardinality of the chosen slant (see section \ref{slant_cardinality}). The variable $s$ represents either a descending slant $\kappa$ or an ascending slant $\upsilon$
+    \begin{equation}
+        n(s_{x,*}b) = b - |b-x|
+    \end{equation}
+
+
+    To enumerate the cells of a descending slant, we shall add the results of the intersection function (see section \ref{intersection} and \ref{diagonal}) and function $u$ from section \ref{u_and_w}.
+    \begin{equation}
+        \begin{split}
+            \kappa_{x,o}b &= i(b,o,o) + u(b,x) \\
+                &= (bo + b + o) + (b^{2 + \left\lfloor -\frac{x}{b} \right\rfloor }|b-x|)
+        \end{split}
+    \end{equation}
+
+    We shall use the set builder notation to enumerate the cells. Variables $b$ and $x$ will be constant in this equation.
+    \begin{equation}
+        K = \{ \kappa_{x,o}b : 1 \leq o \leq n(\kappa_{x,*}b) \}
+    \end{equation}
+
+    To enumerate the cells of an ascending slant, we shall subtract the results of function $w$ (see section \ref{u_and_w}) from the results of the function $\Upsilon$ that enumerates the anti-diagonal cells (see section \ref{antidiagonal}).
+    \begin{equation}
+        \begin{split}
+            \upsilon_{x,o}b &= \Upsilon(b,o) + w(b,x) \\
+                &= (b^2 - bo + o) + (|b-x|(b-1)+ b^{\left\lfloor \frac{x}{b} \right\rfloor}(b-x))
+        \end{split}
+    \end{equation}
+
+    We shall use the set builder notation to enumerate the cells. Variables $b$ and $x$ will be constant in this equation.
+    \begin{equation}
+        L = \{ \upsilon_{x,o}b : 1 \leq o \leq n(\upsilon_{x,*}b) \}
+    \end{equation}
 \end{document}
