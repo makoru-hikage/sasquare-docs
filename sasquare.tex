@@ -962,4 +962,83 @@
     \begin{equation}
         L = \{ \upsilon_{x,o}b : 1 \leq o \leq n(\upsilon_{x,*}b) \}
     \end{equation}
+
+    \subsection{Example: The Descending Slant of Cell 17 in 5-Square} \label{3-4_example_1}
+    To find the descending index of $i_{17}$, we shall first find its intersection difference.
+    \begin{equation*}
+        \begin{split}
+            \delta(b,n) &= b + n - b\left\lceil \frac{n}{b} \right\rceil - \left\lceil \frac{n}{b} \right\rceil\\
+            \delta(5,17) &= 5 + 17 - 5\left\lceil \frac{17}{5} \right\rceil - \left\lceil \frac{17}{5} \right\rceil\\
+            \delta(5,17) &= 5 + 17 - 5(4) - (4)\\
+                &= 5 + 17 - 20 - 4\\
+                &= 2 - 4\\
+            \delta(5,17) &= -2\\
+        \end{split}
+    \end{equation*}
+
+    After finding $\delta(5,17)$ we will find the descending index of $i_{17}$.
+    \begin{equation*}
+        \begin{split}
+            \kappa(b,n) &= b - \delta(b,n)\\
+            \kappa(5,17) &= 5 + \delta(5,17)\\
+                &= 5 + (-2)\\
+                &= 5 - 2\\
+            \kappa(5,17) &= 3\\
+        \end{split}
+    \end{equation*}
+
+    The descending index of $i_{17}$ is 3. To find the neighboring cells of $i_{17}$ in descending slant 3, we will find the cardinality of descending slant 3. We will represent any descending slant as a set using the slant notation $\kappa_{x,*}b$. Let $x$ be equal to 3.
+    \begin{equation*}
+        \begin{split}
+            n(\kappa_{x,*}b) &= b - |b - x| \\
+            n(\kappa_{3,*}5) &= 5 - |5 - 3| \\
+                &= 5 - |2| \\
+                &= 5 - 2 \\
+            n(\kappa_{3,*}5) &= 3 
+        \end{split}
+    \end{equation*}
+    There are 3 cells in descending slant 3. To list the indices of each cell, we will use a set builder notation.
+    \begin{equation*}
+        \begin{split}
+            \kappa_{3,*}5 &= \{ \kappa_{x,o}b : 1 \leq o \leq n(\kappa_{x,*}b) \} \\
+            \kappa_{3,*}5 &= \{ \kappa_{3,o}5 : 1 \leq o \leq 3 \} \\
+        \end{split}
+    \end{equation*}
+    Since there are only 3 cells in the slant, we will enumerate up the 3rd cell of descending 3.
+    \begin{equation*}
+        \begin{split}
+            \kappa_{x,o}b &= (bo + b + o) + (b^{2 + \left\lfloor -\frac{x}{b} \right\rfloor }|b-x|) \\
+            \kappa_{3,1}5 &= (5(1) + 5 + 1) + (5^{2 + \left\lfloor -\frac{3}{5} \right\rfloor }|5-3|) = 11\\
+            \kappa_{3,2}5 &= (5(2) + 5 + 2) + (5^{2 + \left\lfloor -\frac{3}{5} \right\rfloor }|5-3|) = 17\\
+            \kappa_{3,3}5 &= (5(3) + 5 + 3) + (5^{2 + \left\lfloor -\frac{3}{5} \right\rfloor }|5-3|) = 23\\
+            \kappa_{3,*}5 &= \{11, 17, 15\}
+        \end{split}
+    \end{equation*}
+    Cell 17 is the 2nd cell of descending slant 3 for $\kappa_{3,2}5 = 17$
+    \begin{figure*}[ht]
+        \tikzset{highlight/.style={
+            line width=0.8pt,
+            draw=gray!80,
+            rectangle,
+            fill=gray!55,
+            blend mode = multiply,
+            rounded corners = 0.7 mm,
+            inner sep=1pt,
+            fit = #1}
+        }
+        \centering
+        {$
+        \begin{bNiceMatrix}
+            i_{1} & i_{2} & i_{3} & i_{4} & i_{5} \\
+            i_{6} & i_{7} & i_{8} & i_{9} & i_{10} \\
+            i_{11} & i_{12} & i_{13} & i_{14} & i_{15} \\
+            i_{16} & i_{17} & i_{18} & i_{19} & i_{20} \\
+            i_{21} & i_{22} & i_{23} & i_{24} & i_{25}
+            \CodeAfter 
+            \tikz \node [highlight=(3-1)] {};
+            \tikz \node [highlight=(4-2)] {};
+            \tikz \node [highlight=(5-3)] {};
+        \end{bNiceMatrix}
+        $}
+    \end{figure*}
 \end{document}
