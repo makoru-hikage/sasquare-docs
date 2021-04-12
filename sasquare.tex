@@ -1041,4 +1041,85 @@
         \end{bNiceMatrix}
         $}
     \end{figure*}
+
+    \subsection{Example: The Ascending Slant of Cell 17 in 5-Square} \label{3-4_example_2}
+    To find the ascending index of $i_{17}$, we shall first find its intersection sum.
+    \begin{equation*}
+        \begin{split}
+            \sigma(b,n) &= \left\lceil \frac{n}{b} \right\rceil + b + n - b\left\lceil \frac{n}{b} \right\rceil\\
+            \sigma(5,17) &= \left\lceil \frac{17}{5} \right\rceil + 5 + 17 - 5\left\lceil \frac{17}{5} \right\rceil\\
+                &= 4 + 5 + 17 - 5(4)\\
+                &= 4 + 5 + 17 - 20\\
+                &= 4 + 2\\
+            \sigma(5,17) &= 6\\
+        \end{split}
+    \end{equation*}
+
+    The intersection sum of $i_{17}$ is 6. We will find the ascending index of $i_{17}$.
+    \begin{equation*}
+        \begin{split}
+            \upsilon(b,n) &= \sigma(b,n) - 1\\
+            \upsilon(5,17) &= \sigma(5,17) - 1\\
+                &= 6 - 1\\
+            \upsilon(5,17) &= 5\\
+        \end{split}
+    \end{equation*}
+
+    The ascending index of $i_{17}$ is 5. To find the neighboring cells of $i_{17}$ in ascending slant 5, we will find its cardinality. We will represent any ascending slant as a set using the slant notation $\upsilon_{x,*}b$. Let $x$ be equal to 5.
+    \begin{equation*}
+        \begin{split}
+            n(\kappa_{x,*}b) &= b - |b - x| \\
+            n(\kappa_{5,*}5) &= 5 - |5 - 5| \\
+                &= 5 - |0| \\
+            n(\kappa_{5,*}5) &= 5
+        \end{split}
+    \end{equation*}
+    There are 5 cells in ascending slant 5. To list the indices of each cell, we will use a set builder notation.
+    \begin{equation*}
+        \begin{split}
+            \upsilon_{x,*}5 &= \{ \upsilon_{x,o}b : 1 \leq o \leq n(\upsilon_{x,*}b) \} \\
+            \upsilon_{5,*}5 &= \{ \upsilon_{5,o}5 : 1 \leq o \leq 5 \} \\
+        \end{split}
+    \end{equation*}
+    Since there are only 3 cells in the slant, we will enumerate up the 3rd cell of descending 3.
+    \begin{equation*}
+        \begin{split}
+            \upsilon_{x,o}b &= (b^2 - bo + o) + (|b-x|(b-1)+ b^{\left\lfloor \frac{x}{b} \right\rfloor}(b-x)) \\
+            \upsilon_{5,1}5 &= (5^2 - 5(1) + 1) + (|5-5|(5-1)+ 5^{\left\lfloor \frac{5}{5} \right\rfloor}(5-5)) = 21\\
+            \upsilon_{5,2}5 &= (5^2 - 5(2) + 2) + (|5-5|(5-1)+ 5^{\left\lfloor \frac{5}{5} \right\rfloor}(5-5)) = 17\\
+            \upsilon_{5,3}5 &= (5^2 - 5(3) + 3) + (|5-5|(5-1)+ 5^{\left\lfloor \frac{5}{5} \right\rfloor}(5-5)) = 13\\
+            \upsilon_{5,4}5 &= (5^2 - 5(4) + 4) + (|5-5|(5-1)+ 5^{\left\lfloor \frac{5}{5} \right\rfloor}(5-5)) = 9\\
+            \upsilon_{5,5}5 &= (5^2 - 5(5) + 5) + (|5-5|(5-1)+ 5^{\left\lfloor \frac{5}{5} \right\rfloor}(5-5)) = 5\\
+            \upsilon_{5,*}5 &= \{21, 17, 13, 9, 5\}
+        \end{split}
+    \end{equation*}
+    Cell 17 is the 2nd cell of ascending slant 5 because $\upsilon_{5,2}5 = 17$
+    \begin{figure*}[ht]
+        \tikzset{highlight/.style={
+            line width=0.8pt,
+            draw=gray!80,
+            rectangle,
+            fill=gray!55,
+            blend mode = multiply,
+            rounded corners = 0.7 mm,
+            inner sep=1pt,
+            fit = #1}
+        }
+        \centering
+        {$
+        \begin{bNiceMatrix}
+            i_{1} & i_{2} & i_{3} & i_{4} & i_{5} \\
+            i_{6} & i_{7} & i_{8} & i_{9} & i_{10} \\
+            i_{11} & i_{12} & i_{13} & i_{14} & i_{15} \\
+            i_{16} & i_{17} & i_{18} & i_{19} & i_{20} \\
+            i_{21} & i_{22} & i_{23} & i_{24} & i_{25}
+            \CodeAfter 
+            \tikz \node [highlight=(5-1)] {};
+            \tikz \node [highlight=(4-2)] {};
+            \tikz \node [highlight=(3-3)] {};
+            \tikz \node [highlight=(2-4)] {};
+            \tikz \node [highlight=(1-5)] {};
+        \end{bNiceMatrix}
+        $}
+    \end{figure*}
 \end{document}
