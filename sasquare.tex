@@ -1124,4 +1124,28 @@
     \end{figure*}
 
     \newpage
+
+    \section{Corners and Edges} \label{corners_and_edges}
+    The corners and edges define the boundaries of a square. In geometry, a vertex is a point where two lines meet. In this section, we will liken a corner to a vertex; a cell belongs to two groups of cells called edges which we will liken to a side of a polygon. An edge can either be a row or a column but not both. A corner belongs to a horizontal edge and a vertical edge; those are the two kinds of edges. A horizontal edge is a row, and a vertical edge is a column. For each kind of edge, there are two instances; in total, there are four edges in a square. The four edges have their respective names: top edge, bottom edge, left edge, right edge.
+    \begin{itemize}
+        \item The top edge is a horizontal edge for it is a row; it has an index of 1. The indices of its cells are always a series of positive integers from 1 to $b$.
+        \item The bottom edge is a horizontal edge for it is a row; it has an index of $b$. The indices of its cells belong to a set of positive integers that satisfies $b^2 - (b - 1) \leq n \leq b^2$ where $n$ is any cell index.
+        \item The left edge is a vertical edge for it is a column; it has an index of 1. The indices of its cells belong to the range of the following set: $\{bn - (b - 1) : 1 \leq n \leq b\}$ where $n$ is any positive integer.
+        \item The right edge is a vertical edge for it is a column; it has an index of $b$. The indices of its cells are the multiples of $b$ up to its square ($b^2$).
+    \end{itemize}
+
+    For example, in a 7-square, $a_{1,*}$ is the top edge, $a_{7,*}$ is the bottom edge, $a_{*,1}$ is the left edge, and $a_{*,7}$ is the right edge.
+
+    A corner is where two edges meet: an intersection of two edges. These edges are not of the same kind; a corner is an intersection of a horizontal edge and a vertical edge. There are four corners in a square. The edges where they belong define their name.
+    \begin{itemize}
+        \item The top-left corner belongs to the top edge and left edge. It signifies the start of cell indices in a series. The cell index of a top-left corner is always 1, and its matrix index is always $a_{1,1}$.
+        \item The top-right corner belongs to the top edge and right edge. The cell index of the top-right corner is always $b$, and its matrix index is $a_{1,b}$.
+        \item The bottom-left corner belongs to the bottom edge and left edge. The cell index of the bottom-left corner is always $b^2 - (b - 1)$, and its matrix index is $a_{b,1}$.
+        \item The bottom-right corner belongs to the bottom edge and right edge. It signifies the end of cell indices in a series. The cell index of the bottom-right corner is always $b^2$, and its matrix index is $a_{b,b}$.
+    \end{itemize}
+
+    For example, in a 4-square, $a_{1,1}$ or $i_1$ is the top-left corner, $a_{1,4}$ or $i_4$ is the top-right corner, $a_{4,1}$ or $i_{13}$ is the bottom-left corner, and $a_{4,4}$ or $i_{16}$ is the bottom-right corner.
+
+    \newpage
+
 \end{document}
