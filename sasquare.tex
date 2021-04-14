@@ -1148,4 +1148,137 @@
 
     \newpage
 
+    \section{The Symmetry}
+    A square is always symmetrical, bilaterally and quadrilaterally. Every symmetrical thing has a center. When treated as a finite tuple, rows and columns have one or two center cells depending on whether their length is odd or even.
+
+    \subsection{The Center Index}
+    A center index pertains to a term or a pair of terms in the middle of a tuple.
+    \begin{equation*}
+        T = (1,2,3,4,5)
+    \end{equation*}
+    The value of the terms of tuple $T$ equate to their respective indices. The center index is 3. To find the center index of a tuple will use a function that can be interpreted in two ways. Let $x$ be the length of the tuple or any positive integer.
+    \begin{equation}
+        M(x) = \left\lceil \frac{x}{2} \right\rceil = \left\lfloor \frac{x+1}{2} \right\rfloor
+    \end{equation}
+    We will define the result of $M(x)$ as the center index. 
+
+    When the tuple has an even number of terms, the center indices are two: the main center index and the secondary center index.
+    \begin{equation*}
+        S = (1,2,3,4,5,6)
+    \end{equation*}
+    Tuple $S$ is similar to tuple $T$ but with one more term. Tuple $S$ has an even number of terms, therefore it has two center indices. The main center index is 3 and the secondary center index is 4. The secondary center index is always equal to $M(x) + 1$ since it follows the main center index.
+
+    Function $M$ are applicable to rows and columns when they are treated as tuples.
+
+    \subsection{Center of the Base}
+    The base is the very core of a square and always a variable in our equations so far. To find the center of the base, will use the function for finding the center index of a tuple.
+    \begin{equation}
+        \begin{split}
+            M(x) &= \left\lceil \frac{x}{2} \right\rceil = \left\lfloor \frac{x+1}{2} \right\rfloor \\
+            M(b) &= \left\lceil \frac{b}{2} \right\rceil = \left\lfloor \frac{b+1}{2} \right\rfloor
+        \end{split}
+    \end{equation}
+    When $b$ is even, $M(b)$ is the second center index of the base.
+
+    The center of the base is important for finding the center of a square.
+
+    \subsection{Center of a Row and a Column}
+    A row and a column always has a $b$ number of cells. Using the intersection function (see Chapter \ref{intersection}), we will find the center of a row or a column. We will call the cell in the center of a row or column the center cell.
+
+    To find the cell index of the center of a row. For example, we will find the center of row 2 of a 5-square. Let $c$ be equal to the center of the base and $r$ be the chosen row. 
+    \begin{equation}
+        \begin{split}
+            c &= M(b) \\
+            c &= M(5) \\
+            c &= \left\lceil \frac{5}{2} \right\rceil \\
+            c &= 3 \\
+            i(b,r,c) &= br - b + c \\
+            i(5,2,3) &= (5)(2) - 5 + 3 \\
+                &= 10 - 5 + 3 \\
+            i(5,2,3) &= 8 \\
+        \end{split}
+    \end{equation}
+
+    \newpage
+
+    Cell 8 ($i_{8}$) is the center of row 2. Cell 8 belongs to column 3.
+
+    \begin{figure*}[ht]
+        \tikzset{highlight/.style={
+            line width=0.8pt,
+            draw=gray!80,
+            rectangle,
+            fill=gray!55,
+            blend mode = multiply,
+            rounded corners = 0.7 mm,
+            inner sep=1pt,
+            fit = #1}
+        }
+        \centering
+        {$
+        \begin{bNiceMatrix}
+            i_{1} & i_{2} & i_{3} & i_{4} & i_{5} \\
+            i_{6} & i_{7} & i_{8} & i_{9} & i_{10} \\
+            i_{11} & i_{12} & i_{13} & i_{14} & i_{15} \\
+            i_{16} & i_{17} & i_{18} & i_{19} & i_{20} \\
+            i_{21} & i_{22} & i_{23} & i_{24} & i_{25}
+            \CodeAfter 
+            \tikz \node [highlight=(2-3)] {};
+        \end{bNiceMatrix}
+        $}
+    \end{figure*}
+
+    When the base of the square is even, a row has a main center cell and a secondary center cell. To find the main center cell index of row 3 of a 4-square and the its secondary center cell index. We will use the same equation.
+    \begin{equation}
+        \begin{split}
+            c &= M(b) \\
+            c &= M(4) \\
+            c &= \left\lceil \frac{4}{2} \right\rceil \\
+            c &= 2 \\
+            i(b,r,c) &= br - b + c \\
+            i(4,3,2) &= (4)(3) - 5 + 2 \\
+                &= 12 - 4 + 2 \\
+            i(4,3,2) &= 10 \\
+        \end{split}
+    \end{equation}
+
+    Cell 10 ($i_{10}$) is the main center cell; it belongs to column 2. To find the secondary center cell index of row 3, there are two ways:
+    \begin{itemize}
+        \item We will add 1 to $i(4,3,2)$ or the main center cell index.
+        \item We will add 1 to $c$; we will find the result of $i(b,r,c+1)$ or simply $i(4,3,2+1)$ in this example.
+    \end{itemize}
+    Let $s$ be the second center cell index.
+    \begin{equation}
+        \begin{split}
+            s &= i(b,r,c) + 1\\
+            s &= i(4,3,2) + 1\\
+            s &= 10 + 1\\
+            s &= 11\\
+        \end{split}
+    \end{equation}
+    Cell 11 ($i_{11}$) is the secondary center cell of row 3. Cell 11 belongs to column 3.
+    \begin{figure*}[ht]
+        \tikzset{highlight/.style={
+            line width=0.8pt,
+            draw=gray!80,
+            rectangle,
+            fill=gray!55,
+            blend mode = multiply,
+            rounded corners = 0.7 mm,
+            inner sep=1pt,
+            fit = #1}
+        }
+        \centering
+        {$
+        \begin{bNiceMatrix}
+            i_{1} & i_{2} & i_{3} & i_{4}\\
+            i_{5} & i_{6} & i_{7} & i_{8}\\
+            i_{9} & i_{10} & i_{11} & i_{12}\\
+            i_{13} & i_{14} & i_{15} & i_{16} 
+            \CodeAfter 
+            \tikz \node [highlight=(3-2)] {};
+            \tikz \node [highlight=(3-3)] {};
+        \end{bNiceMatrix}
+        $}
+    \end{figure*}
 \end{document}
