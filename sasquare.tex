@@ -923,7 +923,7 @@
     \subsection{The Cells of a Slant} \label{cells_of_a_slant}
     We will use several notations to describe the different kind of slants and their cells.
     \begin{itemize}
-        \item A descending slant is denoted as $\kappa_{x,*}b$ where $x$ is the index of the descending slant. This can be also called as ``descending slant x"
+        \item A descending slant is denoted as $\kappa_{x,*}b$ where $x$ is the index of the descending slant. This cansee Section be also called as ``descending slant x"
         \item A cell in a descending slant is denoted as $\kappa_{x,o}b$ where $o$ is the nth cell of descending slant x.
         \item To depict the nth cells of each descending slants we will denote it as $\kappa_{*,o}b$. (eg. All the 1st cells of each descending slant in 5-square is denoted as $\kappa_{*,1}5$.)
         \item An ascending slant is denoted as $\upsilon_{x,*}b$ where $x$ is the index of the ascending slant. This can be also called as ``ascending slant x"
@@ -1383,4 +1383,149 @@
 
     \newpage
 
+    \subsection{Center of the Square} \label{center_square}
+    The center of a square grid will vary on whether its base is even or not. There is only one cell in the center of a square when its base is odd. When its base is even, there will always be four cells in the size of a 2-square. We will call the squares with an odd base an odd-base square, and the squares with an even base is a even-base square.
+
+    For example, to find the center cell of a 5-square, an odd-base square, we will use two ways. Let $m$ be the function to find the center cell of a square. This is the first way.
+    \begin{equation}
+        \begin{split}
+            m(b) &= \left\lceil \frac{b^2}{2} \right\rceil \\
+            m(5) &= \left\lceil \frac{5^2}{2} \right\rceil \\
+                &= \left\lceil \frac{25}{2} \right\rceil \\
+            m(5) &= 13 \\
+        \end{split}
+    \end{equation}
+    This is the second way:
+    \begin{equation}
+        \begin{split}
+            M(b) &= \left\lceil \frac{b}{2} \right\rceil \\
+            M(5) &= \left\lceil \frac{5}{2} \right\rceil \\
+            M(5) &= 3 \\
+            r &= M(5) \\
+            c &= M(5) \\
+            i(b,r,c) &= br - b + c \\
+            i(5,3,3) &= (5)(3) - 5 + 3 \\
+                &= 15 - 5 + 3 \\
+            i(5,3,3) &= 13 \\
+        \end{split}
+    \end{equation}
+    Cell 13 ($i_{13}$) is the center cell of a 5-square. It belongs to row 3 and column 3.
+
+    \newpage
+
+    The first way is rather a simple way. The second way involves the application of the center index function ($M(x)$) to $b$ (see Section \ref{center_index} and \ref{center_base}) and using its value as an argument to $r$ and $c$ of the intersection function ($i(b,r,c)$) (see Chapter \ref{intersection}).
+
+    \begin{figure}[ht]
+        \tikzset{highlight/.style={
+            line width=0.8pt,
+            draw=gray!80,
+            rectangle,
+            fill=gray!55,
+            blend mode = multiply,
+            rounded corners = 0.7 mm,
+            inner sep=1pt,
+            fit = #1}
+        }
+        \centering
+        {$
+        \begin{bNiceMatrix}
+            i_{1} & i_{2} & i_{3} & i_{4} & i_{5} \\
+            i_{6} & i_{7} & i_{8} & i_{9} & i_{10} \\
+            i_{11} & i_{12} & i_{13} & i_{14} & i_{15} \\
+            i_{16} & i_{17} & i_{18} & i_{19} & i_{20} \\
+            i_{21} & i_{22} & i_{23} & i_{24} & i_{25}
+            \CodeAfter 
+            \tikz \node [highlight=(3-3)] {};
+        \end{bNiceMatrix}
+        $}
+    \caption{The lone center cell of a 5-square}
+    \end{figure}
+
+    To find the center cells of an even-base square. We must first name the four center cells of an even-base square.
+    \begin{itemize}
+        \item We can find the \textbf{first center cell} index by applying the center cell function $M(x)$ to $b$ and applying the intersection function to $(b, M(b), M(b))$. When expressed in matrix index notation this would be $a_{M(b), M(b)}$. By inferring from the notation, we can see that the first center cell's row and column index are equal to $M(b)$, therefore it is also equal to $i(b,r,c)$ where $r = c = M(b)$.
+        \item To find the \textbf{second center cell} index, we will add 1 to to the first center cell index or solve for $i(b,r,c)$ where $r = M(b)+1$ and $c = M(b)$.
+        \item To find the \textbf{third center cell} index, we will add $b$ to the first center cell index or add $b - 1$ to the second center cell index. We can also solve for $i(b,r,c)$ where $r = M(b)$ and $c = M(b)+1$.
+        \item To find the \textbf{fourth center cell} index, we can either add $b + 1$ to the first center cell index, add $b$ to the second center cell index, or add 1 to the third center cell index. We can also solve for $i(b,r,c)$ where $r = c = M(b) + 1$
+    \end{itemize}
+    To summarise, finding the first center cell index will render the search of the subsequent cell indices easily.
+
+    To find the center cells of a 6 square, we will first find the first center cell index. Let $\mu_1$, $\mu_2$, $\mu_3$, and $\mu_4$ be the first, second, third, and fourth center cell indices respectively.
+
+    \begin{equation}
+        \begin{split}
+            M(b) &= \left\lceil \frac{b}{2} \right\rceil \\
+            M(6) &= \left\lceil \frac{6}{2} \right\rceil \\
+            M(6) &= 3 \\
+            r &= c = M(6) \\
+            \mu_1 &= i(b,r,c) \\
+            i(b,r,c) &= br - b + c \\
+            i(6,3,3) &= (6)(3) - 6 + 3 \\
+                &= 18 - 6 + 3 \\
+            i(6,3,3) &= 15 \\
+            \mu_1 &= 15 \\
+        \end{split}
+    \end{equation}
+    Cell 15 ($i_{15}$) is the first center cell. It belongs to row 3 and column 3.
+    \begin{equation}
+        \begin{split}
+            \mu_2 &= \mu_1 + 1 \\
+            \mu_2 &= 15 + 1 \\
+            \mu_2 &= 16 
+        \end{split}
+    \end{equation}
+    Cell 16 ($i_{16}$) is the second center cell. It belongs to row 3 and column 4.
+    \begin{equation}
+        \begin{split}
+            \mu_3 &= \mu_1 + b \\
+            \mu_3 &= 15 + 6 \\
+            \mu_3 &= 21 
+        \end{split}
+    \end{equation}
+    Cell 21 ($i_{21}$) is the third center cell. It belongs to row 4 and column 3.
+    \begin{equation}
+        \begin{split}
+            \mu_4 &= \mu_1 + b + 1 \\
+            \mu_4 &= 15 + 6 + 1 \\
+            \mu_4 &= 22
+        \end{split}
+    \end{equation}
+    Cell 22 ($i_{22}$) is the fourth center cell. It belongs to row 4 and column 4.
+
+    \newpage
+
+    Visually, the second center cell is at the left of the first center cell, the third center cell is below the first center cell, and the fourth center cell is below the second cell.
+
+    \begin{figure}[ht]
+        \setcounter{MaxMatrixCols}{6}
+        \tikzset{highlight/.style={
+            line width=0.8pt,
+            draw=gray!80,
+            rectangle,
+            fill=gray!55,
+            blend mode = multiply,
+            rounded corners = 0.7 mm,
+            inner sep=1pt,
+            fit = #1}
+        }
+        \centering
+        {$
+        \begin{bNiceMatrix}
+            i_{1} & i_{2} & i_{3} & i_{4} & i_{5} & i_{6} \\
+            i_{7} & i_{8} & i_{9} & i_{10} & i_{11} & i_{12} \\
+            i_{13} & i_{14} & i_{15} & i_{16} & i_{17} & i_{18} \\
+            i_{19} & i_{20} & i_{21} & i_{22} & i_{23} & i_{24} \\
+            i_{25} & i_{26} & i_{27} & i_{28} & i_{29} & i_{30} \\
+            i_{31} & i_{32} & i_{33} & i_{34} & i_{35} & i_{36}
+            \CodeAfter 
+            \tikz \node [highlight=(3-3)] {};
+            \tikz \node [highlight=(3-4)] {};
+            \tikz \node [highlight=(4-3)] {};
+            \tikz \node [highlight=(4-4)] {};
+        \end{bNiceMatrix}
+        $}
+    \caption{The four center cells of an even-base square}
+    \end{figure}
+
+    \newpage
 \end{document}
