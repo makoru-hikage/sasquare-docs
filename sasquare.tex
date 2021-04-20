@@ -640,7 +640,7 @@
     \subsection{The Off-diagonal Cells} \label{offdiagonal_cells}
     The off-diagonal cells are the cells not found in the main diagonal. There are two kinds of off-diagonal cells: the superdiagonal and the subdiagonal cells. The superdiagonal cells are above and right of the main diagonal whilst the subdiagonal cells are below and left the main diagonal.
 
-    Superdiagonal cells has their row index lower than their column index whilst subdiagonal cells have their row index greater than their column index. Using the intersection difference function (see section \ref{intersection_diff}), we can determine if a cell belongs to the main diagonal, is a superdiagonal cell, or is a subdiagonal cell. Given that $n$ is a cell index:
+    Superdiagonal cells has their row index lower than their column index whilst subdiagonal cells have their row index greater than their column index. Using the intersection difference function (see Section \ref{intersection_diff}), we can determine if a cell belongs to the main diagonal, is a superdiagonal cell, or is a subdiagonal cell. Given that $n$ is a cell index:
     \begin{itemize}
         \item If $\delta(b,n) < 0$, it is a subdiagonal cell.
         \item If $\delta(b,n) > 0$, it is a superdiagonal cell.
@@ -736,7 +736,7 @@
 
     \newpage
 
-    Using the intersection sum (see section \ref{intersection_sum}) of a cell index, we can determine whether a cell belongs to the anti-diagonal, is an anti-superdiagonal cell, or is an anti-subdiagonal cell. Given that $n$ is a cell index:
+    Using the intersection sum (see Section \ref{intersection_sum}) of a cell index, we can determine whether a cell belongs to the anti-diagonal, is an anti-superdiagonal cell, or is an anti-subdiagonal cell. Given that $n$ is a cell index:
     \begin{itemize}
         \item If $\alpha(b,n) < (b + 1)$, it is an anti-superdiagonal cell.
         \item If $\alpha(b,n) > (b + 1)$, it is an anti-subdiagonal cell.
@@ -931,13 +931,13 @@
         \item To depict the nth cells of each ascending slants we will denote it as $\upsilon_{*,o}b$. (eg. All the 1st cells of each ascending slant in 5-square is denoted as $\upsilon_{*,1}5$.)
     \end{itemize}
 
-    Before enumerating all the cells of a chosen slant, we must first find the cardinality of the chosen slant (see section \ref{slant_cardinality}). The variable $s$ represents either a descending slant $\kappa$ or an ascending slant $\upsilon$
+    Before enumerating all the cells of a chosen slant, we must first find the cardinality of the chosen slant (see Section \ref{slant_cardinality}). The variable $s$ represents either a descending slant $\kappa$ or an ascending slant $\upsilon$
     \begin{equation}
         n(s_{x,*}b) = b - |b-x|
     \end{equation}
 
 
-    To enumerate the cells of a descending slant, we shall add the results of the intersection function (see section \ref{intersection} and \ref{diagonal}) and function $u$ from section \ref{u_and_w}.
+    To enumerate the cells of a descending slant, we shall add the results of the intersection function (see Section \ref{intersection} and \ref{diagonal}) and function $u$ from section \ref{u_and_w}.
     \begin{equation}
         \begin{split}
             \kappa_{x,o}b &= i(b,o,o) + u(b,x) \\
@@ -950,7 +950,7 @@
         K = \{ \kappa_{x,o}b : 1 \leq o \leq n(\kappa_{x,*}b) \}
     \end{equation}
 
-    To enumerate the cells of an ascending slant, we shall subtract the results of function $w$ (see section \ref{u_and_w}) from the results of the function $\Upsilon$ that enumerates the anti-diagonal cells (see section \ref{antidiagonal}).
+    To enumerate the cells of an ascending slant, we shall subtract the results of function $w$ (see Section \ref{u_and_w}) from the results of the function $\Upsilon$ that enumerates the anti-diagonal cells (see Section \ref{antidiagonal}).
     \begin{equation}
         \begin{split}
             \upsilon_{x,o}b &= \Upsilon(b,o) + w(b,x) \\
