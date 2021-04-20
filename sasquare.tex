@@ -1528,4 +1528,35 @@
     \end{figure}
 
     \newpage
+
+    \section{The Opposites}
+    Each cell has its own opposite cell along its respective row, column, descending slant, or ascending slant. In a symmetry there are always two opposite ends.
+
+    \subsection{The Opposite Index}
+    An opposite index pertains to opposite term of a chosen term across a finite tuple of natural numbers.
+    \begin{equation*}
+        T = (1,2,3,4,5)
+    \end{equation*}
+    In this example, the value of the terms of tuple $T$ equate to their respective indices. The opposite index of 1 is 5, of 2 is 4, and of 3 is itself; in a tuple with odd cardinality, there is always one term whose opposite index is itself: the center index (see Section \ref{center_index}). In a tuple of even cardinality, all of the terms have their respective opposite index unequal to themselves. To find the opposite index of a term, we will use function $o$. Let $x$ be the chosen number and $l$ be the cardinality or length of the tuple.
+    \begin{equation}
+        o(l,x) = l - 1 - x
+    \end{equation}
+    We will apply this function to all the terms of tuple $T$. We will use a set builder on set $O$. Variable $l$ is equal to $n(T)$ or the cardinality of tuple $T$
+    \begin{equation*}
+        O = \{ o(x,l) : 1 \leq x \leq l\}
+    \end{equation*}
+    \begin{equation*}
+        \begin{split}
+            o(l,x) &= l - 1 - x \\
+            o(5,1) &= 5 - 1 - 1 = 5 \\
+            o(5,2) &= 5 - 1 - 2 = 4 \\
+            o(5,3) &= 5 - 1 - 3 = 3 \\
+            o(5,4) &= 5 - 1 - 4 = 2 \\
+            o(5,5) &= 5 - 1 - 5 = 1
+            O = {5,4,3,2,1}
+        \end{split}
+    \end{equation*}
+    Set $O$ is the range whose elements are the corresponding opposite index of each term.
+    
+
 \end{document}
