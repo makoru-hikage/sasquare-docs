@@ -33,6 +33,106 @@
 
     \newpage
     \pagenumbering{arabic}
+    \setcounter{section}{-1}
+
+    \section{Preliminaries}
+    Most of the following equations in this book are heavily reliant on the ceiling and floor functions. According to Iverson (1962), these two functions are used to approximate a number by an integer. We will use his notations for the ceiling function and the floor function.
+
+    \subsection{The Ceiling Function}
+
+    We will denote the application of the ceiling function on a real number like this:
+    \begin{equation}
+        y = \left\lceil x \right\rceil
+    \end{equation}
+    Let $x$ be any real number. The value of $y$ will be equal to $x$ only when $x$ is also an integer or a whole number, having no fractional parts or its decimal part is 0. If $x$ is a positive real number, we will remove its fractional part or turn its decimal part into zero, then we will add 1. If $x$ is a negative real number, we will just simply remove the fractional part or turn the decimal part into zero.
+
+    The number 3.14 is a real number and has a decimal part of .14, we will remove the decimal part of 3.14 and add 1 to it.
+    \begin{equation*}
+        y = \left\lceil 3.14 \right\rceil = 4
+    \end{equation*}
+
+    The number $-6\frac{1}{4}$ is a mixed number and has a fractional part of $\frac{1}{4}$, we will remove the fractional part of $-6\frac{1}{4}$ and do nothing else since $-6\frac{1}{4}$ is a negative number.
+    \begin{equation*}
+        y = \left\lceil -6\frac{1}{4} \right\rceil = -6
+    \end{equation*}
+
+    Any improper function must first be solved by dividing the numerator by the denominator. Should there be a remainder, we will increment the quotient by 1, otherwise, we leave the quotient as is.
+    \begin{equation*}
+        \begin{split}
+            y &= \left\lceil \frac{24}{5} \right\rceil \\
+            y &= \left\lceil 4\frac{4}{5} \right\rceil \\
+            y &= 5
+        \end{split}
+    \end{equation*}
+
+    The number $\frac{-49}{5}$ is a negative real number. The division must be done first. We will just retain the quotient for it is a negative number; the result will be -9.
+    \begin{equation*}
+        \begin{split}
+            y &= \left\lceil \frac{-49}{5} \right\rceil \\
+            y &= \left\lceil -9\frac{4}{5} \right\rceil \\
+            y &= -9
+        \end{split}
+    \end{equation*}
+
+    Whether the number is positive or negative, as long as it is an integer, we will leave it as is.
+    \begin{equation*}
+        \begin{split}
+            y &= \left\lceil 69.0 \right\rceil = 69\\
+            y &= \left\lceil -69.0 \right\rceil = -69\\
+        \end{split}
+    \end{equation*}
+
+    \subsection{The Floor Function}
+    The floor function is the opposite of the ceiling function. We will denote it like this:
+    \begin{equation}
+        y = \left\lfloor x \right\rfloor
+    \end{equation}
+    Should $x$ be an integer, we will leave it as is. However, should it be a positive real number, we will just turn its decimal part into 0 or remove the fractional part. Should it be a negative real number, not only we will remove the fractional part but we will also subtract 1 from it.
+
+    We simply turned the decimal part into 0 since 3.14 is a positive real number.
+    \begin{equation*}
+        y = \left\lfloor 3.14 \right\rfloor = 3
+    \end{equation*}
+
+    The number $-6\frac{1}{4}$ is a negative mixed number, we removed its fractional part and subtracted 1 from -6.
+    \begin{equation*}
+        y = \left\lfloor -6\frac{1}{4} \right\rfloor = -7
+    \end{equation*}
+
+    Any improper function must first be solved by dividing the numerator by the denominator. Should there be a remainder, it will be just ignored and the whole part will be the result.
+    \begin{equation*}
+        \begin{split}
+            y &= \left\lfloor \frac{24}{5} \right\rfloor \\
+            y &= \left\lfloor 4\frac{4}{5} \right\rfloor \\
+            y &= 4
+        \end{split}
+    \end{equation*}
+
+    Should there be a remainder and the mixed number itself is negative, we will subtract 1 from the whole number as a result.
+    \begin{equation*}
+        \begin{split}
+            y &= \left\lfloor \frac{-49}{5} \right\rfloor \\
+            y &= \left\lfloor -9\frac{4}{5} \right\rfloor \\
+            y &= -10
+        \end{split}
+    \end{equation*}
+
+    Whether the number is positive or negative, as long as it is an integer, we will leave it as is.
+    \begin{equation*}
+        \begin{split}
+            y &= \left\lfloor 69.0 \right\rfloor = 69\\
+            y &= \left\lfloor -69.0 \right\rfloor = -69\\
+        \end{split}
+    \end{equation*}
+
+    \subsection{Floor and Ceiling of a Zero Whole Part Number}
+    The equations $\left\lceil x \right\rceil = 1$ and $\left\lfloor x \right\rfloor = 0$ are true when $0 < x < 1$ and $x$ is a real number.
+
+    The equations $\left\lceil x \right\rceil = 0$ and $\left\lfloor x \right\rfloor = 1$ are true when $-1 < x < 0$ and $x$ is a real number.
+
+
+    \newpage
+
     \section{The Square Grid} \label{1_square_grid}
     We will represent a single array with square number of indices using a row vector. The array elements shall be indexed from 1 up to the number of elements.\footnote{Programming languages, such as Python or C, often start their array indices from 0 rather than 1. Since this is a math paper, we will start with 1}
     \begin{figure}[ht]
