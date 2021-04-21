@@ -1556,7 +1556,131 @@
             O &= \{5,4,3,2,1\}
         \end{split}
     \end{equation*}
-    Set $O$ is the range whose elements are the corresponding opposite index of each term.
-    
+    Set $O$ is the range whose elements are the corresponding opposite indices of each term.
 
+    \subsection{The Horizontal Opposite} \label{horizontal_opposite}
+    All of the cells belong to their respective row; there has to be an opposite for each of the cells in a row. In a row, it is the \textbf{horizontal opposite} of a cell. It is important to determine the row and column index of the cell first (see Section \ref{rows} and \ref{columns}). Then we will find the opposite index of the column index of the chosen cell. Let $n$ be the chosen cell. We will search the opposite cell index of Cell 17 ($i_{17}$) in a 5-square.
+    \begin{equation}
+        \begin{split}
+            r(b,n) &= \left\lceil \frac{n}{b}\right\rceil \\
+            r(5,17) &= \left\lceil \frac{17}{5}\right\rceil \\
+            r(5,17) &= 4
+        \end{split}
+    \end{equation}
+    We will also find the column index of $n$.
+    \begin{equation}
+        \begin{split}
+            c(b,n) &= n + b - b\left\lceil \frac{n}{b}\right\rceil \\
+            c(5,17) &= 17 + 5 - 5\left\lceil \frac{17}{5}\right\rceil \\
+                &= 17 + 5 - 5(4) \\
+                &= 17 + 5 - 20 \\
+            c(5,17) &= 2
+        \end{split}
+    \end{equation}
+    Variable $r$ is equal to 4 and $c$ to 2. We will apply the opposite function $o(l,x)$ to $(b,c)$.
+    \begin{equation}
+        \begin{split}
+            o(b,c) &= b + 1 - c \\
+            o(5,2) &= 5 + 1 - 2 \\
+            o(5,2) &= 4
+        \end{split}
+    \end{equation}
+    The opposite index of 2 in a length of 5 is 4. The final step is to apply the intersection function (see Section \ref{intersection}) to $(b,r,o(b,c))$.
+    \begin{equation}
+        \begin{split}
+            i(b,r,c) &= br - b + c \\
+            i(5,4,4) &= 5(4) - 5 + 4 \\
+                &= 20 - 5 + 4 \\
+            i(5,4,4) &= 19 \\
+        \end{split}
+    \end{equation}
+    \newpage
+    In a row, the opposite cell of Cell 17 ($i_{17}$) is Cell 19 ($i_{19}$).
+    \begin{figure*}[ht]
+        \tikzset{highlight/.style={
+            line width=0.8pt,
+            draw=gray!80,
+            rectangle,
+            fill=gray!55,
+            blend mode = multiply,
+            rounded corners = 0.7 mm,
+            inner sep=1pt,
+            fit = #1}
+        }
+        \centering
+        {$
+        \begin{bNiceMatrix}
+            i_{1} & i_{2} & i_{3} & i_{4} & i_{5} \\
+            i_{6} & i_{7} & i_{8} & i_{9} & i_{10} \\
+            i_{11} & i_{12} & i_{13} & i_{14} & i_{15} \\
+            i_{16} & i_{17} & i_{18} & i_{19} & i_{20} \\
+            i_{21} & i_{22} & i_{23} & i_{24} & i_{25}
+            \CodeAfter 
+            \tikz \node [highlight=(4-2)] {};
+            \tikz \node [highlight=(4-4)] {};
+        \end{bNiceMatrix}
+        $}
+    \end{figure*}
+    \subsection{The Vertical Opposite} \label{vertical_opposite}
+    All of the cells belong to their respective column. To find the opposite cell in a column, we must first determine the cell's row and column index. Then we will find the opposite index of the row index along the length of $b$. We will find the \textbf{vertical opposite} of Cell 17 ($i_{17}$) in a 5-square. Let $n$ be the chosen cell index.
+    \begin{equation}
+        \begin{split}
+            r(b,n) &= \left\lceil \frac{n}{b}\right\rceil \\
+            r(5,17) &= \left\lceil \frac{17}{5}\right\rceil \\
+            r(5,17) &= 4
+        \end{split}
+    \end{equation}
+    We will also find the column index of $n$.
+    \begin{equation}
+        \begin{split}
+            c(b,n) &= n + b - b\left\lceil \frac{n}{b}\right\rceil \\
+            c(5,17) &= 17 + 5 - 5\left\lceil \frac{17}{5}\right\rceil \\
+                &= 17 + 5 - 5(4) \\
+                &= 17 + 5 - 20 \\
+            c(5,17) &= 2
+        \end{split}
+    \end{equation}
+    Variable $r$ is equal to 4 and $c$ to 2. We will apply the opposite function $o(l,x)$ to $(b,r)$.
+    \begin{equation}
+        \begin{split}
+            o(b,r) &= b + 1 - r \\
+            o(5,4) &= 5 + 1 - 4 \\
+            o(5,4) &= 2
+        \end{split}
+    \end{equation}
+    The opposite index of 4 in a length of 5 is 2. The final step is to apply the intersection function to $(b,o(b,r),c)$.
+    \begin{equation}
+        \begin{split}
+            i(b,r,c) &= br - b + c \\
+            i(5,2,2) &= 5(2) - 5 + 2 \\
+                &= 10 - 5 + 2 \\
+            i(5,2,2) &= 7 \\
+        \end{split}
+    \end{equation}
+    In a column, the opposite cell of Cell 17 ($i_{17}$) is Cell 7 ($i_{7}$).
+    \begin{figure*}[ht]
+        \tikzset{highlight/.style={
+            line width=0.8pt,
+            draw=gray!80,
+            rectangle,
+            fill=gray!55,
+            blend mode = multiply,
+            rounded corners = 0.7 mm,
+            inner sep=1pt,
+            fit = #1}
+        }
+        \centering
+        {$
+        \begin{bNiceMatrix}
+            i_{1} & i_{2} & i_{3} & i_{4} & i_{5} \\
+            i_{6} & i_{7} & i_{8} & i_{9} & i_{10} \\
+            i_{11} & i_{12} & i_{13} & i_{14} & i_{15} \\
+            i_{16} & i_{17} & i_{18} & i_{19} & i_{20} \\
+            i_{21} & i_{22} & i_{23} & i_{24} & i_{25}
+            \CodeAfter 
+            \tikz \node [highlight=(4-2)] {};
+            \tikz \node [highlight=(2-2)] {};
+        \end{bNiceMatrix}
+        $}
+    \end{figure*}
 \end{document}
