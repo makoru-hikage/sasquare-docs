@@ -1683,4 +1683,87 @@
         \end{bNiceMatrix}
         $}
     \end{figure*}
+
+    \subsection{The Descending Opposite}
+    In a descending slant, to find the opposite cell of a chosen cell, we need to determine the row and column indices of both the chosen cell and its opposite. To find the row and column index of the opposite cell, we must first find the sum of the opposite index of the chosen cell's row index and the opposite index of the chosen cell's column index. Let $n$ be the chosen cell index. We will find the \textbf{descending opposite} of Cell 7 ($i_{7}$).
+    \begin{equation}
+        \begin{split}
+            r(b,n) &= \left\lceil \frac{n}{b}\right\rceil \\
+            r(5,7) &= \left\lceil \frac{7}{5}\right\rceil \\
+            r(5,7) &= 2
+        \end{split}
+    \end{equation}
+    To find the column index of $n$, we solve for c(b,n).
+    \begin{equation}
+        \begin{split}
+            c(b,n) &= n + b - b\left\lceil \frac{n}{b}\right\rceil \\
+            c(5,7) &= 7 + 5 - 5\left\lceil \frac{7}{5}\right\rceil \\
+                &= 7 + 5 - 5(2) \\
+                &= 7 + 5 - 10 \\
+            c(5,7) &= 2
+        \end{split}
+    \end{equation}
+    The row and column index of Cell 17 is 2 and 2; $r$ is equal to 2, and $c$ is equal to 2. Next, we will apply the opposite index function to $(b,r)$ and $(b,c)$, and we will find their sum. Let $\sigma_o$ be the intersection sum of the opposite cell. Let $o(b,r)$ be the opposite index of $r$ and $o(b,c)$ be the opposite index of $c$.
+    \begin{equation}
+        \begin{split}
+            \sigma_o &= o(b,r) + o(b,c) \\
+                &= (5 + 1 - 2) + (5 + 1 - 2) \\
+                &= 4 + 4 \\
+            \sigma_o &= 8 \\
+        \end{split}
+    \end{equation}
+    After finding the value of $\sigma_o$, which is 8, we will find the row and column index of the opposite cell.
+    Let $r_o$ be the row index of the opposite cell.
+    \begin{equation}
+        \begin{split}
+            r_o &= \sigma_o - o(b,r) \\
+                &= 8 - 4 \\
+            r_o &= 4
+        \end{split}
+    \end{equation}
+    Let $c_o$ be the column index of the opposite cell.
+    \begin{equation}
+        \begin{split}
+            c_o &= \sigma_o - o(b,c) \\
+                &= 8 - 4 \\
+            c_o &= 4
+        \end{split}
+    \end{equation}
+    Variable $r_o$ is equal to 4 and $c_o$ is equal to 4. Finally, we will use the intersection function to find the cell index of the opposite index. We will apply it to $(b, r_o, c_o)$.
+    \begin{equation}
+        \begin{split}
+            i(b,r,c) &= br - b + c \\
+                &= 5(4) - 5 + 4 \\
+                &= 20 - 5 + 4 \\
+            i(5,4,4) &= 19 \\
+        \end{split}
+    \end{equation}
+    The descending opposite of Cell 7 ($i_{7}$) is Cell 19 ($i_{19}$).
+    \begin{figure*}[ht]
+        \tikzset{highlight/.style={
+            line width=0.8pt,
+            draw=gray!80,
+            rectangle,
+            fill=gray!55,
+            blend mode = multiply,
+            rounded corners = 0.7 mm,
+            inner sep=1pt,
+            fit = #1}
+        }
+        \centering
+        {$
+        \begin{bNiceMatrix}
+            i_{1} & i_{2} & i_{3} & i_{4} & i_{5} \\
+            i_{6} & i_{7} & i_{8} & i_{9} & i_{10} \\
+            i_{11} & i_{12} & i_{13} & i_{14} & i_{15} \\
+            i_{16} & i_{17} & i_{18} & i_{19} & i_{20} \\
+            i_{21} & i_{22} & i_{23} & i_{24} & i_{25}
+            \CodeAfter 
+            \tikz \node [highlight=(2-2)] {};
+            \tikz \node [highlight=(4-4)] {};
+        \end{bNiceMatrix}
+        $}
+    \end{figure*}
+
+
 \end{document}
