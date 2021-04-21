@@ -1765,5 +1765,58 @@
         $}
     \end{figure*}
 
-
+    \subsection{The Ascending Opposite}
+    Of all the functions for finding an opposite of a cell, this one is the easiest. To find the \textbf{ascending opposite} of a cell, we simply swap its row index with its column index. If its row index is equal to its column index, or $r=c$, the cardinality of its ascending slant is odd. We will find the ascending index of Cell 17 ($i_{17}$). Let $n$ be the chosen cell index.
+    \begin{equation}
+        \begin{split}
+            r(b,n) &= \left\lceil \frac{n}{b}\right\rceil \\
+            r(5,17) &= \left\lceil \frac{17}{5}\right\rceil \\
+            r(5,17) &= 4
+        \end{split}
+    \end{equation}
+    The row index of Cell 17 is 4. We will also find the column index.
+    \begin{equation}
+        \begin{split}
+            c(b,n) &= n + b - b\left\lceil \frac{n}{b}\right\rceil \\
+            c(5,17) &= 17 + 5 - 5\left\lceil \frac{17}{5}\right\rceil \\
+                &= 17 + 5 - 5(4) \\
+                &= 17 + 5 - 20 \\
+            c(5,17) &= 2
+        \end{split}
+    \end{equation}
+    The column index is 2. We will simply swap the values of $r$ and $c$; we will apply the intersection function to $(b,c,r)$.
+    \begin{equation}
+        \begin{split}
+            i(b,r,c) &= br - b + c \\
+            i(5,2,4) &= 5(2) - 5 + 4 \\
+                &= 10 - 5 + 4 \\
+            i(5,2,2) &= 9 \\
+        \end{split}
+    \end{equation}
+    The ascending opposite of Cell 17 ($i_{17}$) is Cell 9 ($i_{9}$).
+    \begin{figure*}[ht]
+        \tikzset{highlight/.style={
+            line width=0.8pt,
+            draw=gray!80,
+            rectangle,
+            fill=gray!55,
+            blend mode = multiply,
+            rounded corners = 0.7 mm,
+            inner sep=1pt,
+            fit = #1}
+        }
+        \centering
+        {$
+        \begin{bNiceMatrix}
+            i_{1} & i_{2} & i_{3} & i_{4} & i_{5} \\
+            i_{6} & i_{7} & i_{8} & i_{9} & i_{10} \\
+            i_{11} & i_{12} & i_{13} & i_{14} & i_{15} \\
+            i_{16} & i_{17} & i_{18} & i_{19} & i_{20} \\
+            i_{21} & i_{22} & i_{23} & i_{24} & i_{25}
+            \CodeAfter
+            \tikz \node [highlight=(4-2)] {};
+            \tikz \node [highlight=(2-4)] {};
+        \end{bNiceMatrix}
+        $}
+    \end{figure*}
 \end{document}
