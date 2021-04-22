@@ -1,4 +1,7 @@
-\documentclass[letterpaper, twoside,12pt]{article}
+\documentclass[letterpaper, twoside,12pt]{book}
+\usepackage[backend=biber,style=apa,autocite=inline]{biblatex}
+\DeclareLanguageMapping{english}{english-apa}
+\addbibresource{sasquare.bib}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{graphics}
@@ -24,7 +27,7 @@
     \tableofcontents
     \newpage
 
-    \section*{Introduction}
+    \chapter*{Introduction}
     In computer science, a developer uses an array to represent a series of elements of the same data type such as integers or characters. It is a data structure that holds a list of elements; each of the elements is indexed to determine its position in the list. In mathematics, the best way to represent an array is to create a row vector, a matrix with only one row. We will use a matrix because a set is unordered and does not use indices to ordinally label its elements.
 
     When representing an n-by-n or a square grid using arrays, a developer will intuitively use two-dimensional arrays to represent the rows and columns. In each array that represents a row, there are arrays that represent different columns. However, we can represent a square grid with only one array that can later be translated into a two-dimensional array.
@@ -33,12 +36,12 @@
 
     \newpage
     \pagenumbering{arabic}
-    \setcounter{section}{-1}
+    \setcounter{chapter}{-1}
 
-    \section{Preliminaries}
-    Most of the following equations in this book are heavily reliant on the ceiling and floor functions. According to Iverson (1962), these two functions are used to approximate a number by an integer. We will use his notations for the ceiling function and the floor function.
+    \chapter{Preliminaries}
+    Most of the following equations in this book are heavily reliant on the ceiling and floor functions. These two functions are used to approximate a number by an integer (\cite{iverson_notation}). We will use his notations for the ceiling function and the floor function.
 
-    \subsection{The Ceiling Function}
+    \section{The Ceiling Function}
 
     We will denote the application of the ceiling function on a real number like this:
     \begin{equation}
@@ -82,7 +85,7 @@
         \end{split}
     \end{equation*}
 
-    \subsection{The Floor Function}
+    \section{The Floor Function}
     The floor function is the opposite of the ceiling function. We will denote it like this:
     \begin{equation}
         y = \left\lfloor x \right\rfloor
@@ -125,7 +128,7 @@
         \end{split}
     \end{equation*}
 
-    \subsection{Floor and Ceiling of a Zero Whole Part Number}
+    \section{Floor and Ceiling of a Zero Whole Part Number}
     The equations $\left\lceil x \right\rceil = 1$ and $\left\lfloor x \right\rfloor = 0$ are true when $0 < x < 1$ and $x$ is a real number.
 
     The equations $\left\lceil x \right\rceil = 0$ and $\left\lfloor x \right\rfloor = 1$ are true when $-1 < x < 0$ and $x$ is a real number.
@@ -133,7 +136,7 @@
 
     \newpage
 
-    \section{The Square Grid} \label{1_square_grid}
+    \chapter{The Square Grid} \label{1_square_grid}
     We will represent a single array with square number of indices using a row vector. The array elements shall be indexed from 1 up to the number of elements.\footnote{Programming languages, such as Python or C, often start their array indices from 0 rather than 1. Since this is a math paper, we will start with 1}
     \begin{figure}[ht]
     \centering
@@ -171,12 +174,12 @@
         A = (i_1,i_2,i_3,i_4,i_5,i_6,i_7,i_8,i_9)
     \end{equation}
 
-    \subsection{The Base of the Square} \label{base}
+    \section{The Base of the Square} \label{base}
     The \textbf{base} of a square is the root of the square. We will use it in most of the following expressions to determine particular parts of a square grid. Throughout the paper, we'll represent the base as $b$. 
 
     Let $b^2$ be any positive non-zero integer. The root of a perfect square can be positive or negative; for the sake of simplicity, we will use positive bases only. The number of elements in a matrix or an array is always an integer.
 
-    \subsection{The Cells} \label{cells}
+    \section{The Cells} \label{cells}
     The \textbf{cells} are the basic building blocks of a grid. Since a square matrix can be thought of as a grid, we will call the elements of an array or a matrix as cells. The number of cells in a square grid counts from 1 up to $b^2$ in either its row vector form or its square matrix form. We shall use integers to index each cell and call each index a \textbf{cell index}.
     \begin{equation}
         (i_n)^{b^2}_{n\in\mathbb{Z}^+} = (i_1, i_2, \dots ,i_{b^2})
@@ -211,7 +214,7 @@
 
     In Figure \ref{2forms1grid}, the base of the square grids is 3 and the total number of cells is 9. In matrix notation, the rows and columns are indexed accordingly. We denote the elements of the right grid with $a_{r,c}$ where $r$ is the row index and $c$ is the column index. In this example, we assume that both grids represent the same array.
 
-    \subsection{The Rows} \label{rows}
+    \section{The Rows} \label{rows}
     The \textbf{rows} are the horizontal arrangement of elements in a matrix. In a row, there are $b$ number of cells. We shall denote a row index as $a_{r,*}$. We shall use function $r$ to determine the row of cell index $n$ in a square grid of base $b$.
     \begin{equation}
         r(b,n) = \left\lceil \frac{n}{b} \right\rceil
@@ -221,7 +224,7 @@
         a_{r,b} = b\left\lceil \frac{n}{b} \right\rceil
     \end{equation}
 
-    \subsection{The Columns} \label{columns}
+    \section{The Columns} \label{columns}
     The \textbf{columns} are the vertical arrangement of elements in a matrix. In a column, there are $b$ number of cells. We shall denote a column index as $a_{*,c}$. To find the column where a cell belongs, we must first identify the row where it belongs and find the rightmost cell of the row. After finding the rightmost cell of the row, we shall subtract it from the sum of the cell index $n$ and the base. We shall use function $c$.
     \begin{equation}
         c(b,n) = n + b - b\left\lceil \frac{n}{b} \right\rceil
@@ -231,7 +234,7 @@
 
     \newpage
 
-    \subsection{Example: Row and Column of Cell 17 in 5-Square}
+    \section{Example: Row and Column of Cell 17 in 5-Square}
     \label{1_example_1}
     \begin{figure*}[ht]
         \centering
@@ -345,7 +348,7 @@
 
     \newpage
 
-    \section{The Intersection} \label{intersection}
+    \chapter{The Intersection} \label{intersection}
     All cells belong to only one row and one column, hence $i_n$ can become $a_{r,c}$. An \textbf{intersection} is where a row and a column meet; they can only meet in one cell. The result of an intersection can be represented as either $i_n$ or $a_{r,c}$. As long as $r=c$ in matrix $A_{r \times c}$, any given pair of row and column index will always have an intersection.
 
     If we can determine the row and column index of a cell index with a given base, we can also determine the cell index that results of intersection a row and a column. To do so, we'll use the function $i$ which can be expressed in three ways. Let $r$ and $c$ be the row and column index respectively.
@@ -373,7 +376,7 @@
 
     \newpage
 
-    \subsection{Cells of a Row} \label{row_cells}
+    \section{Cells of a Row} \label{row_cells}
     To enumerate the cells of a row, we will use the Intersection function $i$. A row shall be considered a set of cell indices. Per Chapter \ref{1_square_grid}, the number of cells in a certain row is always $b$.
     \begin{equation}
         \begin{split}
@@ -383,7 +386,7 @@
     \end{equation}
     The expression $a_{r,*}b$ simply means `Row $r$ of $b$-square'. Numbers $b$ and $r$ are constants inside the set builder notation.
 
-    \subsection{Cells of a Column} \label{column_cells}
+    \section{Cells of a Column} \label{column_cells}
     To enumerate the cells of a column, we will use the Intersection function $i$. Just like a row, a column is also a set of cell indices. Just like rows, a column has only $b$ number of cells.
     \begin{equation}
         \begin{split}
@@ -393,7 +396,7 @@
     \end{equation}
     The expression $a_{*,c}b$ simply means `Column $c$ of $b$-square'. Numbers $b$ and $c$ are constants inside the set builder notation.
 
-    \subsection{Example: The Cells of Row 4 and Column 2 in 5-square} \label{2_example_1}
+    \section{Example: The Cells of Row 4 and Column 2 in 5-square} \label{2_example_1}
     To enumerate the cell indices of $a_{4,*}5$ we shall use function $i$ in a set builder notation where $r$ and $b$ is constant.
     \begin{equation*}
         \begin{split}
@@ -517,7 +520,7 @@
 
     \newpage
 
-    \section{The Slants} \label{slants}
+    \chapter{The Slants} \label{slants}
     A \textbf{slant} is a special kind of set of cells. We shall define a slant\footnote{We can also use the word `slope', but some readers may confuse it with the mathematical definition of a slope.} with these traits:
     \begin{itemize}
         \item None of the cells in the set belong in the same row
@@ -536,7 +539,7 @@
         \end{split}
     \end{equation}
 
-    \subsection{The Intersection Sum} \label{intersection_sum}
+    \section{The Intersection Sum} \label{intersection_sum}
     There are equations that determine the slant a cell belongs to.
 
     By adding the row and the column index of a cell, we do an \textbf{intersection sum}. If two cells have the same intersection sums, they belong in the same ascending slant. Let $\sigma$ be the intersection sum function and $n$ be the cell index number.
@@ -565,7 +568,7 @@
         \caption{This matrix has elements where $i_{n}b$ = $\sigma(b,n)$. $i_{n}b$ means cell index $n$ of $b$-square.}
     \end{figure}
 
-    \subsection{The Intersection Difference} \label{intersection_diff}
+    \section{The Intersection Difference} \label{intersection_diff}
     To do an \textbf{intersection difference}, we shall subtract the row index of a cell from the column index of the same cell. If two cells have the same intersection difference, they belong in the same descending slant. Let $\delta$ be the intersection difference function and $n$ be the cell index number.
     \begin{equation}
         \begin{split}
@@ -637,7 +640,7 @@
 
     \newpage
 
-    \subsection{The Diagonal} \label{diagonal}
+    \section{The Diagonal} \label{diagonal}
     A matrix has a special set of elements called a \textbf{diagonal}; it is also called the \textbf{main diagonal}. A diagonal consists of elements where $r = c$. In a square grid, a diagonal is the longest descending slant. Its two end cells are always $a_{1,1}$ and $a_{b,b}$.
     \begin{figure}[ht]
         \tikzset{highlight/.style={
@@ -687,7 +690,7 @@
 
     \newpage
 
-    \subsection{The Anti-diagonal} \label{antidiagonal}
+    \section{The Anti-diagonal} \label{antidiagonal}
     An \textbf{anti-diagonal} is the opposite of the diagonal. An anti-diagonal has cells where $r = b - c + 1$ where $b$ is the base, where $b = r + c$. The intersection sum of all its cells is always $b + 1$. It is the longest ascending slant. Its two end cells are always $a_{b,1}$ and $a_{1,b}$
 
     \begin{figure}[ht]
@@ -737,7 +740,7 @@
     \end{equation}
 
 
-    \subsection{The Off-diagonal Cells} \label{offdiagonal_cells}
+    \section{The Off-diagonal Cells} \label{offdiagonal_cells}
     The \textbf{off-diagonal cells} are the cells not found in the main diagonal. There are two kinds of off-diagonal cells: the \textbf{superdiagonal} and the \textbf{subdiagonal} cells. The superdiagonal cells are above and right of the main diagonal whilst the subdiagonal cells are below and left the main diagonal.
 
     Superdiagonal cells has their row index lower than their column index whilst subdiagonal cells have their row index greater than their column index. Using the intersection difference function (see Section \ref{intersection_diff}), we can determine if a cell belongs to the main diagonal, is a superdiagonal cell, or is a subdiagonal cell. Given that $n$ is a cell index:
@@ -831,7 +834,7 @@
 
     In Figure \ref{fig:offdiagonal_cells}, the cells highlighted with a light shade of gray are the superdiagonal cells. The rest of the highlighted cells are the subdiagonal cells. The unhighlighted cells are the diagonal cells. The left matrix has elements where $i_{n}b = \delta(b,n)$ where $n$ is the cell index and $b$ is the base of the square.
 
-    \subsection{The Anti-offdiagonal Cells}
+    \section{The Anti-offdiagonal Cells}
     The \textbf{anti-offdiagonal cells} are the cells not found in the anti-diagonal. Like the off-diagonal cells, there are two kinds of anti-offdiagonal cells: the \textbf{anti-superdiagonal} and the \textbf{anti-subdiagonal} cells. The anti-superdiagonal cells are above and left of the anti-diagonal whilst the anti-subdiagonal cells are below and right of the anti-diagonal.
 
     \newpage
@@ -929,7 +932,7 @@
 
     \newpage
 
-    \section{The Slant Indices} \label{slant_indices}
+    \chapter{The Slant Indices} \label{slant_indices}
     To index each individual slants in a square grid, we shall use the intersection sum and intersection difference of each cells.
 
     We shall call the index of a descending slant a \textbf{descending index} or $\kappa$ (kappa) index. To determine the $\kappa$ index of the cell, we shall use function $\kappa$.
@@ -976,14 +979,14 @@
         \caption{Matrix $A$ has elements equal to their descending index whilst matrix B has elements equal to their ascending index.}
     \end{figure}
 
-    \subsection{The Cardinality of a Given Slant} \label{slant_cardinality}
+    \section{The Cardinality of a Given Slant} \label{slant_cardinality}
     Not all slants have the same number of cells. Only $b-1$ pairs of slants of have the same number of cells for each kind of slants. To get the number of cells in a given slant index. Let $x$ be either a descending ($\kappa$) or an ascending ($\upsilon$) index. Let $X$ be a set of cells belonging to a chosen slant. To resolve the ambuiguity that shall arise when we use the vertical bar notation, we shall use $n(X)$ to denote the \textbf{cardinality} of set $X$. We shall use the vertical bars for denoting absolute values.
     \begin{equation}
         n(X) = b - |b - x|
     \end{equation}
     Only slants with index $b$ have the most number of cells which has a count of $b$.
 
-    \subsection{Multiples of the Base Until Its Square} \label{u_and_w}
+    \section{Multiples of the Base Until Its Square} \label{u_and_w}
     Function $f$ shall denote any function in this subsection. Set $X$ shall denote any set in this subsection.
     \begin{equation}\
             X = \{ f(b,x) : x \in \mathbb{N}, 0 \leq x \leq 2b \}
@@ -1020,7 +1023,7 @@
         \item When $b \leq x \leq 2b$ then $w(b,x) = b - x$
     \end{itemize}
 
-    \subsection{The Cells of a Slant} \label{cells_of_a_slant}
+    \section{The Cells of a Slant} \label{cells_of_a_slant}
     We will use several notations to describe the different kind of slants and their cells.
     \begin{itemize}
         \item A descending slant is denoted as $\kappa_{x,*}b$ where $x$ is the index of the descending slant. This cansee Section be also called as ``descending slant x"
@@ -1063,7 +1066,7 @@
         L = \{ \upsilon_{x,o}b : 1 \leq o \leq n(\upsilon_{x,*}b) \}
     \end{equation}
 
-    \subsection{Example: The Descending Slant of Cell 17 in 5-Square} \label{3-4_example_1}
+    \section{Example: The Descending Slant of Cell 17 in 5-Square} \label{3-4_example_1}
     To find the descending index of $i_{17}$, we shall first find its intersection difference.
     \begin{equation*}
         \begin{split}
@@ -1142,7 +1145,7 @@
         $}
     \end{figure*}
 
-    \subsection{Example: The Ascending Slant of Cell 17 in 5-Square} \label{3-4_example_2}
+    \section{Example: The Ascending Slant of Cell 17 in 5-Square} \label{3-4_example_2}
     To find the ascending index of $i_{17}$, we shall first find its intersection sum.
     \begin{equation*}
         \begin{split}
@@ -1225,10 +1228,10 @@
 
     \newpage
 
-    \section{Corners and Edges} \label{corners_and_edges}
+    \chapter{Corners and Edges} \label{corners_and_edges}
     The corners and edges define the boundaries of a square. In geometry, a vertex is a point where two lines meet. In this section, we will liken a corner to a vertex; a cell belongs to two groups of cells called edges which we will liken to a side of a polygon. 
 
-    \subsection{The Edges} \label{edges}
+    \section{The Edges} \label{edges}
     An \textbf{edge} can either be a row or a column but not both. A corner belongs to a horizontal edge and a vertical edge; those are the two kinds of edges. A horizontal edge is a row, and a vertical edge is a column. For each kind of edge, there are two instances; in total, there are four edges in a square. The four edges have their respective names: top edge, bottom edge, left edge, right edge.
     \begin{itemize}
         \item The \textbf{top edge} is a horizontal edge for it is a row; it has an index of 1. The indices of its cells are always a series of positive integers from 1 to $b$.
@@ -1239,7 +1242,7 @@
 
     For example, in a 7-square, $a_{1,*}$ is the top edge, $a_{7,*}$ is the bottom edge, $a_{*,1}$ is the left edge, and $a_{*,7}$ is the right edge.
 
-    \subsection{The Corners} \label{corners}
+    \section{The Corners} \label{corners}
     A \textbf{corner} is where two edges meet: an intersection of two edges. These edges are not of the same kind; a corner is an intersection of a horizontal edge and a vertical edge. There are four corners in a square. The edges where they belong define their name.
     \begin{itemize}
         \item The \textbf{top-left corner} belongs to the top edge and left edge. It signifies the start of cell indices in a series. The cell index of a top-left corner is always 1, and its matrix index is always $a_{1,1}$.
@@ -1252,10 +1255,10 @@
 
     \newpage
 
-    \section{The Symmetry} \label{symmetry}
+    \chapter{The Symmetry} \label{symmetry}
     A square is always symmetrical, bilaterally and quadrilaterally. Every symmetrical thing has a center. When treated as a finite tuple, rows and columns have one or two center cells depending on whether their length is odd or even.
 
-    \subsection{The Center Index} \label{center_index}
+    \section{The Center Index} \label{center_index}
     A \textbf{center index} pertains to a term or a pair of terms in the middle of a tuple.
     \begin{equation*}
         T = (1,2,3,4,5)
@@ -1274,7 +1277,7 @@
 
     Function $M$ are applicable to rows and columns when they are treated as tuples.
 
-    \subsection{Center of the Base} \label{center_base}
+    \section{Center of the Base} \label{center_base}
     The base is the very core of a square and always a variable in our equations so far. To find the center of the base, will use the function for finding the center index of a tuple.
     \begin{equation}
         \begin{split}
@@ -1286,7 +1289,7 @@
 
     The center of the base is important for finding the center of a square.
 
-    \subsection{Center of a Row and a Column} \label{center_row_column}
+    \section{Center of a Row and a Column} \label{center_row_column}
     A row and a column always has a $b$ number of cells. Using the intersection function (see Chapter \ref{intersection}), we will find the center of a row or a column. We will call the cell in the center of a row or column the \textbf{center cell}.
 
     To find the cell index of the center of a row, we must first determine the value of $M(b)$. For example, we will find the center of row 2 of a 5-square. Let $c$ be equal to the center of the base and $r$ be the chosen row. 
@@ -1487,7 +1490,7 @@
 
     \newpage
 
-    \subsection{Center of the Square} \label{center_square}
+    \section{Center of the Square} \label{center_square}
     The center of a square grid will vary on whether its base is even or not. There is only one cell in the center of a square when its base is odd. When its base is even, there will always be four cells, resembling a square the size of a 2-square. We will call the squares with an odd base an \textbf{odd-base square}, and the squares with an even base is a \textbf{even-base square}.
 
     For example, to find the center cell of a 5-square, an odd-base square, we will use two ways. Let $m$ be the function to find the center cell of a square. This is the first way.
@@ -1633,10 +1636,10 @@
 
     \newpage
 
-    \section{The Opposites}
+    \chapter{The Opposites}
     Each cell has its own \textbf{opposite cell} along its respective row, column, descending slant, or ascending slant. In a symmetry there are always two opposite ends.
 
-    \subsection{The Opposite Index}
+    \section{The Opposite Index}
     An \textbf{opposite index} pertains to opposite term of a chosen term across a finite tuple of natural numbers.
     \begin{equation*}
         T = (1,2,3,4,5)
@@ -1662,7 +1665,7 @@
     \end{equation*}
     Set $O$ is the range whose elements are the corresponding opposite indices of each term.
 
-    \subsection{The Horizontal Opposite} \label{horizontal_opposite}
+    \section{The Horizontal Opposite} \label{horizontal_opposite}
     All of the cells belong to their respective row; there has to be an opposite for each of the cells in a row. In a row, it is the \textbf{horizontal opposite} of a cell. It is important to determine the row and column index of the cell first (see Section \ref{rows} and \ref{columns}). Then we will find the opposite index of the column index of the chosen cell. Let $n$ be the chosen cell. We will search the opposite cell index of Cell 17 ($i_{17}$) in a 5-square.
     \begin{equation}
         \begin{split}
@@ -1725,7 +1728,7 @@
         \end{bNiceMatrix}
         $}
     \end{figure*}
-    \subsection{The Vertical Opposite} \label{vertical_opposite}
+    \section{The Vertical Opposite} \label{vertical_opposite}
     All of the cells belong to their respective column. To find the opposite cell in a column, we must first determine the cell's row and column index. Then we will find the opposite index of the row index along the length of $b$. We will find the \textbf{vertical opposite} of Cell 17 ($i_{17}$) in a 5-square. Let $n$ be the chosen cell index.
     \begin{equation}
         \begin{split}
@@ -1788,7 +1791,7 @@
         $}
     \end{figure*}
 
-    \subsection{The Descending Opposite}
+    \section{The Descending Opposite}
     In a descending slant, to find the opposite cell of a chosen cell, we need to determine the row and column indices of both the chosen cell and its opposite. To find the row and column index of the opposite cell, we must first find the sum of the opposite index of the chosen cell's row index and the opposite index of the chosen cell's column index. Let $n$ be the chosen cell index. We will find the \textbf{descending opposite} of Cell 7 ($i_{7}$).
     \begin{equation}
         \begin{split}
@@ -1869,7 +1872,7 @@
         $}
     \end{figure*}
 
-    \subsection{The Ascending Opposite}
+    \section{The Ascending Opposite}
     Of all the functions for finding an opposite of a cell, this one is the easiest. To find the \textbf{ascending opposite} of a cell, we simply swap its row index with its column index. If its row index is equal to its column index, or $r=c$, the cardinality of its ascending slant is odd. We will find the ascending index of Cell 17 ($i_{17}$). Let $n$ be the chosen cell index.
     \begin{equation}
         \begin{split}
@@ -1923,4 +1926,8 @@
         \end{bNiceMatrix}
         $}
     \end{figure*}
+
+    \newpage
+
+    \printbibliography
 \end{document}
