@@ -1226,7 +1226,10 @@
     \newpage
 
     \section{Corners and Edges} \label{corners_and_edges}
-    The corners and edges define the boundaries of a square. In geometry, a vertex is a point where two lines meet. In this section, we will liken a corner to a vertex; a cell belongs to two groups of cells called edges which we will liken to a side of a polygon. An \textbf{edge} can either be a row or a column but not both. A corner belongs to a horizontal edge and a vertical edge; those are the two kinds of edges. A horizontal edge is a row, and a vertical edge is a column. For each kind of edge, there are two instances; in total, there are four edges in a square. The four edges have their respective names: top edge, bottom edge, left edge, right edge.
+    The corners and edges define the boundaries of a square. In geometry, a vertex is a point where two lines meet. In this section, we will liken a corner to a vertex; a cell belongs to two groups of cells called edges which we will liken to a side of a polygon. 
+
+    \subsection{The Edges} \label{edges}
+    An \textbf{edge} can either be a row or a column but not both. A corner belongs to a horizontal edge and a vertical edge; those are the two kinds of edges. A horizontal edge is a row, and a vertical edge is a column. For each kind of edge, there are two instances; in total, there are four edges in a square. The four edges have their respective names: top edge, bottom edge, left edge, right edge.
     \begin{itemize}
         \item The \textbf{top edge} is a horizontal edge for it is a row; it has an index of 1. The indices of its cells are always a series of positive integers from 1 to $b$.
         \item The \textbf{bottom edge} is a horizontal edge for it is a row; it has an index of $b$. The indices of its cells belong to a set of positive integers that satisfies $b^2 - (b - 1) \leq n \leq b^2$ where $n$ is any cell index.
@@ -1236,6 +1239,7 @@
 
     For example, in a 7-square, $a_{1,*}$ is the top edge, $a_{7,*}$ is the bottom edge, $a_{*,1}$ is the left edge, and $a_{*,7}$ is the right edge.
 
+    \subsection{The Corners} \label{corners}
     A \textbf{corner} is where two edges meet: an intersection of two edges. These edges are not of the same kind; a corner is an intersection of a horizontal edge and a vertical edge. There are four corners in a square. The edges where they belong define their name.
     \begin{itemize}
         \item The \textbf{top-left corner} belongs to the top edge and left edge. It signifies the start of cell indices in a series. The cell index of a top-left corner is always 1, and its matrix index is always $a_{1,1}$.
