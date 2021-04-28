@@ -50,13 +50,13 @@
 
     \section{The Ceiling Function}
 
-    We will denote the application of the ceiling function on a real number like this:
+    We will denote the application of the ceiling function on a rational number like this:
     \begin{equation}
         y = \left\lceil x \right\rceil
     \end{equation}
-    Let $x$ be any real number. The value of $y$ will be equal to $x$ only when $x$ is also an integer or a whole number, having no fractional parts or its decimal part is 0. If $x$ is a positive real number, we will remove its fractional part or turn its decimal part into zero, then we will add 1. If $x$ is a negative real number, we will just simply remove the fractional part or turn the decimal part into zero.
+    Let $x$ be any rational number. The value of $y$ will be equal to $x$ only when $x$ is also an integer or a whole number, having no fractional parts or its decimal part is 0. If $x$ is a positive rational number, we will remove its fractional part or turn its decimal part into zero, then we will add 1. If $x$ is a negative rational number, we will just simply remove the fractional part or turn the decimal part into zero.
 
-    The number 3.14 is a real number and has a decimal part of .14, we will remove the decimal part of 3.14 and add 1 to it.
+    The number 3.14 is a rational number and has a decimal part of .14, we will remove the decimal part of 3.14 and add 1 to it.
     \begin{equation*}
         y = \left\lceil 3.14 \right\rceil = 4
     \end{equation*}
@@ -75,7 +75,7 @@
         \end{split}
     \end{equation*}
 
-    The number $\frac{-49}{5}$ is a negative real number. The division must be done first. We will just retain the quotient for it is a negative number; the result will be -9.
+    The number $\frac{-49}{5}$ is a negative rational number. The division must be done first. We will just retain the quotient for it is a negative number; the result will be -9.
     \begin{equation*}
         \begin{split}
             y &= \left\lceil \frac{-49}{5} \right\rceil \\
@@ -97,9 +97,9 @@
     \begin{equation}
         y = \left\lfloor x \right\rfloor
     \end{equation}
-    Should $x$ be an integer, we will leave it as is. However, should it be a positive real number, we will just turn its decimal part into 0 or remove the fractional part. Should it be a negative real number, not only we will remove the fractional part but we will also subtract 1 from it.
+    Should $x$ be an integer, we will leave it as is. However, should it be a positive rational number, we will just turn its decimal part into 0 or remove the fractional part. Should it be a negative rational number, not only we will remove the fractional part but we will also subtract 1 from it.
 
-    We simply turned the decimal part into 0 since 3.14 is a positive real number.
+    We simply turned the decimal part into 0 since 3.14 is a positive rational number.
     \begin{equation*}
         y = \left\lfloor 3.14 \right\rfloor = 3
     \end{equation*}
@@ -136,9 +136,9 @@
     \end{equation*}
 
     \section{Floor and Ceiling of a Zero Whole Part Number}
-    The equations $\left\lceil x \right\rceil = 1$ and $\left\lfloor x \right\rfloor = 0$ are true when $0 < x < 1$ and $x$ is a real number.
+    The equations $\left\lceil x \right\rceil = 1$ and $\left\lfloor x \right\rfloor = 0$ are true when $0 < x < 1$ and $x$ is a rational number.
 
-    The equations $\left\lceil x \right\rceil = 0$ and $\left\lfloor x \right\rfloor = 1$ are true when $-1 < x < 0$ and $x$ is a real number.
+    The equations $\left\lceil x \right\rceil = 0$ and $\left\lfloor x \right\rfloor = 1$ are true when $-1 < x < 0$ and $x$ is a rational number.
 
 
     \newpage
@@ -184,7 +184,7 @@
     \section{The Base of the Square} \label{base}
     The \textbf{base} of a square is the root of the square. We will use it in most of the following expressions to determine particular parts of a square grid. Throughout the paper, we'll represent the base as $b$. 
 
-    Let $b^2$ be any positive non-zero integer. The root of a perfect square can be positive or negative; for the sake of simplicity, we will use positive bases only. The number of elements in a matrix or an array is always an integer.
+    Let $b^2$ be any natural number. The root of a perfect square can be positive or negative; for the sake of simplicity, we will use positive bases only. The number of elements in a matrix or an array is always an integer.
 
     \section{The Cells} \label{cells}
     The \textbf{cells} are the basic building blocks of a grid. Since a square matrix can be thought of as a grid, we will call the elements of an array or a matrix as cells. The number of cells in a square grid counts from 1 up to $b^2$ in either its row vector form or its square matrix form. We shall use integers to index each cell and call each index a \textbf{cell index}.
@@ -192,7 +192,7 @@
         (i_n)^{b^2}_{n\in\mathbb{Z}^+} = (i_1, i_2, \dots ,i_{b^2})
     \end{equation}
 
-    A square grid has rows and columns. The total number of rows in a square grid is equals to $b$ which is also equal to the total number of columns in a square grid. We will index $b$ number of rows from 1 to $b$; we will call this each index a \textbf{row index}. We will also do the same to the $b$ number of columns and call each index a \textbf{column index}. The aforementioned indices are all positive integers. Usually an array is expressed as $A_{m \times n}$ or $A_{r \times c}$ in algebra to show the number of rows and columns explicitly.
+    A square grid has rows and columns. The total number of rows in a square grid is equals to $b$ which is also equal to the total number of columns in a square grid. We will index $b$ number of rows from 1 to $b$; we will call this each index a \textbf{row index}. We will also do the same to the $b$ number of columns and call each index a \textbf{column index}. The aforementioned indices are all natural numbers. Usually an array is expressed as $A_{m \times n}$ or $A_{r \times c}$ in algebra to show the number of rows and columns explicitly.
     \begin{figure}[ht]
         \centering
         \begin{minipage}{0.45\textwidth}
@@ -1237,9 +1237,9 @@
     \section{The Edges} \label{edges}
     An \textbf{edge} can either be a row or a column but not both. A corner belongs to a horizontal edge and a vertical edge; those are the two kinds of edges. A horizontal edge is a row, and a vertical edge is a column. For each kind of edge, there are two instances; in total, there are four edges in a square. The four edges have their respective names: top edge, bottom edge, left edge, right edge.
     \begin{itemize}
-        \item The \textbf{top edge} is a horizontal edge for it is a row; it has an index of 1. The indices of its cells are always a series of positive integers from 1 to $b$.
-        \item The \textbf{bottom edge} is a horizontal edge for it is a row; it has an index of $b$. The indices of its cells belong to a set of positive integers that satisfies $b^2 - (b - 1) \leq n \leq b^2$ where $n$ is any cell index.
-        \item The \textbf{left edge} is a vertical edge for it is a column; it has an index of 1. The indices of its cells belong to the range of the following set: $\{bn - (b - 1) : 1 \leq n \leq b\}$ where $n$ is any positive integer.
+        \item The \textbf{top edge} is a horizontal edge for it is a row; it has an index of 1. The indices of its cells are always a series of natural numbers from 1 to $b$.
+        \item The \textbf{bottom edge} is a horizontal edge for it is a row; it has an index of $b$. The indices of its cells belong to a set of natural numbers that satisfies $b^2 - (b - 1) \leq n \leq b^2$ where $n$ is any cell index.
+        \item The \textbf{left edge} is a vertical edge for it is a column; it has an index of 1. The indices of its cells belong to the range of the following set: $\{bn - (b - 1) : 1 \leq n \leq b\}$ where $n$ is any natural number.
         \item The \textbf{right edge} is a vertical edge for it is a column; it has an index of $b$. The indices of its cells are the multiples of $b$ up to its square ($b^2$).
     \end{itemize}
 
@@ -1266,7 +1266,7 @@
     \begin{equation*}
         T = (1,2,3,4,5)
     \end{equation*}
-    The value of the terms of tuple $T$ equate to their respective indices. The center index is 3. To find the center index of a tuple will use a function that can be interpreted in two ways. Let $x$ be the length of the tuple or any positive integer.
+    The value of the terms of tuple $T$ equate to their respective indices. The center index is 3. To find the center index of a tuple will use a function that can be interpreted in two ways. Let $x$ be the length of the tuple or any natural number.
     \begin{equation}
         M(x) = \left\lceil \frac{x}{2} \right\rceil = \left\lfloor \frac{x+1}{2} \right\rfloor
     \end{equation}
