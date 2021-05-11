@@ -14,7 +14,7 @@
 \setlength{\parskip}{1em}
 
 \title{Single Array Square Grid (SASQUARE)}
-\date{2021-xx-xx}
+\date{2021-04-28}
 \author{Kurt M. Ma. Coll}
 
 \begin{document}
@@ -1029,7 +1029,7 @@
     \section{The Cells of a Slant} \label{cells_of_a_slant}
     We will use several notations to describe the different kind of slants and their cells.
     \begin{itemize}
-        \item A descending slant is denoted as $\kappa_{x,*}b$ where $x$ is the index of the descending slant. This cansee Section be also called as ``descending slant x"
+        \item A descending slant is denoted as $\kappa_{x,*}b$ where $x$ is the index of the descending slant. This can be also called as ``descending slant x"
         \item A cell in a descending slant is denoted as $\kappa_{x,o}b$ where $o$ is the nth cell of descending slant x.
         \item To depict the nth cells of each descending slants we will denote it as $\kappa_{*,o}b$. (eg. All the 1st cells of each descending slant in 5-square is denoted as $\kappa_{*,1}5$.)
         \item An ascending slant is denoted as $\upsilon_{x,*}b$ where $x$ is the index of the ascending slant. This can be also called as ``ascending slant x"
@@ -1047,7 +1047,7 @@
     \begin{equation}
         \begin{split}
             \kappa_{x,o}b &= i(b,o,o) + u(b,x) \\
-                &= (bo + b + o) + (b^{2 + \left\lfloor -\frac{x}{b} \right\rfloor }|b-x|)
+                &= (bo - b + o) + (b^{2 + \left\lfloor -\frac{x}{b} \right\rfloor }|b-x|)
         \end{split}
     \end{equation}
 
@@ -1113,10 +1113,10 @@
     Since there are only 3 cells in the slant, we will enumerate up to the 3rd cell of descending slant 3.
     \begin{equation*}
         \begin{split}
-            \kappa_{x,o}b &= (bo + b + o) + (b^{2 + \left\lfloor -\frac{x}{b} \right\rfloor }|b-x|) \\
-            \kappa_{3,1}5 &= (5(1) + 5 + 1) + (5^{2 + \left\lfloor -\frac{3}{5} \right\rfloor }|5-3|) = 11\\
-            \kappa_{3,2}5 &= (5(2) + 5 + 2) + (5^{2 + \left\lfloor -\frac{3}{5} \right\rfloor }|5-3|) = 17\\
-            \kappa_{3,3}5 &= (5(3) + 5 + 3) + (5^{2 + \left\lfloor -\frac{3}{5} \right\rfloor }|5-3|) = 23\\
+            \kappa_{x,o}b &= (bo - b + o) + (b^{2 + \left\lfloor -\frac{x}{b} \right\rfloor }|b-x|) \\
+            \kappa_{3,1}5 &= (5(1) - 5 + 1) + (5^{2 + \left\lfloor -\frac{3}{5} \right\rfloor }|5-3|) = 11\\
+            \kappa_{3,2}5 &= (5(2) - 5 + 2) + (5^{2 + \left\lfloor -\frac{3}{5} \right\rfloor }|5-3|) = 17\\
+            \kappa_{3,3}5 &= (5(3) - 5 + 3) + (5^{2 + \left\lfloor -\frac{3}{5} \right\rfloor }|5-3|) = 23\\
             \kappa_{3,*}5 &= \{11, 17, 15\}
         \end{split}
     \end{equation*}
