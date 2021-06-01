@@ -938,14 +938,14 @@
     \chapter{The Slant Indices} \label{slant_indices}
     To index each individual slants in a square grid, we shall use the intersection sum and intersection difference of each cells.
 
-    We shall call the index of a descending slant a \textbf{descending index} or $\kappa$ (kappa) index. To determine the $\kappa$ index of the cell, we shall use function $\kappa$.
+    We shall call the index of a descending slant a \textbf{descending index} or $\kappa$ (kappa) index. To determine the $\kappa$ index of the cell, we shall use function $\kappa$ which requires the intersection difference function (See Section \ref{intersection_diff}).
     \begin{equation}
         \kappa(b,n) = b + \delta(b,n)
     \end{equation}
 
-    We shall call the index of an ascending slant an \textbf{ascending index} or $\upsilon$ (upsilon) index. To determine the $\upsilon$ index of the cell, we shall use function $\upsilon$.
+    We shall call the index of an ascending slant an \textbf{ascending index} or $\upsilon$ (upsilon) index. To determine the $\upsilon$ index of the cell, we shall use function $\upsilon$ which requires the intersection sum function (See Section \ref{intersection_sum}).
     \begin{equation}
-        \upsilon(b,n) = \alpha(b,n) - 1
+        \upsilon(b,n) = \sigma(b,n) - 1
     \end{equation}
     \newpage 
     To further illustrate the indexed slants, we substituted the values of the matrix elements into their respective descending and ascending indices.
