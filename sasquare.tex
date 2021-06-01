@@ -844,9 +844,9 @@
 
     Using the intersection sum (see Section \ref{intersection_sum}) of a cell index, we can determine whether a cell belongs to the anti-diagonal, is an anti-superdiagonal cell, or is an anti-subdiagonal cell. Given that $n$ is a cell index:
     \begin{itemize}
-        \item If $\alpha(b,n) < (b + 1)$, it is an anti-superdiagonal cell.
-        \item If $\alpha(b,n) > (b + 1)$, it is an anti-subdiagonal cell.
-        \item If $\alpha(b,n) = (b + 1)$, it belongs to the anti-diagonal.
+        \item If $\sigma(b,n) < (b + 1)$, it is an anti-superdiagonal cell.
+        \item If $\sigma(b,n) > (b + 1)$, it is an anti-subdiagonal cell.
+        \item If $\sigma(b,n) = (b + 1)$, it belongs to the anti-diagonal.
     \end{itemize}
 
     Like the off-diagonal cells, they can resemble triangles.
@@ -931,7 +931,7 @@
         \caption{The highlighted anti-offdiagonal cells in two matrices.} \label{fig:antioffdiagonal_cells}
     \end{figure}
 
-    In Figure \ref{fig:antioffdiagonal_cells}, the cells highlighted with a light shade of gray are the anti-superdiagonal cells. The rest of the highlighted cells are the anti-subdiagonal cells. The unhighlighted cells are the anti-diagonal cells. The left matrix has elements where $i_{n}b = \alpha(b,n)$ where $n$ is the cell index and $b$ is the base of the square.
+    In Figure \ref{fig:antioffdiagonal_cells}, the cells highlighted with a light shade of gray are the anti-superdiagonal cells. The rest of the highlighted cells are the anti-subdiagonal cells. The unhighlighted cells are the anti-diagonal cells. The left matrix has elements where $i_{n}b = \sigma(b,n)$ where $n$ is the cell index and $b$ is the base of the square.
 
     \newpage
 
