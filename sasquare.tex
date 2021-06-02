@@ -1060,7 +1060,7 @@
     \begin{equation}
         \begin{split}
             \upsilon_{x,o}b &= \Upsilon(b,o) + w(b,x) \\
-                &= (b^2 - bo + o) + (|b-x|(b-1)+ b^{\left\lfloor \frac{x}{b} \right\rfloor}(b-x))
+                &= (b^2 - bo + o) - (|b-x|(b-1)+ b^{\left\lfloor \frac{x}{b} \right\rfloor}(b-x))
         \end{split}
     \end{equation}
 
@@ -1190,12 +1190,12 @@
     Since there are only 5 cells in the slant, we will enumerate up to the 5th cell of ascending slant 5.
     \begin{equation*}
         \begin{split}
-            \upsilon_{x,o}b &= (b^2 - bo + o) + (|b-x|(b-1)+ b^{\left\lfloor \frac{x}{b} \right\rfloor}(b-x)) \\
-            \upsilon_{5,1}5 &= (5^2 - 5(1) + 1) + (|5-5|(5-1)+ 5^{\left\lfloor \frac{5}{5} \right\rfloor}(5-5)) = 21\\
-            \upsilon_{5,2}5 &= (5^2 - 5(2) + 2) + (|5-5|(5-1)+ 5^{\left\lfloor \frac{5}{5} \right\rfloor}(5-5)) = 17\\
-            \upsilon_{5,3}5 &= (5^2 - 5(3) + 3) + (|5-5|(5-1)+ 5^{\left\lfloor \frac{5}{5} \right\rfloor}(5-5)) = 13\\
-            \upsilon_{5,4}5 &= (5^2 - 5(4) + 4) + (|5-5|(5-1)+ 5^{\left\lfloor \frac{5}{5} \right\rfloor}(5-5)) = 9\\
-            \upsilon_{5,5}5 &= (5^2 - 5(5) + 5) + (|5-5|(5-1)+ 5^{\left\lfloor \frac{5}{5} \right\rfloor}(5-5)) = 5\\
+            \upsilon_{x,o}b &= (b^2 - bo + o) - (|b-x|(b-1)+ b^{\left\lfloor \frac{x}{b} \right\rfloor}(b-x)) \\
+            \upsilon_{5,1}5 &= (5^2 - 5(1) + 1) - (|5-5|(5-1)+ 5^{\left\lfloor \frac{5}{5} \right\rfloor}(5-5)) = 21\\
+            \upsilon_{5,2}5 &= (5^2 - 5(2) + 2) - (|5-5|(5-1)+ 5^{\left\lfloor \frac{5}{5} \right\rfloor}(5-5)) = 17\\
+            \upsilon_{5,3}5 &= (5^2 - 5(3) + 3) - (|5-5|(5-1)+ 5^{\left\lfloor \frac{5}{5} \right\rfloor}(5-5)) = 13\\
+            \upsilon_{5,4}5 &= (5^2 - 5(4) + 4) - (|5-5|(5-1)+ 5^{\left\lfloor \frac{5}{5} \right\rfloor}(5-5)) = 9\\
+            \upsilon_{5,5}5 &= (5^2 - 5(5) + 5) - (|5-5|(5-1)+ 5^{\left\lfloor \frac{5}{5} \right\rfloor}(5-5)) = 5\\
             \upsilon_{5,*}5 &= \{21, 17, 13, 9, 5\}
         \end{split}
     \end{equation*}
