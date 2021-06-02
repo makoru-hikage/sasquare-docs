@@ -997,8 +997,7 @@
     The range of the any set in this subsection has these traits:
     \begin{itemize}
         \item When $x = b$ then $f(b,x) = 0$
-        \item When $x = 0$ then $f(b,x) = b^2$
-        \item When $0 \leq x \leq b$ then $f(b,x) = b^2 - bx$
+        \item When $1 \leq x \leq b$ then $f(b,x) = b^2 - bx$
     \end{itemize}
     Function $u$ is a function that either yields a multiple of $b$ or subtracts $b$ from $x$ depending on whether $x$ exceeds or fall short of $b$.
     \begin{equation}
@@ -1011,6 +1010,7 @@
     \begin{itemize}
         \item When $x = 2b$ then $u(b,x) = b$
         \item When $b \leq x \leq 2b$ then $u(b,x) = x - b$
+        \item When $x = 0$ then $u(b,x) = b^3$
     \end{itemize}
 
     Function $w$ is a function that either yields a multiple of $b$ or subtracts $x$ from $b$ depending on whether $x$ exceeds or fall short of $b$.
@@ -1022,8 +1022,8 @@
     \end{equation}
     The range of set $W$ has these own traits:
     \begin{itemize}
-        \item When $x = 2b$ then $w(b,x) = -b$
-        \item When $b \leq x \leq 2b$ then $w(b,x) = b - x$
+        \item When $b \leq x < 2b$ then $w(b,x) = b - x$
+        \item When $x = 0$ then $w(b,x) = b^2$
     \end{itemize}
 
     \section{The Cells of a Slant} \label{cells_of_a_slant}
