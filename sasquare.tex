@@ -196,21 +196,21 @@
     Let $b^2$ be any natural number. The root of a perfect square can be positive or negative; for the sake of simplicity, we will use positive bases only. The number of elements in a matrix or an array is always an integer.
 
     \section{The Cells} \label{cells}
-    The \textbf{cells} are the basic building blocks of a grid. Since a square matrix can be thought of as a grid, we will call the elements of an array or a matrix as cells. The number of cells in a square grid counts from 1 up to $b^2$ in either its row vector form or its square matrix form. We shall use integers to index each cell and call each index a \textbf{cell index}.
+    The \textbf{cells} are the basic building blocks of a grid. Since a square matrix or grid can be thought of as a linear array, we will call the elements of an array or a matrix as cells. The number of cells in a square grid is $b^2$. We will refer to this as the \textbf{length of the array}. We shall use integers to index each cell and call each index a \textbf{cell index}.
     \begin{equation}
-        (i_n)^{b^2}_{n\in\mathbb{Z}^+} = (i_1, i_2, \dots ,i_{b^2})
+      (i_n)_{n=0}^{b^2-1} = (i_0, i_1, \dots ,i_{b^2-1})
     \end{equation}
 
-    A square grid has rows and columns. The total number of rows in a square grid is equals to $b$ which is also equal to the total number of columns in a square grid. We will index $b$ number of rows from 1 to $b$; we will call this each index a \textbf{row index}. We will also do the same to the $b$ number of columns and call each index a \textbf{column index}. The aforementioned indices are all natural numbers. Usually an array is expressed as $A_{m \times n}$ or $A_{r \times c}$ in algebra to show the number of rows and columns explicitly.
+    A square grid has $b$ rows and $b$ columns. We will index all rows from 1 to $b$; we will call this each index a \textbf{row index}. We will also do the same to the columns and call each index a \textbf{column index}. Usually an array is expressed as $A_{m \times n}$, but in this case, $m = n = b$.
     \begin{figure}[ht]
         \centering
         \begin{minipage}{0.45\textwidth}
             \centering
             \begin{tikzpicture}
                 \matrix[matrix of nodes, nodes={minimum size=1cm, draw, anchor=center}, row sep=-\pgflinewidth, column sep=-\pgflinewidth](mygrid){%
-                $i_1$ & $i_2$ & $i_3$ \\
-                $i_4$ & $i_5$ & $i_6$ \\
-                $i_7$ & $i_8$ & $i_9$ \\
+                $i_0$ & $i_1$ & $i_2$ \\
+                $i_3$ & $i_4$ & $i_5$ \\
+                $i_6$ & $i_7$ & $i_8$ \\
                 };
             \end{tikzpicture}
         \end{minipage}
@@ -228,25 +228,22 @@
         \caption{Two square grids are labeled differently, they are indexed as elements of a sequence and a matrix respectively} \label{2forms1grid}
     \end{figure}
 
-    In Figure \ref{2forms1grid}, the base of the square grids is 3 and the total number of cells is 9. In matrix notation, the rows and columns are indexed accordingly. We denote the elements of the right grid with $a_{r,c}$ where $r$ is the row index and $c$ is the column index. In this example, we assume that both grids represent the same array.
+    In Figure \ref{2forms1grid}, the base of the square grids is 3 and the total number of cells is 9. In matrix notation, the rows and columns are indexed accordingly. We denote the elements of the right grid with $a_{r,c}$ where $r$ is the row index and $c$ is the column index; we will call this the \textbf{matrix index} In this example, we assume that both grids represent the same array.
 
     \section{The Rows} \label{rows}
-    The \textbf{rows} are the horizontal arrangement of elements in a matrix. In a row, there are $b$ number of cells. We shall denote a row index as $a_{r,*}$. We shall use function $r$ to determine the row of cell index $n$ in a square grid of base $b$.
+    The \textbf{rows} are the horizontal arrangement of elements in a matrix. In a row, there are $b$ cells. We shall denote a row index as $a_{r,*}$. We shall use function $\operatorname{r}(b,n)$ to determine the row of cell index $n$ in a square grid of base $b$.
     \begin{equation}
-        r(b,n) = \left\lceil \frac{n}{b} \right\rceil
+      \operatorname{r}(b,n) = \left\lfloor \frac{n}{b} \right\rfloor + 1
     \end{equation}
-    We can use the function to determine which multiple of $b$ is \emph{higher} than and nearest to cell $n$ by multiplying its results to $b$. All the rightmost cells of the grid is always indexed with a number divisible by $b$. Let $a_{r,b}$ the rightmost cell index of a row.
-    \begin{equation}
-        a_{r,b} = b\left\lceil \frac{n}{b} \right\rceil
-    \end{equation}
+    All leftmost cells of the grid are always indexed with a number divisible by $b$. Let matrix indices $a_{r,1}$ and $a_{r,b}$ be the leftmost and rightmost cells of a row respectively.
 
     \section{The Columns} \label{columns}
-    The \textbf{columns} are the vertical arrangement of elements in a matrix. In a column, there are $b$ number of cells. We shall denote a column index as $a_{*,c}$. To find the column where a cell belongs, we must first identify the row where it belongs and find the rightmost cell of the row. After finding the rightmost cell of the row, we shall subtract it from the sum of the cell index $n$ and the base. We shall use function $c$.
+    The \textbf{columns} are the vertical arrangement of elements in a matrix. In a column, there are $b$ cells. We shall denote a column index as $a_{*,c}$. To find the column where a cell belongs, we can simply use the modulo of $b$. We divide $n$ by $b$ and take the remainder, then add $1$.
     \begin{equation}
-        c(b,n) = n + b - b\left\lceil \frac{n}{b} \right\rceil
+      \operatorname{c}(b,n) = (n \pmod{b}) + 1
     \end{equation}
 
-    All the rightmost cells belong in column index $b$ which is represented as $a_{*,b}$.
+    The first row of the square, $a_{1,*}$ has all the possible remainders of $\frac{n}{b}$ as cell indices.
 
     \newpage
 
