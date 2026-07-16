@@ -694,7 +694,7 @@
     \end{equation}
 
     \section{The Anti-diagonal} \label{antidiagonal}
-    An \textbf{anti-diagonal} is the opposite of the diagonal. Whilst the diagonal resembles a line going from the top left corner to the bottom right corner of a square, the anti-diagonal cells fall along a line going from the bottom left corner to the upper right corner of the square. (\cite{matte_antidiagonal}).  An anti-diagonal has cells where $r = b - c + 1$ where $b$ is the base, where $b = r + c$. The intersection sum of all its cells is always $b + 1$. It is the longest ascending slant. Its two end cells are always $a_{b,1}$ and $a_{1,b}$
+    An \textbf{anti-diagonal} is the opposite of the diagonal. Whilst the diagonal resembles a line going from the top left corner to the bottom right corner of a square, the anti-diagonal cells fall along a line going from the bottom left corner to the upper right corner of the square. (\cite{matte_antidiagonal}).  An anti-diagonal has cells where $r = b - c + 1$ where $b$ is the base, where $b + 1 = r + c$. The intersection sum of all its cells is always $b + 1$. It is the longest ascending slant. Its two end cells are always $a_{b,1}$ and $a_{1,b}$
 
     \begin{figure}[h]
         \tikzset{highlight/.style={
@@ -1059,7 +1059,7 @@
     To enumerate the cells of an ascending slant, we shall subtract the results of function $w$ (see Section \ref{u_and_w}) from the results of the function $\Upsilon$ that enumerates the anti-diagonal cells (see Section \ref{antidiagonal}).
     \begin{equation}
         \begin{split}
-            \upsilon_{x,o}b &= \Upsilon(b,o) + w(b,x) \\
+            \upsilon_{x,o}b &= \Upsilon(b,o) - w(b,x) \\
                 &= (b^2 - bo + o) + (|b-x|(b-1)+ b^{\left\lfloor \frac{x}{b} \right\rfloor}(b-x))
         \end{split}
     \end{equation}
@@ -1085,7 +1085,7 @@
     After finding $\delta(5,17)$ we will find the descending index of $i_{17}$.
     \begin{equation*}
         \begin{split}
-            \kappa(b,n) &= b - \delta(b,n)\\
+            \kappa(b,n) &= b + \delta(b,n)\\
             \kappa(5,17) &= 5 + \delta(5,17)\\
                 &= 5 + (-2)\\
                 &= 5 - 2\\
@@ -1604,7 +1604,7 @@
 
     \newpage
 
-    Visually, the second center cell is at the left of the first center cell, the third center cell is below the first center cell, and the fourth center cell is below the second cell.
+    Visually, the second center cell is at the right of the first center cell, the third center cell is below the first center cell, and the fourth center cell is below the second cell.
 
     \begin{figure}[ht]
         \setcounter{MaxMatrixCols}{6}
