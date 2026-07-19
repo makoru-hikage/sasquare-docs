@@ -367,37 +367,32 @@
     \newpage
 
     \chapter{The Intersection} \label{intersection}
-    All cells belong to only one row and one column, hence $i_n$ can become $a_{r,c}$. An \textbf{intersection} is where a row and a column meet; they can only meet in one cell. The result of an intersection can be represented as either $i_n$ or $a_{r,c}$. As long as $r=c$ in matrix $A_{r \times c}$, any given pair of row and column index will always have an intersection.
-
-    If we can determine the row and column index of a cell index with a given base, we can also determine the cell index that results of intersection a row and a column. To do so, we'll use the function $i$ which can be expressed in three ways. Let $r$ and $c$ be the row and column index respectively.
+    All cells belong to only one row and one column, hence $i_n$ can become $a_{r,c}$. An \textbf{intersection} is where a row and a column meet; they can only meet in one cell. The result of an intersection can be represented as either $i_n$ or $a_{r,c}$. If we can determine the row and column index of a cell index with a given base, we can also determine the cell index that results to the intersection a row and a column. To do so, we'll use the function $\operatorname{i}$. Let $r$ and $c$ be the row and column index respectively.
     \begin{equation}
         \begin{split}
-            i(b,r,c) &= b(r-1) + c \\
-                    &= br + (b - c) \\
-                    &= br - b + c \\
+          \operatorname{i}(b,r,c) &= b(r-1) + (c - 1)
         \end{split}
     \end{equation}
-    In the first expression, the part $b(r-1)$ highlights the first $r$ rows where only $c$ number of cells are only highlighted on the last row. The second expression, highlights the $r$ number of rows then the last $(b - c)$ number of cells will be un-highlighted thereafter. The last one is the simplest form amongst the expressions.
+    In the expression, the part $b(r-1)$ denotes the rows before the row of the selected cell. The part $c - 1$ denotes the nth cell of the row. The $ -1$ in $c-1$ is simply to offset since the cell indices start at zero.
 
-    In the only example of Chapter \ref{1_square_grid} (Section \ref{1_example_1}), we used the functions $r$ and $c$ to determine the matrix notation for $i_{17}$ which is $a_{4,2}$. Cell index 17 belongs to row index 4 and column index 2. We shall use function $i$ to test if the intersection of $a_{4,*}$ and $a_{*,2}$ is $i_{17}$ when the $b$ is 5.
+    In the only example of Chapter \ref{1_square_grid} (Section \ref{1_example_1}), we used the functions $\operatorname{r}$ and $\operatorname{c}$ to determine the matrix notation for $i_{16}$ which is $a_{4,2}$. Cell index 16 belongs to row index 4 and column index 2. We shall use function $\operatorname{i}$ to test if the intersection of $a_{4,*}$ and $a_{*,2}$ is $i_{16}$ when the $b$ is 5.
     \begin{equation*}
         \begin{split}
-            i(b,r,c) &= br - b + c \\
-            i(5,4,2) &= (5)(4) - (5) + (2) \\
-                &= 20 - 5 + 2 \\
-                &= 15 + 2 \\
-            i(5,4,2) &= 17
+          i(b,r,c) &= b(r-1) + (c - 1) \\
+            i(5,4,2) &= 5(4-1) + (2 - 1) \\
+                &= 5(3) + 2 - 1 \\
+                &= 15 + 1\\
+            i(5,4,2) &= 16
         \end{split}
     \end{equation*}
 
     This function can be used to enumerate the cells in a chosen row or column.
 
     \section{Cells of a Row} \label{row_cells}
-    To enumerate the cells of a row, we will use the Intersection function $i$. A row shall be considered a set of cell indices. Per Chapter \ref{1_square_grid}, the number of cells in a certain row is always $b$.
+    To enumerate the cells of a row, we will use the Intersection function $\operatorname{i}$. A row shall be considered a set of cell indices. Per Chapter \ref{1_square_grid}, the number of cells in a certain row is always $b$.
     \begin{equation}
         \begin{split}
-            i(b,r,c) &= br - b + c \\
-            a_{r,*}b &= \{ i(b,r,c) : c \in (1, \dots, b) \}
+            a_{r,*}b &= \{ \operatorname{i}(b,r,c) : c = 1, \dots, b \}
         \end{split}
     \end{equation}
     The expression $a_{r,*}b$ simply means `Row $r$ of $b$-square'. Numbers $b$ and $r$ are constants inside the set builder notation.
@@ -406,59 +401,56 @@
     To enumerate the cells of a column, we will use the Intersection function $i$. Just like a row, a column is also a set of cell indices. Just like rows, a column has only $b$ number of cells.
     \begin{equation}
         \begin{split}
-            i(b,r,c) &= br - b + c \\
-            a_{*,c}b &= \{ i(b,r,c) : r \in (1, \dots, b) \}
+            a_{*,c}b &= \{ \operatorname{i}(b,r,c) : r = 1, \dots, b \}
         \end{split}
     \end{equation}
     The expression $a_{*,c}b$ simply means `Column $c$ of $b$-square'. Numbers $b$ and $c$ are constants inside the set builder notation.
 
     \section{Example: The Cells of Row 4 and Column 2 in 5-square} \label{2_example_1}
-    To enumerate the cell indices of $a_{4,*}5$ we shall use function $i$ in a set builder notation where $r$ and $b$ is constant.
+    To enumerate the cell indices of $a_{4,*}5$ we shall use function $\operatorname{i}$ in a set builder notation where $r$ and $b$ is constant.
     \begin{equation*}
         \begin{split}
-            i(b,r,c) &= br - b + c \\
-            a_{r,*}b &= \{ i(b,r,c) : c \in (1, \dots, b) \} \\
-            a_{4,*}5 &= \{ i(5,4,c) : c \in (1,2,3,4,5) \} \\
+            a_{r,*}b &= \{ \operatorname{i}(b,r,c) : c = 1, \dots, b \} \\
+            a_{4,*}5 &= \{ \operatorname{i}(5,4,c) : c = 1,2,3,4,5 \} \\
             \\
-            i(5,4,1) &= (5)(4) - 5 + 1 = 16 \\
-            i(5,4,2) &= (5)(4) - 5 + 2 = 17 \\
-            i(5,4,3) &= (5)(4) - 5 + 3 = 18 \\
-            i(5,4,4) &= (5)(4) - 5 + 4 = 19 \\
-            i(5,4,5) &= (5)(4) - 5 + 5 = 20 \\
-            a_{4,*}5 &= \{16, 17, 18, 19, 20 \} \\
+            \operatorname{i}(5,4,1) &= 5(4-1) + (1 - 1) = 15 \\
+            \operatorname{i}(5,4,2) &= 5(4-1) + (2 - 1) = 16 \\
+            \operatorname{i}(5,4,3) &= 5(4-1) + (3 - 1) = 17 \\
+            \operatorname{i}(5,4,4) &= 5(4-1) + (4 - 1) = 18 \\
+            \operatorname{i}(5,4,5) &= 5(4-1) + (5 - 1) = 19 \\
+            a_{4,*}5 &= \{15, 16, 17, 18, 19 \} \\
         \end{split}
     \end{equation*}
 
-    The set $a_{4,*}5$ has cell indices $i_{16}, i_{17}, i_{18}, i_{19}$, and $i_{20}$.
+    The set $a_{4,*}5$ has cell indices $i_{15}, i_{16}, i_{17}, i_{18}$, and $i_{19}$.
 
-    To enumerate the cell indices of $a_{*,2}5$ we shall use function $i$ in a set builder notation where $c$ and $b$ is constant.
+    To enumerate the cell indices of $a_{*,2}5$ we shall use function $\operatorname{i}$ in a set builder notation where $c$ and $b$ is constant.
     \begin{equation*}
         \begin{split}
-            i(b,r,c) &= br - b + c \\
-            a_{r,*}b &= \{ i(b,r,c) : r \in (1, \dots, b) \} \\
-            a_{4,*}5 &= \{ i(5,r,2) : r \in (1,2,3,4,5) \} \\
+            a_{*,c}b &= \{ \operatorname{i}(b,r,c) : r = 1, \dots, b \} \\
+            a_{*,2}5 &= \{ \operatorname{i}(5,r,2) : r = 1,2,3,4,5 \} \\
             \\
-            i(5,1,2) &= (5)(1) - 5 + 2 = 2 \\
-            i(5,2,2) &= (5)(2) - 5 + 2 = 7 \\
-            i(5,3,2) &= (5)(3) - 5 + 2 = 12 \\
-            i(5,4,2) &= (5)(4) - 5 + 2 = 17 \\
-            i(5,5,2) &= (5)(5) - 5 + 2 = 22 \\
-            a_{*,2}5 &= \{2, 7, 12, 17, 22 \} \\
+            \operatorname{i}(5,4,1) &= 5(1-1) + (2 - 1) = 1 \\
+            \operatorname{i}(5,4,2) &= 5(2-1) + (2 - 1) = 6 \\
+            \operatorname{i}(5,4,3) &= 5(3-1) + (2 - 1) = 11 \\
+            \operatorname{i}(5,4,4) &= 5(4-1) + (2 - 1) = 16 \\
+            \operatorname{i}(5,4,5) &= 5(5-1) + (2 - 1) = 21 \\
+            a_{4,*}5 &= \{1, 6, 11, 16, 21 \} \\
         \end{split}
     \end{equation*}
 
-    The set $a_{*,2}5$ has cell indices $i_{2}, i_{7}, i_{12}, i_{17}$, and $i_{22}$.
+    The set $a_{*,2}5$ has cell indices $i_{1}, i_{6}, i_{11}, i_{16}$, and $i_{21}$.
 
     Set $a_{4,*}5$ and set $a_{*,2}5$, will always meet at one cell; all pairs of $a_{r,*}b$ and $a_{*,c}b$ shall always have an intersection.
     \begin{equation*}
         \begin{split}
-            a_{4,*}5 &= \{16, 17, 18, 19, 20 \} \\
-            a_{*,2}5 &= \{2, 7, 12, 17, 22 \} \\
-            a_{4,*}5 \cap a_{*,2}5 &= \{17\}
+            a_{4,*}5 &= \{15, 16, 17, 18, 19\} \\
+            a_{*,2}5 &= \{1, 6, 11, 16, 21 \} \\
+            a_{4,*}5 \cap a_{*,2}5 &= \{16\}
         \end{split}
     \end{equation*}
 
-    The intersection of $a_{4,*}5$ and $a_{*,2}5$ is $i_{17}$ or $a_{4,2}$.
+    The intersection of $a_{4,*}5$ and $a_{*,2}5$ is $i_{16}$ or $a_{4,2}$.
 
     \begin{figure*}[ht]
         \centering
@@ -486,11 +478,11 @@
                 \resizebox{\textwidth}{!}{$
                 I =
                 \begin{bNiceMatrix}
-                    i_{1} & i_{2} & i_{3} & i_{4} & i_{5} \\
-                    i_{6} & i_{7} & i_{8} & i_{9} & i_{10} \\
-                    i_{11} & i_{12} & i_{13} & i_{14} & i_{15} \\
-                    i_{16} & i_{17} & i_{18} & i_{19} & i_{20} \\
-                    i_{21} & i_{22} & i_{23} & i_{24} & i_{25}
+                    i_{0} & i_{1} & i_{2} & i_{3} & i_{4} \\
+                    i_{5} & i_{6} & i_{7} & i_{8} & i_{9} \\
+                    i_{10} & i_{11} & i_{12} & i_{13} & i_{14} \\
+                    i_{15} & i_{16} & i_{17} & i_{18} & i_{19} \\
+                    i_{20} & i_{21} & i_{22} & i_{23} & i_{24}
                     \CodeAfter 
                         \tikz \node [row_hl=(4-1)(4-5)] {};
                         \tikz \node [col_hl=(1-2)(5-2)] {};
