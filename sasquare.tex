@@ -11,7 +11,6 @@
 \usepackage{nicematrix}
 \usepackage{colortbl}
 
-\setlength{\parskip}{1em}
 \setlength{\intextsep}{10pt}   % Space above and below figures
 \setlength{\textfloatsep}{10pt} % Space between floats and text
 \setlength{\floatsep}{10pt}    % Space between adjacent floats
@@ -643,19 +642,22 @@
         \caption{A diagonal is highlighted in a 5-square matrix} \label{fig:diagonal}
     \end{figure}
     \newpage
-    To enumerate the cell indices within the diagonal, we shall use the intersection function $\operatorname{i}$ (see Chapter \ref{intersection}) where $r = c$. We shall name the set $D$. For this example, $b = 5$ and $n$ is the nth cell of the diagonal. To simplify, since $r = c$, we will replace $r$ and $c$ with $n$. 
+    To enumerate the cell indices within the diagonal, we shall use the intersection function $\operatorname{i}$ (see Chapter \ref{intersection}) where $r = c$. We shall name the set $D$. For this example, $b = 5$ and $n$ is the nth cell of the diagonal. To simplify, since $r = c$, we will replace $r$ and $c$ with $n$. To further simplify, we can treat $(n-1)$ as $X$ and substitute $X$ with $(n-1)$ later. With this we will have the expression $(b+1)(n-1)$ where $(b+1)$ means a descending diagonal movement repeated $(n-1)$ times. 
     \begin{equation}
         \begin{split}
           \operatorname{i}(b,r,c) &= b(r-1)+(c-1) \\
                 &= b(n-1)+(n-1) \\
-                &= bn-b+n-1 \\
-            D &= \{ bn-b+n-1 : n = 1, \dots, b) \} \\
+                &= bX + X \\
+                &= X(b + 1) \\
+                &= (n-1)(b + 1) \\
+                &= (b + 1)(n - 1) \\
+            D &= \{ (b+1)(n-1) : n = 1, \dots, b) \} \\
             \\
-            \operatorname{D}(5,1) &= (5)(1) - 5 + (1) - 1 =  0 \\
-            \operatorname{D}(5,2) &= (5)(2) - 5 + (2) - 1 =  6 \\
-            \operatorname{D}(5,3) &= (5)(3) - 5 + (3) - 1 =  12 \\
-            \operatorname{D}(5,4) &= (5)(4) - 5 + (4) - 1 =  18 \\
-            \operatorname{D}(5,5) &= (5)(5) - 5 + (5) - 1 =  24 \\
+            \operatorname{D}(5,1) &= (5+1)(1 - 1) =  0 \\
+            \operatorname{D}(5,2) &= (5+1)(2 - 1) =  6 \\
+            \operatorname{D}(5,3) &= (5+1)(3 - 1) =  12 \\
+            \operatorname{D}(5,4) &= (5+1)(4 - 1) =  18 \\
+            \operatorname{D}(5,5) &= (5+1)(5 - 1) =  24 \\
             D &= \{0, 6, 12, 18, 24 \} \\
         \end{split}
     \end{equation}
@@ -663,6 +665,7 @@
     \section{The Anti-diagonal} \label{antidiagonal}
     An \textbf{anti-diagonal} is the opposite of the diagonal. Whilst the diagonal resembles a line going from the top left corner to the bottom right corner of a square, the anti-diagonal cells rise along a line going from the bottom left corner to the upper right corner of the square. (\cite{matte_antidiagonal}).  An anti-diagonal has cells where $r = b - c + 1$ where $b$ is the base, where $b + 1 = r + c$. The intersection sum of all its cells is always $b + 1$. It is the longest antidiagonal slant. Its two end cells are always $a_{b,1}$ and $a_{1,b}$
 
+    \newpage
     \begin{figure}[h]
         \tikzset{highlight/.style={
             line width=0.8pt,
@@ -694,7 +697,7 @@
         \caption{An anti-diagonal is highlighted in a 5-square matrix} \label{fig:antidiagonal}
     \end{figure}
 
-    To enumerate the cell indices within the anti-diagonal, we shall use the function $\operatorname{A}$ for finding the nth cell of the anti-diagonal. We get the function $\operatorname{A}$ using the $\operatorname{i}$ function (see Chapter \ref{intersection}) where $r = b - c + 1$, then we replace $c$ with $n$ For this example, we will find the antidiagonal cell indices in a 5-square.
+    To enumerate the cell indices within the anti-diagonal, we shall use the function $\operatorname{A}$ for finding the nth cell of the anti-diagonal. We get the function $\operatorname{A}$ using the $\operatorname{i}$ function (see Chapter \ref{intersection}) where $r = b - c + 1$, then we replace $c$ with $n$ For this example, we will find the antidiagonal cell indices in a 5-square. In function $\operatorname{A}, $The expression $b^2 - bn$ signifies the start of the ascension in the antidiagonal slant whilst the whole equation means the antidiagonal ascending step done $n$ times.
     \begin{equation}
         \begin{split}
             \operatorname{i}(b,r,c) &= b(r-1)+(c-1) \\
