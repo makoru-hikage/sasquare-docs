@@ -908,17 +908,17 @@
     \chapter{The Slant Indices} \label{slant_indices}
     To index each individual slants in a square grid, we shall use the intersection sum and intersection difference of each cells.
 
-    We shall call the index of a descending slant a \textbf{descending index} or $\kappa$ (kappa) index. To determine the $\kappa$ index of the cell, we shall use function $\kappa$ which requires the intersection difference function (See Section \ref{intersection_diff}).
+    We shall call the index of a diagonal slant a \textbf{diagonal (slant) index} or $d$ index. To determine the $d$ index of the cell, we shall use function $\operatorname{d}$ which requires the intersection difference function (See Section \ref{intersection_diff}).
     \begin{equation}
-        \kappa(b,n) = b + \delta(b,n)
+      \operatorname{u}(b,n) = b + \delta(b,n)
     \end{equation}
 
-    We shall call the index of an ascending slant an \textbf{ascending index} or $\upsilon$ (upsilon) index. To determine the $\upsilon$ index of the cell, we shall use function $\upsilon$ which requires the intersection sum function (See Section \ref{intersection_sum}).
+    We shall call the index of an antidiagonal slant an \textbf{antidiagonal (slant) index} or $a$ index. To determine the $a$ index of the cell, we shall use function $\operatorname{a}$ which requires the intersection sum function (See Section \ref{intersection_sum}).
     \begin{equation}
-        \upsilon(b,n) = \sigma(b,n) - 1
+      \operatorname{a}(b,n) = \sigma(b,n) - 1
     \end{equation}
     \newpage 
-    To further illustrate the indexed slants, we substituted the values of the matrix elements into their respective descending and ascending indices.
+    To further illustrate the indexed slants, we substituted the values of the matrix elements into their respective diagonal and antidiagonal indices.
 
     \begin{figure}[h]
         \centering
@@ -949,11 +949,11 @@
             \end{bNiceMatrix}
             $}
         \end{minipage}
-        \caption{Matrix $A$ has elements equal to their descending index whilst matrix B has elements equal to their ascending index.}
+        \caption{Matrix $A$ has elements equal to their diagonal index whilst matrix B has elements equal to their antidiagonal index.}
     \end{figure}
 
     \section{The Cardinality of a Given Slant} \label{slant_cardinality}
-    Not all slants have the same number of cells. Only $b-1$ pairs of slants of have the same number of cells for each kind of slants. To get the number of cells in a given slant index. Let $x$ be either a descending ($\kappa$) or an ascending ($\upsilon$) index. Let $X$ be a set of cells belonging to a chosen slant. The vertical bar notation ($|A|$) denotes the \textbf{cardinality} of a set (\cite{math_vault}). However, the vertical bar notation can also denote an absolute number; we shall use $n(X)$ to denote the cardinality of set $X$. We shall use the vertical bars for denoting absolute values.
+    Not all slants have the same number of cells. Only $b-1$ pairs of slants of have the same number of cells for each kind of slants. To get the number of cells in a given slant index. Let $x$ be either a diagonal ($d$) or an antidiagonal ($a$) index. Let $X$ be a set of cells belonging to a chosen slant. The vertical bar notation ($|A|$) denotes the \textbf{cardinality} of a set (\cite{math_vault}). However, the vertical bar notation can also denote an absolute number; we shall use $n(X)$ to denote the cardinality of set $X$. We shall use the vertical bars for denoting absolute values.
     \begin{equation}
         n(X) = b - |b - x|
     \end{equation}
