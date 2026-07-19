@@ -243,7 +243,7 @@
     \section{The Columns} \label{columns}
     The \textbf{columns} are the vertical arrangement of elements in a matrix. In a column, there are $b$ cells. We shall denote a column index as $a_{*,c}$. To find the column where a cell belongs, we can simply use the modulo of $b$. We divide $n$ by $b$ and take the remainder, then add $1$.
     \begin{equation}
-      \operatorname{c}(b,n) = (n\pmod{b}) + 1
+      \operatorname{c}(b,n) = (n\bmod b) + 1
     \end{equation}
 
     The first row of the square, $a_{1,*}$ has all the possible remainders of $\frac{n}{b}$ as cell indices.
@@ -297,9 +297,8 @@
     The index of the rightmost cell of row 4 is 19; Cell $i_{16}$ and $i_{19}$ belong together in the same row. Next, we shall determine which column $i_{16}$ belongs to.
     \begin{equation*}
         \begin{split}
-          \operatorname{c}(b,n) &= (n\pmod{b}) + 1 \\
-          \operatorname{c}(5,16) &= (16\pmod{5}) + 1 \\
-                &= (16\pmod5) + 1 \\
+          \operatorname{c}(b,n) &= (n\bmod b) + 1 \\
+          \operatorname{c}(5,16) &= (16\bmod 5) + 1 \\
                 &= 1 + 1 \\
                 &= 2 \\
           \operatorname{c}(5,16) &= 2
@@ -535,7 +534,7 @@
         \item None of the cells in the set belong in the same column
         \item Only one slant has $b$ number of cells; it is the longest slant
         \item Unlike rows and columns, different slants have different number of cells
-        \item Two kinds of slants exist, the \textbf{descending} and \textbf{ascending} slants
+        \item Two kinds of slants exist, the \textbf{diagonal} and \textbf{antidiagonal} slants
     \end{itemize}
 
     In a square grid, there are $2b-1$ number of slants of each kind in a square grid. For example, if the square has a base of 5, there shall be 9 slants for each kind. Let $l$ be a function that takes $b$ as an argument to determine the number of slants in a square.
@@ -554,10 +553,10 @@
     \begin{equation}
         \begin{split}
             \sigma(b,n) &= r(b,n) + c(b,n) \\
-            r(b,n) &= \left\lceil \frac{n}{b} \right\rceil \\
-            c(b,n) &= b + n - b\left\lceil \frac{n}{b} \right\rceil \\
-            \sigma(b,n) &= ( \left\lceil \frac{n}{b} \right\rceil ) + (b + n - b\left\lceil \frac{n}{b} \right\rceil)\\
-            \sigma(b,n) &= \left\lceil \frac{n}{b} \right\rceil + b + n - b\left\lceil \frac{n}{b} \right\rceil\\
+            \operatorname{r}(b,n) &= \left\lfloor \frac{n}{b} \right\rfloor + 1 \\
+            \operatorname{c}(b,n) &= (n\bmod b) + 1 \\
+            \sigma(b,n) &= ( \left\lfloor \frac{n}{b} \right\rfloor + 1 ) + ((n \bmod b) + 1)\\
+            \sigma(b,n) &= \left\lfloor \frac{n}{b} + \right\rfloor + (n \bmod b) + 2\\
         \end{split}
     \end{equation}
 
