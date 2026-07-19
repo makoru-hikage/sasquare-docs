@@ -579,37 +579,14 @@
     To do an \textbf{intersection difference}, we shall subtract the row index of a cell from the column index of the same cell. If two cells have the same intersection difference, they belong in the same descending slant. Let $\delta$ be the intersection difference function and $n$ be the cell index number.
     \begin{equation}
         \begin{split}
-            \delta(b,n) &= c(b,n) - r(b,n)\\
-            r(b,n) &= \left\lceil \frac{n}{b} \right\rceil \\
-            c(b,n) &= b + n - b\left\lceil \frac{n}{b} \right\rceil \\
-            \delta(b,n) &= (b + n - b\left\lceil \frac{n}{b} \right\rceil) - (\left\lceil \frac{n}{b} \right\rceil)\\
-            \delta(b,n) &= b + n - b\left\lceil \frac{n}{b} \right\rceil - \left\lceil \frac{n}{b} \right\rceil\\
+            \delta(b,n) &= r(b,n) - c(b,n)\\
+            \operatorname{r}(b,n) &= \left\lfloor \frac{n}{b} \right\rfloor + 1 \\
+            \operatorname{c}(b,n) &= (n\bmod b) + 1 \\
+            \delta(b,n) &= (\left\lfloor \frac{n}{b} \right\rfloor + 1) - ((n\bmod b) + 1)\\
+                        &= \left\lfloor \frac{n}{b} \right\rfloor + 1 - (n\bmod b) - 1\\
+            \delta(b,n) &= \left\lfloor \frac{n}{b} \right\rfloor - (n\bmod b)\\
         \end{split}
     \end{equation}
-
-    A \textbf{reverse intersection difference} occurs when we subtract the column index of a cell from the row index of the same cell. Let $\alpha$ be the reverse intersection difference.
-    \begin{equation}
-        \begin{split}
-            \alpha(b,n) &= r(b,n) - c(b,n)\\
-            r(b,n) &= \left\lceil \frac{n}{b} \right\rceil \\
-            c(b,n) &= b + n - b\left\lceil \frac{n}{b} \right\rceil \\
-            \alpha(b,n) &= \left\lceil \frac{n}{b} \right\rceil - (b + n - b\left\lceil \frac{n}{b} \right\rceil)\\
-            \alpha(b,n) &= \left\lceil \frac{n}{b} \right\rceil - b - n + b\left\lceil \frac{n}{b} \right\rceil
-        \end{split}
-    \end{equation}
-
-    A reverse intersection difference is a negated version of an intersection difference.
-    \begin{equation}
-        \begin{split}
-            \alpha(b,n) &= -(\delta(b,n))\\
-            \left\lceil \frac{n}{b} \right\rceil - (b + n - b\left\lceil \frac{n}{b} \right\rceil) &= - ( b + n - b\left\lceil \frac{n}{b} \right\rceil - \left\lceil \frac{n}{b} \right\rceil)\\
-            \left\lceil \frac{n}{b} \right\rceil - b - n + b\left\lceil \frac{n}{b} \right\rceil &= - b - n + b\left\lceil \frac{n}{b} \right\rceil + \left\lceil \frac{n}{b} \right\rceil\\
-        \end{split}
-    \end{equation}
-    If we rearrange the terms of the right expression:
-    \begin{equation*}
-        \left\lceil \frac{n}{b} \right\rceil - b - n + b\left\lceil \frac{n}{b} \right\rceil = \left\lceil \frac{n}{b} \right\rceil - b - n + b\left\lceil \frac{n}{b} \right\rceil
-    \end{equation*}
 
     The intersection difference is crucial to finding all the descending slants in a square grid.
 
@@ -618,21 +595,7 @@
         \begin{minipage}{0.45\textwidth}
             \centering
             {$
-            A =
-            \begin{bNiceMatrix}
-                0 & 1 & 2 & 3 & 4 \\
-                -1 & 0 & 1 & 2 & 3 \\
-                -2 & -1 & 0 & 1 & 2 \\
-                -3 & -2 & -1 & 0 & 1 \\
-                -4 & -3 & -2 & -1 & 0
-            \end{bNiceMatrix}
-            $}
-        \end{minipage}
-        \hfill
-        \begin{minipage}{0.45\textwidth}
-            \centering
-            {$
-            B =
+            D =
             \begin{bNiceMatrix}
                 0 & -1 & -2 & -3 & -4 \\
                 1 & 0 & -1 & -2 & -3 \\
@@ -642,7 +605,7 @@
             \end{bNiceMatrix}
             $}
         \end{minipage}
-        \caption{Matrix $A$ has elements where $i_{n}b = \delta(b,n)$ whilst matrix B has elements where $i_{n}b = \alpha(b,n)$.}
+        \caption{Matrix $D$ has elements where $i_{n}b = \delta(b,n)$.}
     \end{figure}
 
     \newpage
