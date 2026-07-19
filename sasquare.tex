@@ -532,7 +532,7 @@
     \begin{itemize}
         \item None of the cells in the set belong in the same row
         \item None of the cells in the set belong in the same column
-        \item Only one slant has $b$ number of cells; it is the longest slant
+        \item Only one slant of its kind has $b$ number of cells; it is the longest slant
         \item Unlike rows and columns, different slants have different number of cells
         \item Two kinds of slants exist, the \textbf{diagonal} and \textbf{antidiagonal} slants
     \end{itemize}
@@ -549,7 +549,7 @@
     \section{The Intersection Sum} \label{intersection_sum}
     There are equations that determine the slant a cell belongs to.
 
-    By adding the row and the column index of a cell, we do an \textbf{intersection sum}. If two cells have the same intersection sums, they belong in the same ascending slant. Let $\sigma$ be the intersection sum function and $n$ be the cell index number.
+    By adding the row and the column index of a cell, we do an \textbf{intersection sum}. If two cells have the same intersection sums, they belong in the same antidiagonal slant. Let $\sigma$ be the intersection sum function and $n$ be the cell index number.
     \begin{equation}
         \begin{split}
             \sigma(b,n) &= r(b,n) + c(b,n) \\
@@ -560,7 +560,7 @@
         \end{split}
     \end{equation}
 
-    The intersection sum is crucial to finding all the ascending slants in a square grid.
+    The intersection sum is crucial to finding all the antidiagonal slants in a square grid.
     \begin{figure}[ht]
         \centering
         {$
@@ -576,7 +576,7 @@
     \end{figure}
 
     \section{The Intersection Difference} \label{intersection_diff}
-    To do an \textbf{intersection difference}, we shall subtract the row index of a cell from the column index of the same cell. If two cells have the same intersection difference, they belong in the same descending slant. Let $\delta$ be the intersection difference function and $n$ be the cell index number.
+    To do an \textbf{intersection difference}, we shall subtract the column index of a cell from the row index of the same cell. If two cells have the same intersection difference, they belong in the same diagonal slant. Let $\delta$ be the intersection difference function and $n$ be the cell index number.
     \begin{equation}
         \begin{split}
             \delta(b,n) &= r(b,n) - c(b,n)\\
@@ -595,7 +595,6 @@
         \begin{minipage}{0.45\textwidth}
             \centering
             {$
-            D =
             \begin{bNiceMatrix}
                 0 & -1 & -2 & -3 & -4 \\
                 1 & 0 & -1 & -2 & -3 \\
@@ -605,13 +604,13 @@
             \end{bNiceMatrix}
             $}
         \end{minipage}
-        \caption{Matrix $D$ has elements where $i_{n}b = \delta(b,n)$.}
+        \caption{This matrix has elements where $i_{n}b = \delta(b,n)$.}
     \end{figure}
 
     \newpage
 
     \section{The Diagonal} \label{diagonal}
-    A matrix has a special set of elements called a \textbf{diagonal}; it is also called the \textbf{main diagonal} (\cite{weisstein_diagonal}). A diagonal consists of elements where $r = c$. In a square grid, a diagonal is the longest descending slant. Its two end cells are always $a_{1,1}$ and $a_{b,b}$.
+    A matrix has a special set of elements called a \textbf{diagonal}; it is also called the \textbf{main diagonal} (\cite{weisstein_diagonal}). A diagonal consists of elements where $r = c$. In a square grid, a diagonal is the longest diagonal slant. Its two end cells are always $a_{1,1}$ and $a_{b,b}$.
     \begin{figure}[h]
         \tikzset{highlight/.style={
             line width=0.8pt,
@@ -643,18 +642,20 @@
         \caption{A diagonal is highlighted in a 5-square matrix} \label{fig:diagonal}
     \end{figure}
 
-    To enumerate the cell indices within the diagonal, we shall use the intersection function $i$ (see Chapter \ref{intersection}) where $r = c$. We shall name the set $D$. For this example, $b = 5$ and $n$ is the nth cell of the diagonal. 
+    To enumerate the cell indices within the diagonal, we shall use the intersection function $\operatorname{i}$ (see Chapter \ref{intersection}) where $r = c$. We shall name the set $D$. For this example, $b = 5$ and $n$ is the nth cell of the diagonal. To simplify, since $r = c$, we will replace $r$ and $c$ with $n$. 
     \begin{equation}
         \begin{split}
-            i(b,r,c) &= br - b + c \\
-            D &= \{ i(b,n,n) : n \in (1, \dots, b) \} \\
+          \operatorname{i}(b,r,c) &= b(r-1)+(c-1) \\
+                &= b(n-1)+(n-1) \\
+                &= bn-b+n-1 \\
+            D &= \{ bn-b+n-1 : n = 1, \dots, b) \} \\
             \\
-            i(5,1,1) &= (5)(1) - 5 + 1 = 1 \\
-            i(5,2,2) &= (5)(2) - 5 + 2 = 7 \\
-            i(5,3,3) &= (5)(3) - 5 + 3 = 13 \\
-            i(5,4,4) &= (5)(4) - 5 + 4 = 19 \\
-            i(5,5,5) &= (5)(5) - 5 + 5 = 25 \\
-            D &= \{1, 7, 13, 19, 25 \} \\
+            \operatorname{D}(5,1) &= (5)(1) - 5 + (1) - 1 =  0 \\
+            \operatorname{D}(5,2) &= (5)(2) - 5 + (2) - 1 =  6 \\
+            \operatorname{D}(5,3) &= (5)(3) - 5 + (3) - 1 =  12 \\
+            \operatorname{D}(5,4) &= (5)(4) - 5 + (4) - 1 =  18 \\
+            \operatorname{D}(5,5) &= (5)(5) - 5 + (5) - 1 =  24 \\
+            D &= \{0, 6, 12, 18, 24 \} \\
         \end{split}
     \end{equation}
 
