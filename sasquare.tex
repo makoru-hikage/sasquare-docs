@@ -12,6 +12,9 @@
 \usepackage{colortbl}
 
 \setlength{\parskip}{1em}
+\setlength{\intextsep}{10pt}   % Space above and below figures
+\setlength{\textfloatsep}{10pt} % Space between floats and text
+\setlength{\floatsep}{10pt}    % Space between adjacent floats
 
 \title{Single Array Square Grid (SASQUARE)}
 \date{2021-04-28}
@@ -607,11 +610,9 @@
         \caption{This matrix has elements where $i_{n}b = \delta(b,n)$.}
     \end{figure}
 
-    \newpage
-
     \section{The Diagonal} \label{diagonal}
     A matrix has a special set of elements called a \textbf{diagonal}; it is also called the \textbf{main diagonal} (\cite{weisstein_diagonal}). A diagonal consists of elements where $r = c$. In a square grid, a diagonal is the longest diagonal slant. Its two end cells are always $a_{1,1}$ and $a_{b,b}$.
-    \begin{figure}[h]
+    \begin{figure}[h!]
         \tikzset{highlight/.style={
             line width=0.8pt,
             draw=gray!80,
@@ -641,7 +642,7 @@
         $}
         \caption{A diagonal is highlighted in a 5-square matrix} \label{fig:diagonal}
     \end{figure}
-
+    \newpage
     To enumerate the cell indices within the diagonal, we shall use the intersection function $\operatorname{i}$ (see Chapter \ref{intersection}) where $r = c$. We shall name the set $D$. For this example, $b = 5$ and $n$ is the nth cell of the diagonal. To simplify, since $r = c$, we will replace $r$ and $c$ with $n$. 
     \begin{equation}
         \begin{split}
@@ -660,7 +661,7 @@
     \end{equation}
 
     \section{The Anti-diagonal} \label{antidiagonal}
-    An \textbf{anti-diagonal} is the opposite of the diagonal. Whilst the diagonal resembles a line going from the top left corner to the bottom right corner of a square, the anti-diagonal cells fall along a line going from the bottom left corner to the upper right corner of the square. (\cite{matte_antidiagonal}).  An anti-diagonal has cells where $r = b - c + 1$ where $b$ is the base, where $b + 1 = r + c$. The intersection sum of all its cells is always $b + 1$. It is the longest ascending slant. Its two end cells are always $a_{b,1}$ and $a_{1,b}$
+    An \textbf{anti-diagonal} is the opposite of the diagonal. Whilst the diagonal resembles a line going from the top left corner to the bottom right corner of a square, the anti-diagonal cells rise along a line going from the bottom left corner to the upper right corner of the square. (\cite{matte_antidiagonal}).  An anti-diagonal has cells where $r = b - c + 1$ where $b$ is the base, where $b + 1 = r + c$. The intersection sum of all its cells is always $b + 1$. It is the longest antidiagonal slant. Its two end cells are always $a_{b,1}$ and $a_{1,b}$
 
     \begin{figure}[h]
         \tikzset{highlight/.style={
@@ -693,18 +694,23 @@
         \caption{An anti-diagonal is highlighted in a 5-square matrix} \label{fig:antidiagonal}
     \end{figure}
 
-    To enumerate the cell indices within the anti-diagonal, we shall use the function $\Upsilon$ for finding the nth cell of the anti-diagonal. For this example, we will find the diagonal cell indices in a 5-square.
+    To enumerate the cell indices within the anti-diagonal, we shall use the function $\operatorname{A}$ for finding the nth cell of the anti-diagonal. We get the function $\operatorname{A}$ using the $\operatorname{i}$ function (see Chapter \ref{intersection}) where $r = b - c + 1$, then we replace $c$ with $n$ For this example, we will find the antidiagonal cell indices in a 5-square.
     \begin{equation}
         \begin{split}
-            \Upsilon(b,n) &= b^2 - bn + n \\
-            A &= \{ \Upsilon(b,n) : n \in (1, \dots, b) \} \\
+            \operatorname{i}(b,r,c) &= b(r-1)+(c-1) \\
+                &= b((b - c + 1) - 1) + (c-1) \\
+                &= b^2 - bc + b - b + (c-1) \\
+                &= b^2 - bc + c - 1 \\
+               (n &= c) \\
+            \operatorname{A}(b,n) &= b^2 - bn + b - 1 \\
+            A &= \{ \\operatorname{A}(b,n) : n = 1, \dots, b \} \\
             \\
-            \Upsilon(5,1) &= 5^2 - (5)(1) + (1) = 21\\
-            \Upsilon(5,2) &= 5^2 - (5)(2) + (2) = 17\\
-            \Upsilon(5,3) &= 5^2 - (5)(3) + (3) = 13\\
-            \Upsilon(5,4) &= 5^2 - (5)(4) + (4) = 9\\
-            \Upsilon(5,5) &= 5^2 - (5)(5) + (5) = 5\\
-            A &= \{ 21, 17, 13, 9, 5 \} \\
+            \operatorname{A}(5,1) &= 5^2 - (5)(1) + (1) - 1 = 20\\
+            \operatorname{A}(5,2) &= 5^2 - (5)(2) + (2) - 1 = 16\\
+            \operatorname{A}(5,3) &= 5^2 - (5)(3) + (3) - 1 = 12\\
+            \operatorname{A}(5,4) &= 5^2 - (5)(4) + (4) - 1 = 8\\
+            \operatorname{A}(5,5) &= 5^2 - (5)(5) + (5) - 1 = 4\\
+            A &= \{ 20, 16, 12, 8, 4 \} \\
         \end{split}
     \end{equation}
 
