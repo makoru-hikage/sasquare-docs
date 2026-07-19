@@ -1,4 +1,4 @@
-\documentclass[letterpaper, twoside,12pt]{book}
+\documentclass[twoside,openany,12pt]{book}
 \usepackage[backend=biber,style=apa,autocite=inline]{biblatex}
 \DeclareLanguageMapping{english}{english-apa}
 \addbibresource{sasquare.bib}
@@ -718,10 +718,10 @@
     \section{The Off-diagonal Cells} \label{offdiagonal_cells}
     The \textbf{off-diagonal cells} are the cells not found in the main diagonal. There are two kinds of off-diagonal cells: the \textbf{superdiagonal} and the \textbf{subdiagonal} cells. The superdiagonal cells are above and right of the main diagonal whilst the subdiagonal cells are below and left the main diagonal.
 
-    Superdiagonal cells has their row index lower than their column index whilst subdiagonal cells have their row index greater than their column index. Using the intersection difference function (see Section \ref{intersection_diff}), we can determine if a cell belongs to the main diagonal, is a superdiagonal cell, or is a subdiagonal cell. Given that $n$ is a cell index:
+    Superdiagonal cells has their column index lower than their row index whilst subdiagonal cells have their column index greater than their row index. Using the intersection difference function (see Section \ref{intersection_diff}), we can determine if a cell belongs to the main diagonal, is a superdiagonal cell, or is a subdiagonal cell. Given that $n$ is a cell index:
     \begin{itemize}
-        \item If $\delta(b,n) < 0$, it is a subdiagonal cell.
-        \item If $\delta(b,n) > 0$, it is a superdiagonal cell.
+        \item If $\delta(b,n) > 0$, it is a subdiagonal cell.
+        \item If $\delta(b,n) < 0$, it is a superdiagonal cell.
         \item If $\delta(b,n) = 0$, it belongs to the main diagonal.
     \end{itemize}
 
@@ -749,11 +749,11 @@
             \centering
             {$
             \begin{bNiceMatrix}
-                i_{1} & i_{2} & i_{3} & i_{4} & i_{5} \\
-                i_{6} & i_{7} & i_{8} & i_{9} & i_{10} \\
-                i_{11} & i_{12} & i_{13} & i_{14} & i_{15} \\
-                i_{16} & i_{17} & i_{18} & i_{19} & i_{20} \\
-                i_{21} & i_{22} & i_{23} & i_{24} & i_{25}
+                i_{0} & i_{1} & i_{2} & i_{3} & i_{4} \\
+                i_{5} & i_{7} & i_{8} & i_{9} & i_{10} \\
+                i_{10} & i_{11} & i_{12} & i_{13} & i_{14} \\
+                i_{15} & i_{16} & i_{17} & i_{18} & i_{19} \\
+                i_{20} & i_{21} & i_{22} & i_{23} & i_{24}
                 \CodeAfter 
                 \tikz \node [row_hl=(1-2)(1-5)] {};
                 \tikz \node [row_hl=(2-3)(2-5)] {};
@@ -769,7 +769,7 @@
         \hfill
         \begin{minipage}{0.45\textwidth}
             \tikzset{row_hl/.style={
-            line width=0.8pt,
+            line width=0.9pt,
             draw=gray!80,
             rectangle,
             fill=gray!55,
@@ -787,11 +787,11 @@
             \centering
             {$
             \begin{bNiceMatrix}
-                0 & 1 & 2 & 3 & 4 \\
-                -1 & 0 & 1 & 2 & 3 \\
-                -2 & -1 & 0 & 1 & 2 \\
-                -3 & -2 & -1 & 0 & 1 \\
-                -4 & -3 & -2 & -1 & 0
+                0 & -1 & -2 & -3 & -4 \\
+                1 & 0 & -1 & -2 & -3 \\
+                2 & 1 & 0 & -1 & -2 \\
+                3 & 2 & 1 & 0 & -1 \\
+                4 & 3 & 2 & 1 & 0
                 \CodeAfter 
                 \tikz \node [row_hl=(1-2)(1-5)] {};
                 \tikz \node [row_hl=(2-3)(2-5)] {};
@@ -845,11 +845,11 @@
             \centering
             {$
             \begin{bNiceMatrix}
-                i_{1} & i_{2} & i_{3} & i_{4} & i_{5} \\
-                i_{6} & i_{7} & i_{8} & i_{9} & i_{10} \\
-                i_{11} & i_{12} & i_{13} & i_{14} & i_{15} \\
-                i_{16} & i_{17} & i_{18} & i_{19} & i_{20} \\
-                i_{21} & i_{22} & i_{23} & i_{24} & i_{25}
+                i_{0} & i_{1} & i_{2} & i_{3} & i_{4} \\
+                i_{5} & i_{7} & i_{8} & i_{9} & i_{10} \\
+                i_{10} & i_{11} & i_{12} & i_{13} & i_{14} \\
+                i_{15} & i_{16} & i_{17} & i_{18} & i_{19} \\
+                i_{20} & i_{21} & i_{22} & i_{23} & i_{24}
                 \CodeAfter 
                 \tikz \node [row_hl=(1-1)(1-4)] {};
                 \tikz \node [row_hl=(2-1)(2-3)] {};
@@ -902,9 +902,7 @@
         \end{minipage}
         \caption{The highlighted anti-offdiagonal cells in two matrices.} \label{fig:antioffdiagonal_cells}
     \end{figure}
-
     In Figure \ref{fig:antioffdiagonal_cells}, the cells highlighted with a light shade of gray are the anti-superdiagonal cells. The rest of the highlighted cells are the anti-subdiagonal cells. The unhighlighted cells are the anti-diagonal cells. The left matrix has elements where $i_{n}b = \sigma(b,n)$ where $n$ is the cell index and $b$ is the base of the square.
-
     \newpage
 
     \chapter{The Slant Indices} \label{slant_indices}
