@@ -962,41 +962,40 @@
     \end{equation}
     Only slants with index $b$ have the most number of cells which has a count of $b$.
 
-    \section{Multiples of the Base Until Its Square} \label{u_and_w}
-    Function $f$ shall denote any function in this subsection. Set $X$ shall denote any set in this subsection.
+    \section{The Letter L and Capital Gamma} \label{u_and_w}
+    Function $f$ shall denote any function in this subsection. Set $X$ shall denote any set in this subsection. Function $f$ will surely cover all the cells of the first column and either the first or the last row.
     \begin{equation}\
             X = \{ f(b,x) : x \in \mathbb{N}, 0 \leq x \leq 2b \}
     \end{equation}
     The range of the any set in this subsection has these traits:
     \begin{itemize}
-        \item When $x = b$ then $f(b,x) = 0$
-        \item When $1 \leq x \leq b$ then $f(b,x) = b^2 - bx$
+        \item When $x = b$ then $f(b,x) = 0$. This covers the first column
+        \item When $1 \leq x \leq b$ then $f(b,x) = b^2 - bx$. This may cover the first or the last row.
     \end{itemize}
-    Function $u$ is a function that either yields a multiple of $b$ or subtracts $b$ from $x$ depending on whether $x$ exceeds or fall short of $b$.
+    Function $\operatorname{u}$ is a function that either yields a multiple of $b$ or subtracts $b$ from $x$ depending on whether $x$ exceeds or fall short of $b$. This forms an capital gamma-shape ($\Gamma$) in the square matrix as it covers the first column then the first row.
     \begin{equation}
         u(b,x) = b^{2 + \left\lfloor -\frac{x}{b} \right\rfloor }|b-x|
     \end{equation}
     \begin{equation}
-        U = \{ u(b,x) : x \in \mathbb{N}, 0 \leq x \leq 2b \}
+        U = \{ u(b,x) : x \in \mathbb{N}, 1 \leq x \leq 2b - 1 \}
     \end{equation}
     The range of set $U$ has these own traits:
     \begin{itemize}
-        \item When $x = 2b$ then $u(b,x) = b$
-        \item When $b \leq x \leq 2b$ then $u(b,x) = x - b$
-        \item When $x = 0$ then $u(b,x) = b^3$
+        \item When $x < b$ then $u(b,x)$ will be a multiple of $b$ from $0$ to $b^2-b$
+        \item When $x \geq b$ then $u(b,x) = |b - x|$
     \end{itemize}
 
-    Function $w$ is a function that either yields a multiple of $b$ or subtracts $x$ from $b$ depending on whether $x$ exceeds or fall short of $b$.
+    Function $\operatorname{w}$ also works like function $\operatorname{u}$ but it rather forms an L-shape as it covers the first column then the last row.
     \begin{equation}
-        w(b,x) = |b-x|(b-1) + b^{\left\lfloor \frac{x}{b} \right\rfloor}(b-x)
+      w(b,x) = (1 - \left\lfloor \frac{x}{b} \right\rfloor)(b|b-x|) + (\left\lfloor \frac{x}{b} \right\rfloor)(x - b)
     \end{equation}
     \begin{equation}
-        W = \{ w(b,x) : x \in \mathbb{N}, 0 \leq x \leq 2b \}
+        W = \{ w(b,x) : x \in \mathbb{N}, 1 \leq x \leq 2b - 1 \}
     \end{equation}
     The range of set $W$ has these own traits:
     \begin{itemize}
-        \item When $b \leq x < 2b$ then $w(b,x) = b - x$
-        \item When $x = 0$ then $w(b,x) = b^2$
+        \item When $x < b$ then $w(b,x)$ will be a multiple of $b$ from $0$ to $b^2-b$
+        \item When $x \geq b$ then $w(b,x) = b^2 - |b - x|$
     \end{itemize}
 
     \section{The Cells of a Slant} \label{cells_of_a_slant}
