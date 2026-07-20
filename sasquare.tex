@@ -913,7 +913,7 @@
 
     We shall call the index of a diagonal slant a \textbf{diagonal (slant) index} or $d$ index. To determine the $d$ index of the cell, we shall use function $\operatorname{d}$ which requires the intersection difference function (See Section \ref{intersection_diff}).
     \begin{equation}
-      \operatorname{u}(b,n) = b + \delta(b,n)
+      \operatorname{u}(b,n) = b - \delta(b,n)
     \end{equation}
 
     We shall call the index of an antidiagonal slant an \textbf{antidiagonal (slant) index} or $a$ index. To determine the $a$ index of the cell, we shall use function $\operatorname{a}$ which requires the intersection sum function (See Section \ref{intersection_sum}).
@@ -1001,98 +1001,95 @@
     \section{The Cells of a Slant} \label{cells_of_a_slant}
     We will use several notations to describe the different kind of slants and their cells.
     \begin{itemize}
-        \item A descending slant is denoted as $\kappa_{x,*}b$ where $x$ is the index of the descending slant. This can be also called as ``descending slant x"
-        \item A cell in a descending slant is denoted as $\kappa_{x,o}b$ where $o$ is the nth cell of descending slant x.
-        \item To depict the nth cells of each descending slants we will denote it as $\kappa_{*,o}b$. (eg. All the 1st cells of each descending slant in 5-square is denoted as $\kappa_{*,1}5$.)
-        \item An ascending slant is denoted as $\upsilon_{x,*}b$ where $x$ is the index of the ascending slant. This can be also called as ``ascending slant x"
-        \item A cell in an ascending slant is denoted as $\upsilon_{x,o}b$ where $n$ is the nth cell of ascending slant x.
-        \item To depict the nth cells of each ascending slants we will denote it as $\upsilon_{*,o}b$. (eg. All the 1st cells of each ascending slant in 5-square is denoted as $\upsilon_{*,1}5$.)
+        \item A diagonal slant is denoted as $d_{x,*}b$ where $x$ is the index of the diagonal slant. This can be also called as ``diagonal slant x"
+        \item A cell in a diagonal slant is denoted as $d_{x,o}b$ where $o$ is the nth cell of diagonal slant x.
+        \item To depict the nth cell of each diagonal slant, we will denote it as $d_{*,o}b$. (eg. All the 1st cells of each diagonal slant in 5-square is denoted as $d_{*,1}5$.)
+        \item An antidiagonal slant is denoted as $d'_{x,*}b$ where $x$ is the index of the antidiagonal slant. This can be also called as ``ascending slant x"
+        \item A cell in an antidiagonal slant is denoted as $d'_{x,o}b$ where $o$ is the nth cell of antidiagonal slant x.
+        \item To depict the nth cells of each antidiagonal slants we will denote it as $d'_{*,o}b$. (eg. All the 1st cells of each antidiagonal slant in 5-square is denoted as $d'_{*,1}5$.)
     \end{itemize}
 
-    Before enumerating all the cells of a chosen slant, we must first find the cardinality of the chosen slant (see Section \ref{slant_cardinality}). The variable $s$ represents either a descending slant $\kappa$ or an ascending slant $\upsilon$
+    Before enumerating all the cells of a chosen slant, we must first find the cardinality of the chosen slant (see Section \ref{slant_cardinality}). The variable $s$ represents either a diagonal slant $d$ or an antidiagonal slant $d'$
     \begin{equation}
         n(s_{x,*}b) = b - |b-x|
     \end{equation}
 
 
-    To enumerate the cells of a descending slant, we shall add the results of the intersection function (see Section \ref{intersection} and \ref{diagonal}) and function $u$ from section \ref{u_and_w}.
+    To enumerate the cells of a diagonal slant, we shall add the function used for enumerating the cell indices of the Main Diagonal (see \ref{diagonal}) and function $\operatorname{u}$ from section \ref{u_and_w}.
     \begin{equation}
         \begin{split}
-            \kappa_{x,o}b &= i(b,o,o) + u(b,x) \\
-                &= (bo - b + o) + (b^{2 + \left\lfloor -\frac{x}{b} \right\rfloor }|b-x|)
+          d_{x,o}b &= (b+1)(o-1) + u(b,x) \\
+                &= (b+1)(o-1) + (b^{2 + \left\lfloor -\frac{x}{b} \right\rfloor }|b-x|)
         \end{split}
     \end{equation}
 
     We shall use the set builder notation to enumerate the cells. Variables $b$ and $x$ will be constant in this equation.
     \begin{equation}
-        K = \{ \kappa_{x,o}b : 1 \leq o \leq n(\kappa_{x,*}b) \}
+        K = \{ d_{x,o}b : 1 \leq o \leq n(d_{x,*}b) \}
     \end{equation}
 
-    To enumerate the cells of an ascending slant, we shall subtract the results of function $w$ (see Section \ref{u_and_w}) from the results of the function $\Upsilon$ that enumerates the anti-diagonal cells (see Section \ref{antidiagonal}).
+    To enumerate the cells of an ascending slant, we shall subtract the results of function $w$ (see Section \ref{u_and_w}) from the results of the function $\operatorname{A}$ that enumerates the anti-diagonal cells (see Section \ref{antidiagonal}).
     \begin{equation}
         \begin{split}
-            \upsilon_{x,o}b &= \Upsilon(b,o) - w(b,x) \\
-                &= (b^2 - bo + o) + (|b-x|(b-1)+ b^{\left\lfloor \frac{x}{b} \right\rfloor}(b-x))
+            d'_{x,o}b &= A(b,o) - w(b,x) \\
+                &= (b^2 - bo + o - 1) + (1 - \left\lfloor \frac{x}{b} \right\rfloor)(b|b-x|) + (\left\lfloor \frac{x}{b} \right\rfloor)(x - b)
         \end{split}
     \end{equation}
 
     We shall use the set builder notation to enumerate the cells. Variables $b$ and $x$ will be constant in this equation.
     \begin{equation}
-        L = \{ \upsilon_{x,o}b : 1 \leq o \leq n(\upsilon_{x,*}b) \}
+        L = \{ d'_{x,o}b : 1 \leq o \leq n(d'_{x,*}b) \}
     \end{equation}
 
-    \section{Example: The Descending Slant of Cell 17 in 5-Square} \label{3-4_example_1}
-    To find the descending index of $i_{17}$, we shall first find its intersection difference.
+    \section{Example: The Diagonal Slant of Cell 16 in 5-Square} \label{3-4_example_1}
+    To find the diagonal index of $i_{16}$, we shall first find its intersection difference.
     \begin{equation*}
         \begin{split}
-            \delta(b,n) &= b + n - b\left\lceil \frac{n}{b} \right\rceil - \left\lceil \frac{n}{b} \right\rceil\\
-            \delta(5,17) &= 5 + 17 - 5\left\lceil \frac{17}{5} \right\rceil - \left\lceil \frac{17}{5} \right\rceil\\
-                &= 5 + 17 - 5(4) - (4)\\
-                &= 5 + 17 - 20 - 4\\
-                &= 2 - 4\\
-            \delta(5,17) &= -2\\
+            \delta(b,n) &= \left\lfloor \frac{16}{5} \right\rfloor - (n\bmod b)\\
+            \delta(5,16) &= \left\lfloor \frac{16}{5} \right\rfloor - (16\bmod 5)\\
+                &= 3 - 1\\
+            \delta(5,16) &= 2\\
         \end{split}
     \end{equation*}
 
-    After finding $\delta(5,17)$ we will find the descending index of $i_{17}$.
+    After finding $\delta(5,16)$ we will find the diagonal index of $i_{16}$.
     \begin{equation*}
         \begin{split}
-            \kappa(b,n) &= b + \delta(b,n)\\
-            \kappa(5,17) &= 5 + \delta(5,17)\\
-                &= 5 + (-2)\\
+            d(b,n) &= b + \delta(b,n)\\
+            d(5,17) &= 5 + \delta(5,16)\\
                 &= 5 - 2\\
-            \kappa(5,17) &= 3\\
+            d(5,17) &= 3\\
         \end{split}
     \end{equation*}
 
-    The descending index of $i_{17}$ is 3. To find the neighboring cells of $i_{17}$ in descending slant 3, we will find the cardinality of descending slant 3. We will represent any descending slant as a set using the slant notation $\kappa_{x,*}b$. Let $x$ be equal to 3.
+    The diagonal index of $i_{16}$ is 3. To find the neighboring cells of $i_{16}$ in diagonal slant 3, we will find its cardinality. We will represent any diagonal slant as a set using the slant notation $d_{x,*}b$. Let $x$ be equal to 3.
     \begin{equation*}
         \begin{split}
-            n(\kappa_{x,*}b) &= b - |b - x| \\
-            n(\kappa_{3,*}5) &= 5 - |5 - 3| \\
+            n(d_{x,*}b) &= b - |b - x| \\
+            n(d_{3,*}5) &= 5 - |5 - 3| \\
                 &= 5 - |2| \\
                 &= 5 - 2 \\
-            n(\kappa_{3,*}5) &= 3 
+            n(d_{3,*}5) &= 3 
         \end{split}
     \end{equation*}
     There are 3 cells in descending slant 3. To list the indices of each cell, we will use a set builder notation.
     \begin{equation*}
         \begin{split}
-            \kappa_{3,*}5 &= \{ \kappa_{x,o}b : 1 \leq o \leq n(\kappa_{x,*}b) \} \\
-            \kappa_{3,*}5 &= \{ \kappa_{3,o}5 : 1 \leq o \leq 3 \} \\
+            d_{3,*}5 &= \{ d_{x,o}b : 1 \leq o \leq n(d_{x,*}b) \} \\
+            d_{3,*}5 &= \{ d_{3,o}5 : 1 \leq o \leq 3 \} \\
         \end{split}
     \end{equation*}
     Since there are only 3 cells in the slant, we will enumerate up to the 3rd cell of descending slant 3.
     \begin{equation*}
         \begin{split}
-            \kappa_{x,o}b &= (bo - b + o) + (b^{2 + \left\lfloor -\frac{x}{b} \right\rfloor }|b-x|) \\
-            \kappa_{3,1}5 &= (5(1) - 5 + 1) + (5^{2 + \left\lfloor -\frac{3}{5} \right\rfloor }|5-3|) = 11\\
-            \kappa_{3,2}5 &= (5(2) - 5 + 2) + (5^{2 + \left\lfloor -\frac{3}{5} \right\rfloor }|5-3|) = 17\\
-            \kappa_{3,3}5 &= (5(3) - 5 + 3) + (5^{2 + \left\lfloor -\frac{3}{5} \right\rfloor }|5-3|) = 23\\
-            \kappa_{3,*}5 &= \{11, 17, 23\}
+          d_{x,o}b &= (b+1)(o-1) + (b^{2 + \left\lfloor -\frac{x}{b} \right\rfloor }|b-x|) \\
+            d_{3,1}5 &= (5+1)(1-1) + (5^{2 + \left\lfloor -\frac{3}{5} \right\rfloor }|5-3|) = 10\\
+            d_{3,2}5 &= (5+1)(2-1) + (5^{2 + \left\lfloor -\frac{3}{5} \right\rfloor }|5-3|) = 16\\
+            d_{3,3}5 &= (5+1)(3-1) + (5^{2 + \left\lfloor -\frac{3}{5} \right\rfloor }|5-3|) = 22\\
+            d_{3,*}5 &= \{10, 16, 22\}
         \end{split}
     \end{equation*}
-    Cell 17 is the 2nd cell of descending slant 3 because $\kappa_{3,2}5 = 17$
+    Cell 16 is the 2nd cell of descending slant 3 because $d_{3,2}5 = 17$
     \begin{figure*}[ht]
         \tikzset{highlight/.style={
             line width=0.8pt,
@@ -1107,11 +1104,11 @@
         \centering
         {$
         \begin{bNiceMatrix}
-            i_{1} & i_{2} & i_{3} & i_{4} & i_{5} \\
-            i_{6} & i_{7} & i_{8} & i_{9} & i_{10} \\
-            i_{11} & i_{12} & i_{13} & i_{14} & i_{15} \\
-            i_{16} & i_{17} & i_{18} & i_{19} & i_{20} \\
-            i_{21} & i_{22} & i_{23} & i_{24} & i_{25}
+            i_{0} & i_{1} & i_{2} & i_{3} & i_{4} \\
+            i_{5} & i_{7} & i_{8} & i_{9} & i_{10} \\
+            i_{10} & i_{11} & i_{12} & i_{13} & i_{14} \\
+            i_{15} & i_{16} & i_{17} & i_{18} & i_{19} \\
+            i_{20} & i_{21} & i_{22} & i_{23} & i_{24}
             \CodeAfter 
             \tikz \node [highlight=(3-1)] {};
             \tikz \node [highlight=(4-2)] {};
@@ -1120,58 +1117,56 @@
         $}
     \end{figure*}
 
-    \section{Example: The Ascending Slant of Cell 17 in 5-Square} \label{3-4_example_2}
-    To find the ascending index of $i_{17}$, we shall first find its intersection sum.
+    \section{Example: The Antidiagonal Slant of Cell 16 in 5-Square} \label{3-4_example_2}
+    To find the antidiagonal index of $i_{16}$, we shall first find its intersection sum.
     \begin{equation*}
         \begin{split}
-            \sigma(b,n) &= \left\lceil \frac{n}{b} \right\rceil + b + n - b\left\lceil \frac{n}{b} \right\rceil\\
-            \sigma(5,17) &= \left\lceil \frac{17}{5} \right\rceil + 5 + 17 - 5\left\lceil \frac{17}{5} \right\rceil\\
-                &= 4 + 5 + 17 - 5(4)\\
-                &= 4 + 5 + 17 - 20\\
-                &= 4 + 2\\
-            \sigma(5,17) &= 6\\
+            \sigma(b,n) &= \left\lfloor \frac{n}{b} \right\rfloor + n \bmod b + 2\\
+            \sigma(5,16) &= \left\lfloor \frac{16}{5} \right\rfloor + 16 \bmod 5 + 2\\
+                &= 3 + 1 + 2\\
+            \sigma(5,16) &= 6\\
         \end{split}
     \end{equation*}
 
-    The intersection sum of $i_{17}$ is 6. We will find the ascending index of $i_{17}$.
+    The intersection sum of $i_{16}$ is 6. We will find the antidiagonal index of $i_{16}$.
     \begin{equation*}
         \begin{split}
-            \upsilon(b,n) &= \sigma(b,n) - 1\\
-            \upsilon(5,17) &= \sigma(5,17) - 1\\
+            d'(b,n) &= \sigma(b,n) - 1\\
+            d'(5,16) &= \sigma(5,16) - 1\\
                 &= 6 - 1\\
-            \upsilon(5,17) &= 5\\
+            d'(5,16) &= 5\\
         \end{split}
     \end{equation*}
 
-    The ascending index of $i_{17}$ is 5. To find the neighboring cells of $i_{17}$ in ascending slant 5, we will find its cardinality. We will represent any ascending slant as a set using the slant notation $\upsilon_{x,*}b$. Let $x$ be equal to 5.
+    The antidiagonal index of $i_{16}$ is 5. To find the neighboring cells of $i_{16}$ in ascending slant 5, we will find its cardinality. We will represent any ascending slant as a set using the slant notation $d'_{x,*}b$. Let $x$ be equal to 5.
     \begin{equation*}
         \begin{split}
-            n(\kappa_{x,*}b) &= b - |b - x| \\
-            n(\kappa_{5,*}5) &= 5 - |5 - 5| \\
+            n(d'_{x,*}b) &= b - |b - x| \\
+            n(d'_{5,*}5) &= 5 - |5 - 5| \\
                 &= 5 - |0| \\
-            n(\kappa_{5,*}5) &= 5
+            n(d'_{5,*}5) &= 5
         \end{split}
     \end{equation*}
-    There are 5 cells in ascending slant 5. To list the indices of each cell, we will use a set builder notation.
+    There are 5 cells in antidiagonal slant 5. To list the indices of each cell, we will use a set builder notation.
     \begin{equation*}
         \begin{split}
-            \upsilon_{x,*}5 &= \{ \upsilon_{x,o}b : 1 \leq o \leq n(\upsilon_{x,*}b) \} \\
-            \upsilon_{5,*}5 &= \{ \upsilon_{5,o}5 : 1 \leq o \leq 5 \} \\
+            d'_{x,*}5 &= \{ d'_{x,o}b : 1 \leq o \leq n(d'_{x,*}b) \} \\
+            d'_{5,*}5 &= \{ d'_{5,o}5 : 1 \leq o \leq 5 \} \\
         \end{split}
     \end{equation*}
-    Since there are only 5 cells in the slant, we will enumerate up to the 5th cell of ascending slant 5.
+    Since there are only 5 cells in the slant, we will enumerate up to the 5th cell of antidiagonal slant 5.
     \begin{equation*}
         \begin{split}
-            \upsilon_{x,o}b &= (b^2 - bo + o) + (|b-x|(b-1)+ b^{\left\lfloor \frac{x}{b} \right\rfloor}(b-x)) \\
-            \upsilon_{5,1}5 &= (5^2 - 5(1) + 1) + (|5-5|(5-1)+ 5^{\left\lfloor \frac{5}{5} \right\rfloor}(5-5)) = 21\\
-            \upsilon_{5,2}5 &= (5^2 - 5(2) + 2) + (|5-5|(5-1)+ 5^{\left\lfloor \frac{5}{5} \right\rfloor}(5-5)) = 17\\
-            \upsilon_{5,3}5 &= (5^2 - 5(3) + 3) + (|5-5|(5-1)+ 5^{\left\lfloor \frac{5}{5} \right\rfloor}(5-5)) = 13\\
-            \upsilon_{5,4}5 &= (5^2 - 5(4) + 4) + (|5-5|(5-1)+ 5^{\left\lfloor \frac{5}{5} \right\rfloor}(5-5)) = 9\\
-            \upsilon_{5,5}5 &= (5^2 - 5(5) + 5) + (|5-5|(5-1)+ 5^{\left\lfloor \frac{5}{5} \right\rfloor}(5-5)) = 5\\
-            \upsilon_{5,*}5 &= \{21, 17, 13, 9, 5\}
+            d'_{x,o}b &= (b^2 - bo + o - 1) + (1 - \left\lfloor \frac{x}{b} \right\rfloor)(b|b-x|) + (\left\lfloor \frac{x}{b} \right\rfloor)(x - b) \\
+            d'_{5,1}5 &= (5^2 - 5(1) + 1 - 1) + (1-0)(0) + (1)(0) = 20\\
+            d'_{5,1}5 &= (5^2 - 5(2) + 2 - 1) + (1-0)(0) + (1)(0) = 16\\
+            d'_{5,1}5 &= (5^2 - 5(3) + 3 - 1) + (1-0)(0) + (1)(0) = 12\\
+            d'_{5,1}5 &= (5^2 - 5(4) + 4 - 1) + (1-0)(0) + (1)(0) = 8\\
+            d'_{5,1}5 &= (5^2 - 5(5) + 5 - 1) + (1-0)(0) + (1)(0) = 4\\
+            d'_{5,*}5 &= \{20, 16, 12, 8, 4\}
         \end{split}
     \end{equation*}
-    Cell 17 is the 2nd cell of ascending slant 5 because $\upsilon_{5,2}5 = 17$
+    Cell 17 is the 2nd cell of antidiagonal slant 5 because $\upsilon_{5,2}5 = 17$
     \begin{figure*}[ht]
         \tikzset{highlight/.style={
             line width=0.8pt,
@@ -1186,11 +1181,11 @@
         \centering
         {$
         \begin{bNiceMatrix}
-            i_{1} & i_{2} & i_{3} & i_{4} & i_{5} \\
-            i_{6} & i_{7} & i_{8} & i_{9} & i_{10} \\
-            i_{11} & i_{12} & i_{13} & i_{14} & i_{15} \\
-            i_{16} & i_{17} & i_{18} & i_{19} & i_{20} \\
-            i_{21} & i_{22} & i_{23} & i_{24} & i_{25}
+            i_{0} & i_{1} & i_{2} & i_{3} & i_{4} \\
+            i_{5} & i_{7} & i_{8} & i_{9} & i_{10} \\
+            i_{10} & i_{11} & i_{12} & i_{13} & i_{14} \\
+            i_{15} & i_{16} & i_{17} & i_{18} & i_{19} \\
+            i_{20} & i_{21} & i_{22} & i_{23} & i_{24}
             \CodeAfter 
             \tikz \node [highlight=(5-1)] {};
             \tikz \node [highlight=(4-2)] {};
