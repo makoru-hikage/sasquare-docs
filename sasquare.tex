@@ -147,9 +147,9 @@
     \end{equation*}
 
     \section{Floor and Ceiling of a Zero Whole Part Number}
-    The equations $\left\lceil x \right\rceil = 1$ and $\left\lfloor x \right\rfloor = 0$ are true when $0 < x < 1$ and $x$ \in \mathbb{Q} \setminus \mathbb{Z} (a rational number that has no fractional part).
+    The equations $\left\lceil x \right\rceil = 1$ and $\left\lfloor x \right\rfloor = 0$ are true when $0 < x < 1$ and $x \in \mathbb{Q} \setminus \mathbb{Z}$ (a rational number that has no fractional part).
 
-    The equations $\left\lceil x \right\rceil = 0$ and $\left\lfloor x \right\rfloor = -1$ are true when $-1 < x < 0$ and $x$ \in \mathbb{Q} \setminus \mathbb{Z}.
+    The equations $\left\lceil x \right\rceil = 0$ and $\left\lfloor x \right\rfloor = -1$ are true when $-1 < x < 0$ and $x \in \mathbb{Q} \setminus \mathbb{Z}$.
 
 
     \newpage
@@ -1300,19 +1300,25 @@ To check the top edge, the first row, we do
     \begin{equation*}
         S = (1,2,3,4,5,6)
     \end{equation*}
-    Tuple $S$ is similar to tuple $T$ but with one more term. Tuple $S$ has an even number of terms, therefore it has two center indices. The main center index is 3 and the secondary center index is 4. The secondary center index is always equal to $M(x) + 1$ since it follows the main center index.
+    Tuple $S$ is similar to tuple $T$ but with one more term. Tuple $S$ has an even number of terms, therefore it has two center indices. The main center index is 3 and the secondary center index is 4. The secondary center index is always equal to $M(x) + 1$ since it follows the main center index. From another perspective, in an tuple of odd number of terms, the main and secondary center index are the same. We will use this function that can work on any tuple, be their number of terms be odd or even. This function will return the secondary center index.
+    \begin{align}
+      M_{2}(x)  &= \left\lceil \frac{x}{2} \right\rceil + 1 - x\bmod 2 \\
+                &= \left\lfloor \frac{x+1}{2} \right\rfloor + 1 - x\bmod 2 \\
+                &= M(x) + 1 - x\bmod 2 
+    \end{align}
 
-    Function $M$ are applicable to rows and columns when they are treated as tuples.
+    Functions $M$ and $M_2$ applicable to rows and columns when they are treated as tuples.
 
     \section{Center of the Base} \label{center_base}
-    The base is the very core of a square and always a variable in our equations so far. To find the center of the base, will use the function for finding the center index of a tuple.
+    The base is the very core of a square and always a variable in our equations so far. To find the center of the base, we will use the function for finding the center index of a tuple.
     \begin{equation}
         \begin{split}
-            M(x) &= \left\lceil \frac{x}{2} \right\rceil = \left\lfloor \frac{x+1}{2} \right\rfloor \\
-            M(b) &= \left\lceil \frac{b}{2} \right\rceil = \left\lfloor \frac{b+1}{2} \right\rfloor
+            M(b) = \left\lceil \frac{b}{2} \right\rceil = \left\lfloor \frac{b+1}{2} \right\rfloor \\
+            M_{2}(b) = M(b) + 1 - b\bmod 2
         \end{split}
     \end{equation}
-    When $b$ is even, $M(b)$ is the second center index of the base.
+    When $b$ is even, $M_{2}(b)$ is the second center index of the base. For example, when $b = 8$, $M(8) = 4$ and $M_{2}(8) = 5$. They denote the first center index and the secondary center index respectively.
+
 
     The center of the base is important for finding the center of a square.
 
