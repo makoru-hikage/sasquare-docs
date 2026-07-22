@@ -1246,7 +1246,8 @@
     \newpage
     And to check for the left edge, we do
     \begin{equation}
-      x = n - \left\lceil \frac{n \bmod b}{b} \right\rceil
+      x = n - \left\lceil \frac{((n \bmod b) + 1)-1}{b} \right\rceil \\
+        = n - \left\lceil \frac{n \bmod b}{b} \right\rceil
     \end{equation}
 
     \section{Vertical Steps} \label{v_steps}
@@ -1256,9 +1257,9 @@
     \end{equation}
 To check if we hit the bottom edge, we do
     \begin{equation}
-      x = n + b - b\left\lfloor \frac{\left\lfloor \frac{n}{b} \right\rfloor-1}{b} \right\rfloor
+      x = n + b - b\left\lfloor \frac{\left\lfloor \frac{n}{b} \right\rfloor+1}{b} \right\rfloor
     \end{equation}
-The function $\operatorname{r}$ or this part $\left\lfloor \frac{n}{b} \right\rfloor-1$ is used to check if we hit the bottom edge, the last row.
+The function $\operatorname{r}$ or this part $\left\lfloor \frac{n}{b} \right\rfloor+1$ is used to check if we hit the bottom edge, the last row (see Chapter \ref{rows}).
 
 
 To move up, we simply do
@@ -1267,9 +1268,19 @@ To move up, we simply do
     \end{equation}
 To check the top edge, the first row, we do
     \begin{equation}
-      x = n + b\left\lceil \frac{\left\lfloor \frac{n}{b} \right\rfloor}{b} \right\rceil
+      x = n + b\left\lceil \frac{(\left\lfloor \frac{n}{b} \right\rfloor + 1) - 1}{b} \right\rceil \\
+        = n + b\left\lceil \frac{\left\lfloor \frac{n}{b} \right\rfloor}{b} \right\rceil
     \end{equation}
 
+    \section{Steps Along the Slants} \label{slant_steps}
+    A horizontal step means incrementing or decrementing the starting cell's column index by 1. As for the vertical step, the row index is changed instead. A slant step is basically a combination of a horizontal step and a vertical step where the adjacent cell is in the same slant as the starting point. There are four kinds of slant steps. Let $x$ be the adjacent cell, $n$ be the starting point, and $r$ and $c$ be the row and column index of $n$.
+  \begin{itemize}
+    \item \textbf{Diagonal descension} is a step along a diagonal slant. It is a down-right step. It is expressed as $x = n + (b + 1)$. To ensure it is stopped at either the right edge or bottom edge, we do $x = n + (b - b\left\lfloor \frac{r}{b} \right\rfloor) + (1 - \left\lfloor \frac{c}{b} \right\rfloor)$. 
+    \item \textbf{Diagonal ascension} is a step along a diagonal slant. It is a up-left step. It is expressed as $x = n - (b + 1)$. To ensure it is stopped at either the left edge or top edge, we do $x = n + b\left\lceil \frac{r-1}{b} \right\rceil - \left\lceil \frac{c-1}{b} \right\rceil$. 
+    \item \textbf{Antidiagonal ascension} is a step along an antidiagonal slant. It is a up-right step. It is expressed as $x = n - (b - 1)$. To ensure it is stopped at either the right edge or top edge, we do $x = n + b\left\lceil \frac{r-1}{b} \right\rceil + (1 - \left\lfloor \frac{c}{b} \right\rfloor)$. 
+    \item \textbf{Antidiagonal descension} is a step along an antidiagonal slant. It is a down-left step. It is expressed as $x = n + (b - 1)$. To ensure it is stopped at either the left edge or bottom edge, we do $x = n + (b - b\left\lfloor \frac{r}{b} \right\rfloor) + \left\lceil \frac{c-1}{b} \right\rceil$. 
+
+  \end{itemize}
     \newpage
     \chapter{The Symmetry} \label{symmetry}
     A square is always symmetrical, bilaterally and quadrilaterally. Every symmetrical thing has a center. When treated as a finite tuple, rows and columns have one or two center cells depending on whether their length is odd or even.
