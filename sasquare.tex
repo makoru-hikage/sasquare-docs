@@ -1056,9 +1056,9 @@
     \begin{equation*}
         \begin{split}
             d(b,n) &= b + \delta(b,n)\\
-            d(5,17) &= 5 + \delta(5,16)\\
+            d(5,16) &= 5 + \delta(5,16)\\
                 &= 5 - 2\\
-            d(5,17) &= 3\\
+            d(5,16) &= 3\\
         \end{split}
     \end{equation*}
 
@@ -1224,7 +1224,53 @@
     For example, in a 4-square, $a_{1,1}$ or $i_0$ is the top-left corner, $a_{1,4}$ or $i_3$ is the top-right corner, $a_{4,1}$ or $i_{12}$ is the bottom-left corner, and $a_{4,4}$ or $i_{15}$ is the bottom-right corner.
 
     \newpage
+    \chapter{The Traversal between Cells} \label{traversal}
+    Traversing the grid means choosing a \textbf{starting point} and choosing the \textbf{adjacent cell} to move to. Depending on the starting point, the direction of the movement can be left or right, up-down, or a mix of both: ascending or descending diagonally or antidiagonally.
+    
+    \section{Horizontal Steps} \label{h_steps}
+    A \textbf{horizontal step} is the simplest one. Let $n$ be the starting point and $x$ be the adjacent point. To step to the right. We simply do
+    \begin{equation}
+      x = n + 1
+    \end{equation}
+    However, there are edges (see Section \ref{edges}). Even though the cell indices can be treated as a modulo group of $b^2$, we can still establish the borders; in this case we check for the right edge. We will simply add the following equation to our right step.
+    \begin{equation}
+      x = n + 1 - \left\lfloor \frac{(n \bmod b) + 1}{b} \right\rfloor
+    \end{equation}
+    When $n + 1 < b - 1$, a right step can still be done; otherwise it will stay still. The part $(n \bmod b) + 1$ is the function $\operatorname{c}$ we used for getting the column of a cell (see Chapter \ref{columns}).
 
+
+    To step to the left, we simply do
+    \begin{equation}
+      x = n - 1
+    \end{equation}
+    \newpage
+    And to check for the left edge, we do
+    \begin{equation}
+      x = n - \left\lceil \frac{n \bmod b}{b} \right\rceil
+    \end{equation}
+
+    \section{Vertical Steps} \label{v_steps}
+    Like the horizontal steps, a \textbf{vertical step} is also simple. The movement directions are down and up. To move down, we simply do  
+    \begin{equation} 
+      x = n + b
+    \end{equation}
+To check if we hit the bottom edge, we do
+    \begin{equation}
+      x = n + b - b\left\lfloor \frac{\left\lfloor \frac{n}{b} \right\rfloor-1}{b} \right\rfloor
+    \end{equation}
+The function $\operatorname{r}$ or this part $\left\lfloor \frac{n}{b} \right\rfloor-1$ is used to check if we hit the bottom edge, the last row.
+
+
+To move up, we simply do
+    \begin{equation} 
+      x = n + b
+    \end{equation}
+To check the top edge, the first row, we do
+    \begin{equation}
+      x = n + b\left\lceil \frac{\left\lfloor \frac{n}{b} \right\rfloor}{b} \right\rceil
+    \end{equation}
+
+    \newpage
     \chapter{The Symmetry} \label{symmetry}
     A square is always symmetrical, bilaterally and quadrilaterally. Every symmetrical thing has a center. When treated as a finite tuple, rows and columns have one or two center cells depending on whether their length is odd or even.
 
