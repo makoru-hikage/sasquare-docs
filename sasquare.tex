@@ -10,10 +10,13 @@
 \usetikzlibrary{arrows.meta, calc, matrix, fit}
 \usepackage{nicematrix}
 \usepackage{colortbl}
+\usepackage{titlesec}
 
+\titlespacing*{\section}{0pt}{12pt}{6pt plus 0pt minus 0pt}
 \setlength{\intextsep}{10pt}   % Space above and below figures
 \setlength{\textfloatsep}{10pt} % Space between floats and text
 \setlength{\floatsep}{10pt}    % Space between adjacent floats
+\raggedbottom
 
 \title{Single Array Square Grid (SASQUARE)}
 \date{2021-04-28}
@@ -753,7 +756,7 @@
             {$
             \begin{bNiceMatrix}
                 i_{0} & i_{1} & i_{2} & i_{3} & i_{4} \\
-                i_{5} & i_{7} & i_{8} & i_{9} & i_{10} \\
+                i_{5} & i_{6} & i_{7} & i_{8} & i_{9} \\
                 i_{10} & i_{11} & i_{12} & i_{13} & i_{14} \\
                 i_{15} & i_{16} & i_{17} & i_{18} & i_{19} \\
                 i_{20} & i_{21} & i_{22} & i_{23} & i_{24}
@@ -849,7 +852,7 @@
             {$
             \begin{bNiceMatrix}
                 i_{0} & i_{1} & i_{2} & i_{3} & i_{4} \\
-                i_{5} & i_{7} & i_{8} & i_{9} & i_{10} \\
+                i_{5} & i_{6} & i_{7} & i_{8} & i_{9} \\
                 i_{10} & i_{11} & i_{12} & i_{13} & i_{14} \\
                 i_{15} & i_{16} & i_{17} & i_{18} & i_{19} \\
                 i_{20} & i_{21} & i_{22} & i_{23} & i_{24}
@@ -1105,7 +1108,7 @@
         {$
         \begin{bNiceMatrix}
             i_{0} & i_{1} & i_{2} & i_{3} & i_{4} \\
-            i_{5} & i_{7} & i_{8} & i_{9} & i_{10} \\
+            i_{5} & i_{6} & i_{7} & i_{8} & i_{9} \\
             i_{10} & i_{11} & i_{12} & i_{13} & i_{14} \\
             i_{15} & i_{16} & i_{17} & i_{18} & i_{19} \\
             i_{20} & i_{21} & i_{22} & i_{23} & i_{24}
@@ -1182,7 +1185,7 @@
         {$
         \begin{bNiceMatrix}
             i_{0} & i_{1} & i_{2} & i_{3} & i_{4} \\
-            i_{5} & i_{7} & i_{8} & i_{9} & i_{10} \\
+            i_{5} & i_{6} & i_{7} & i_{8} & i_{9} \\
             i_{10} & i_{11} & i_{12} & i_{13} & i_{14} \\
             i_{15} & i_{16} & i_{17} & i_{18} & i_{19} \\
             i_{20} & i_{21} & i_{22} & i_{23} & i_{24}
@@ -1301,11 +1304,12 @@ To check the top edge, the first row, we do
         S = (1,2,3,4,5,6)
     \end{equation*}
     Tuple $S$ is similar to tuple $T$ but with one more term. Tuple $S$ has an even number of terms, therefore it has two center indices. The main center index is 3 and the secondary center index is 4. The secondary center index is always equal to $M(x) + 1$ since it follows the main center index. From another perspective, in an tuple of odd number of terms, the main and secondary center index are the same. We will use this function that can work on any tuple, be their number of terms be odd or even. This function will return the secondary center index.
-    \begin{align}
-      M_{2}(x)  &= \left\lceil \frac{x}{2} \right\rceil + 1 - x\bmod 2 \\
-                &= \left\lfloor \frac{x+1}{2} \right\rfloor + 1 - x\bmod 2 \\
-                &= M(x) + 1 - x\bmod 2 
-    \end{align}
+    \begin{equation} \label{even_center_indices}
+      \begin{split}
+        M_{2}(x)  &= \left\lceil \frac{x}{2} \right\rceil + 1 - x\bmod 2 = \left\lfloor \frac{x+1}{2} \right\rfloor + 1 - x\bmod 2 \\
+                  &= M(x) + 1 - x\bmod 2
+      \end{split}
+    \end{equation}
 
     Functions $M$ and $M_2$ applicable to rows and columns when they are treated as tuples.
 
@@ -1328,20 +1332,16 @@ To check the top edge, the first row, we do
     To find the cell index of the center of a row, we must first determine the value of $M(b)$. For example, we will find the center of row 2 of a 5-square. Let $c$ be equal to the center of the base and $r$ be the chosen row. 
     \begin{equation}
         \begin{split}
-            c &= M(b) \\
-            c &= M(5) \\
-            c &= \left\lceil \frac{5}{2} \right\rceil \\
+            c &= M(b) = M(5) = \left\lceil \frac{5}{2} \right\rceil \\
             c &= 3 \\
-            i(b,r,c) &= br - b + c \\
-            i(5,2,3) &= (5)(2) - 5 + 3 \\
-                &= 10 - 5 + 3 \\
-            i(5,2,3) &= 8 \\
+            \operatorname{i}(b,r,c) &= b(r-1)+(c-1) \\
+            \operatorname{i}(5,2,3) &= 5(2-1)+(3-1) \\
+                &= 5 + 2 \\
+            \operatorname{i}(5,2,3) &= 7 \\
         \end{split}
     \end{equation}
 
-    \newpage
-
-    Cell 8 ($i_{8}$) is the center of row 2. Cell 8 belongs to column 3.
+    Cell 7 ($i_{7}$) is the center of row 2. Cell 7 belongs to column 3.
 
     \begin{figure*}[ht]
         \tikzset{highlight/.style={
@@ -1357,46 +1357,46 @@ To check the top edge, the first row, we do
         \centering
         {$
         \begin{bNiceMatrix}
-            i_{1} & i_{2} & i_{3} & i_{4} & i_{5} \\
-            i_{6} & i_{7} & i_{8} & i_{9} & i_{10} \\
-            i_{11} & i_{12} & i_{13} & i_{14} & i_{15} \\
-            i_{16} & i_{17} & i_{18} & i_{19} & i_{20} \\
-            i_{21} & i_{22} & i_{23} & i_{24} & i_{25}
+            i_{0} & i_{1} & i_{2} & i_{3} & i_{4} \\
+            i_{5} & i_{6} & i_{7} & i_{8} & i_{9} \\
+            i_{10} & i_{11} & i_{12} & i_{13} & i_{14} \\
+            i_{15} & i_{16} & i_{17} & i_{18} & i_{19} \\
+            i_{20} & i_{21} & i_{22} & i_{23} & i_{24}
             \CodeAfter 
             \tikz \node [highlight=(2-3)] {};
         \end{bNiceMatrix}
         $}
     \end{figure*}
 
-    When the base of the square is even, a row has a \textbf{main center cell} and a \textbf{secondary center cell}. To find the main center cell index of row 3 of a 4-square and the its secondary center cell index. We will use the same equation.
+    When the base of the square is even, a row has a \textbf{main center cell} and a \textbf{secondary center cell}. To find the main center cell index of row 3 of a 4-square and its secondary center cell index. We will use both the functions $M$ and $M_2$. Let $c_{M1}$ be the main center. Let $a_{3,M1}b$ be the index of the main center cell. 
     \begin{equation}
         \begin{split}
-            c &= M(b) \\
-            c &= M(4) \\
-            c &= \left\lceil \frac{4}{2} \right\rceil \\
-            c &= 2 \\
-            i(b,r,c) &= br - b + c \\
-            i(4,3,2) &= (4)(3) - 5 + 2 \\
-                &= 12 - 4 + 2 \\
-            i(4,3,2) &= 10 \\
+            c_{M1} &= M(b) = M(4) = \left\lceil \frac{4}{2} \right\rceil \\
+            c_{M1} &= 2 \\
+            \operatorname{i}(b,r,c) &= b(r-1)+(c-1) \\
+            a_{3,M1}b &= \operatorname{i}(4,3,2) = 4(3-1)+(2-1) \\
+                &= 8 + 1 \\
+            a_{3,M1}b &= 9 \\
         \end{split}
     \end{equation}
 
-    Cell 10 ($i_{10}$) is the main center cell; it belongs to column 2. To find the secondary center cell index of row 3, there are two ways:
+    Cell 10 ($i_{9}$) is the main center cell; it belongs to column 2. To find the secondary center cell index of row 3, $a_{3,M2}b$, there are three ways:
     \begin{itemize}
-        \item We will add 1 to $i(4,3,2)$ or the main center cell index.
-        \item We will add 1 to $c$; we will find the result of $i(b,r,c+1)$ or simply $i(4,3,2+1)$ in this example.
+      \item We will add 1 to $\operatorname{i}(4,3,2)$ or the main center cell index.
+      \item We will add 1 to $c$; we will find the result of $i(b,r,c+1)$ or simply $i(4,3,2+1)$ in this example.
+      \item We will use function $M_2$ on $b$.
     \end{itemize}
-    Let $s$ be the second center cell index.
+    Let $c_{M2}$ be the second center cell index.
     \begin{equation}
         \begin{split}
-            s &= i(b,r,c) + 1\\
-            s &= i(4,3,2) + 1\\
-            s &= 10 + 1\\
-            s &= 11\\
+            c_{M2} &= M_2(b) = c_{M1} + 1 - b\bmod 2 \\
+            c_{M2} &= 3 \\
+            a_{3,M2}b &= \operatorname{i}(4,3,3) = 4(3-1)+(3-1) \\
+                &= 8 + 2 \\
+            a_{3,M2}b &= 10
         \end{split}
     \end{equation}
-    Cell 11 ($i_{11}$) is the secondary center cell of row 3. Cell 11 belongs to column 3.
+    Cell 10 ($i_{10}$) is the secondary center cell of row 3. Cell 10 belongs to column 3.
     \begin{figure*}[ht]
         \tikzset{highlight/.style={
             line width=0.8pt,
@@ -1411,10 +1411,10 @@ To check the top edge, the first row, we do
         \centering
         {$
         \begin{bNiceMatrix}
-            i_{1} & i_{2} & i_{3} & i_{4}\\
-            i_{5} & i_{6} & i_{7} & i_{8}\\
-            i_{9} & i_{10} & i_{11} & i_{12}\\
-            i_{13} & i_{14} & i_{15} & i_{16} 
+            i_{0} & i_{1} & i_{2} & i_{3} \\
+            i_{4} & i_{5} & i_{6} & i_{7} \\
+            i_{8} & i_{9} & i_{10} & i_{11} \\
+            i_{12} & i_{13} & i_{14} & i_{15} 
             \CodeAfter 
             \tikz \node [highlight=(3-2)] {};
             \tikz \node [highlight=(3-3)] {};
@@ -1425,17 +1425,15 @@ To check the top edge, the first row, we do
     To find the center cell of a column, we must first determine the value of $M(b)$ just like we do for finding the center cell of a row. For example, we will find the center cell of column 5 of a 7-square. Let $r$ be equal to $M(b)$ and $c$ be the chosen column.
     \begin{equation}
         \begin{split}
-            r &= M(b) \\
-            r &= M(7) \\
-            r &= \left\lceil \frac{7}{2} \right\rceil \\
+            r &= M(b) = M(7) \left\lceil \frac{7}{2} \right\rceil \\
             r &= 4 \\
-            i(b,r,c) &= br - b + c \\
-            i(7,4,5) &= (7)(4) - 7 + 5 \\
-                &= 28 - 7 + 5 \\
-            i(7,4,5) &= 26 \\
+            \operatorname{i}(b,r,c) &= b(r-1)+(c-1) \\
+            \operatorname{i}(7,4,5) &= 7(3) + 4 \\
+                &= 28 - 21 + 4 \\
+            \operatorname{i}(7,4,5) &= 25 \\
         \end{split}
     \end{equation}
-    Cell 26 ($i_{26}$) is the center cell of column 5. It belongs to row 4.
+    Cell 25 ($i_{25}$) is the center cell of column 5. It belongs to row 4.
     \begin{figure*}[ht]
         \setcounter{MaxMatrixCols}{7}
         \tikzset{highlight/.style={
@@ -1451,13 +1449,13 @@ To check the top edge, the first row, we do
         \centering
         {$
         \begin{bNiceMatrix}
-            i_{1} & i_{2} & i_{3} & i_{4} & i_{5} & i_{6} & i_{7} \\
-            i_{8} & i_{9} & i_{10} & i_{11} & i_{12} & i_{13} & i_{14} \\
-            i_{15} & i_{16} & i_{17} & i_{18} & i_{19} & i_{20} & i_{21} \\
-            i_{22} & i_{23} & i_{24} & i_{25} & i_{26} & i_{27} & i_{28} \\
-            i_{29} & i_{30} & i_{31} & i_{32} & i_{33} & i_{34} & i_{35} \\
-            i_{36} & i_{37} & i_{38} & i_{39} & i_{40} & i_{41} & i_{42} \\
-            i_{43} & i_{44} & i_{45} & i_{46} & i_{47} & i_{48} & i_{49} \\
+            i_{0} & i_{1} & i_{2} & i_{3} & i_{4} & i_{5} & i_{6}  \\
+            i_{7} & i_{8} & i_{9} & i_{10} & i_{11} & i_{12} & i_{13}  \\
+            i_{14} & i_{15} & i_{16} & i_{17} & i_{18} & i_{19} & i_{20}  \\
+            i_{21} & i_{22} & i_{23} & i_{24} & i_{25} & i_{26} & i_{27}  \\
+            i_{28} & i_{29} & i_{30} & i_{31} & i_{32} & i_{33} & i_{34}  \\
+            i_{35} & i_{36} & i_{37} & i_{38} & i_{39} & i_{40} & i_{41}  \\
+            i_{42} & i_{43} & i_{44} & i_{45} & i_{46} & i_{47} & i_{48}
             \CodeAfter 
             \tikz \node [highlight=(4-5)] {};
         \end{bNiceMatrix}
@@ -1466,34 +1464,34 @@ To check the top edge, the first row, we do
 
     \newpage
 
-    Should $b$ be an even number, there are two ways to find its secondary center cell. For example, we will find the main and the secondary center cell of the 2nd column of a 6-square.
+    Should $b$ be an even number, there are three ways to find its secondary center cell. For example, we will find the main and the secondary center cell of the 2nd column of a 6-square.
     \begin{itemize}
         \item We will add $b$ to $i(6,M(b),2)$ or the main center cell index, or
         \item We will find the value of $i(b,r+1,c)$ where $r=M(b)$.
+        \item We will use function $M_{2}$.
     \end{itemize}
+    Let $r_{M1}$ and $r_{M2}$ be the main and secondary center indices of the chosen column.
     \begin{equation}
         \begin{split}
-            r &= M(b) \\
-            r &= M(6) \\
-            r &= \left\lceil \frac{6}{2} \right\rceil \\
-            r &= 3 \\
-            i(b,r,c) &= br - b + c \\
-            i(6,3,2) &= (6)(3) - 6 + 2 \\
-                &= 18 - 6 + 2 \\
-            i(6,3,2) &= 14 \\
+            r_{M1} &= M(b) = M(6) = \left\lceil \frac{6}{2} \right\rceil = 3 \\
+            \operatorname{i}(b,r,c) &= b(r-1)+(c-1) \\
+            a_{M1,2}b &= \operatorname{i}(6,3,2) = 6(3-1)+(2-1) \\
+                &= 12 + 1 \\
+            a_{M1,2}b &= 13 \\
         \end{split}
     \end{equation}
-    Let $s$ be the secondary center cell index.
+    Let $r_{M2}$ be the secondary center cell index.
     \begin{equation}
         \begin{split}
-            s &= i(b,r,c) + b\\
-            s &= i(6,3,2) + 6\\
-            s &= 14 + 6\\
-            s &= 20\\
+            r_{M2} &= M_2(b) = r_{M2} + 1 - b\bmod 2 = 4 \\
+            a_{M2,2}b &= \operatorname{i}(6,4,2) = 6(4-1)+(2-1) \\
+                &= 18 + 1 \\
+            a_{M2,2}b &= 19
         \end{split}
     \end{equation}
-    Cell 14 and 20 ($i_{14}$ and $i_{20}$) are the main and secondary center cell of row 2 of a 6-square.
-    \begin{figure*}[ht]
+
+    Cell 13 and 19 ($i_{13}$ and $i_{19}$) are the main and secondary center cell of row 2 of a 6-square.
+    \begin{figure}[h]
         \setcounter{MaxMatrixCols}{6}
         \tikzset{highlight/.style={
             line width=0.8pt,
@@ -1508,30 +1506,27 @@ To check the top edge, the first row, we do
         \centering
         {$
         \begin{bNiceMatrix}
-            i_{1} & i_{2} & i_{3} & i_{4} & i_{5} & i_{6} \\
-            i_{7} & i_{8} & i_{9} & i_{10} & i_{11} & i_{12} \\
-            i_{13} & i_{14} & i_{15} & i_{16} & i_{17} & i_{18} \\
-            i_{19} & i_{20} & i_{21} & i_{22} & i_{23} & i_{24} \\
-            i_{25} & i_{26} & i_{27} & i_{28} & i_{29} & i_{30} \\
-            i_{31} & i_{32} & i_{33} & i_{34} & i_{35} & i_{36}
+            i_{0} & i_{1} & i_{2} & i_{3} & i_{4} & i_{5}  \\
+            i_{6} & i_{7} & i_{8} & i_{9} & i_{10} & i_{11}  \\
+            i_{12} & i_{13} & i_{14} & i_{15} & i_{16} & i_{17}  \\
+            i_{18} & i_{19} & i_{20} & i_{21} & i_{22} & i_{23}  \\
+            i_{24} & i_{25} & i_{26} & i_{27} & i_{28} & i_{29}  \\
+            i_{32} & i_{31} & i_{32} & i_{33} & i_{34} & i_{35}
             \CodeAfter 
             \tikz \node [highlight=(3-2)] {};
             \tikz \node [highlight=(4-2)] {};
         \end{bNiceMatrix}
         $}
-    \end{figure*}
-
-    \newpage
-
+    \end{figure}
+    \vspace{2em}
     \section{Center of the Square} \label{center_square}
+    \nointerlineskip
     The center of a square grid will vary on whether its base is even or not. There is only one cell in the center of a square when its base is odd. When its base is even, there will always be four cells, resembling a square the size of a 2-square. We will call the squares with an odd base an \textbf{odd-base square}, and the squares with an even base is a \textbf{even-base square}.
-
     For example, to find the center cell of a 5-square, an odd-base square, we will use two ways. Let $m$ be the function to find the center cell of a square. This is the first way.
     \begin{equation}
         \begin{split}
             m(b) &= \left\lceil \frac{b^2}{2} \right\rceil \\
             m(5) &= \left\lceil \frac{5^2}{2} \right\rceil \\
-                &= \left\lceil \frac{25}{2} \right\rceil \\
             m(5) &= 13 \\
         \end{split}
     \end{equation}
@@ -1541,17 +1536,14 @@ To check the top edge, the first row, we do
             M(b) &= \left\lceil \frac{b}{2} \right\rceil \\
             M(5) &= \left\lceil \frac{5}{2} \right\rceil \\
             M(5) &= 3 \\
-            r &= M(5) \\
-            c &= M(5) \\
-            i(b,r,c) &= br - b + c \\
-            i(5,3,3) &= (5)(3) - 5 + 3 \\
-                &= 15 - 5 + 3 \\
-            i(5,3,3) &= 13 \\
+            r &= c = M(5) \\
+            \operatorname{i}(b,r,c) &= b(r-1) + (c-1) \\
+            \operatorname{i}(5,3,3) &= 5(3-1) - (3-1) \\
+                &= 15 - 10 + 2 \\
+            \operatorname{i}(5,3,3) &= 12
         \end{split}
     \end{equation}
     Cell 13 ($i_{13}$) is the center cell of a 5-square. It belongs to row 3 and column 3.
-
-    \newpage
 
     The first way is rather a simple way. The second way involves the application of the center index function ($M(x)$) to $b$ (see Section \ref{center_index} and \ref{center_base}) and using its value as an argument to $r$ and $c$ of the intersection function ($i(b,r,c)$) (see Chapter \ref{intersection}).
 
@@ -1569,11 +1561,11 @@ To check the top edge, the first row, we do
         \centering
         {$
         \begin{bNiceMatrix}
-            i_{1} & i_{2} & i_{3} & i_{4} & i_{5} \\
-            i_{6} & i_{7} & i_{8} & i_{9} & i_{10} \\
-            i_{11} & i_{12} & i_{13} & i_{14} & i_{15} \\
-            i_{16} & i_{17} & i_{18} & i_{19} & i_{20} \\
-            i_{21} & i_{22} & i_{23} & i_{24} & i_{25}
+            i_{0} & i_{1} & i_{2} & i_{3} & i_{4} \\
+            i_{5} & i_{6} & i_{7} & i_{8} & i_{9} \\
+            i_{10} & i_{11} & i_{12} & i_{13} & i_{14} \\
+            i_{15} & i_{16} & i_{17} & i_{18} & i_{19} \\
+            i_{20} & i_{21} & i_{22} & i_{23} & i_{24}
             \CodeAfter 
             \tikz \node [highlight=(3-3)] {};
         \end{bNiceMatrix}
@@ -1583,14 +1575,14 @@ To check the top edge, the first row, we do
 
     To find the center cells of an even-base square. We must first name the four center cells of an even-base square.
     \begin{itemize}
-        \item We can find the \textbf{first center cell} index by applying the center cell function $M(x)$ to $b$ and applying the intersection function to $(b, M(b), M(b))$. When expressed in matrix index notation this would be $a_{M(b), M(b)}$. By inferring from the notation, we can see that the first center cell's row and column index are equal to $M(b)$, therefore it is also equal to $i(b,r,c)$ where $r = c = M(b)$.
-        \item To find the \textbf{second center cell} index, we will add 1 to to the first center cell index or solve for $i(b,r,c)$ where $r = M(b)+1$ and $c = M(b)$.
-        \item To find the \textbf{third center cell} index, we will add $b$ to the first center cell index or add $b - 1$ to the second center cell index. We can also solve for $i(b,r,c)$ where $r = M(b)$ and $c = M(b)+1$.
-        \item To find the \textbf{fourth center cell} index, we can either add $b + 1$ to the first center cell index, add $b$ to the second center cell index, or add 1 to the third center cell index. We can also solve for $i(b,r,c)$ where $r = c = M(b) + 1$
+        \item We can find the \textbf{first center cell} index by applying the center cell function $M(x)$ to $b$ and applying the intersection function to $(b, M(b), M(b))$. When expressed in matrix index notation this would be $a_{M1,M1}$. By inferring from the notation, we can see that the first center cell's row and column index are equal to $M(b)$, therefore it is also equal to $i(b,r,c)$ where $r = c = M(b)$.
+        \item To find the \textbf{second center cell} index, we will add 1 to to the first center cell index or solve for $i(b,r,c)$ where $r = M_{2}(b)$ and $c = M(b)$. This is $a_{M1,M2}$ in matrix index notation.
+        \item To find the \textbf{third center cell} index, we will add $b$ to the first center cell index or add $b - 1$ to the second center cell index. We can also solve for $i(b,r,c)$ where $r = M(b)$ and $c = M_{2}(b)$. This is $a_{M2,M1}$ in matrix index notation.
+        \item To find the \textbf{fourth center cell} index, we can either add $b + 1$ to the first center cell index, add $b$ to the second center cell index, or add 1 to the third center cell index. We can also solve for $i(b,r,c)$ where $r = c = M_{2}(b)$. This is $a_{M2,M2}$ in matrix index notation.
     \end{itemize}
     To summarise, finding the first center cell index will render the search of the subsequent cell indices easily.
 
-    To find the center cells of a 6 square, we will first find the first center cell index. Let $\mu_1$, $\mu_2$, $\mu_3$, and $\mu_4$ be the first, second, third, and fourth center cell indices respectively.
+    To find the center cells of a 6 square, we will first find the first center cell index.
 
     \begin{equation}
         \begin{split}
@@ -1598,45 +1590,41 @@ To check the top edge, the first row, we do
             M(6) &= \left\lceil \frac{6}{2} \right\rceil \\
             M(6) &= 3 \\
             r &= c = M(6) \\
-            \mu_1 &= i(b,r,c) \\
-            i(b,r,c) &= br - b + c \\
-            i(6,3,3) &= (6)(3) - 6 + 3 \\
-                &= 18 - 6 + 3 \\
-            i(6,3,3) &= 15 \\
-            \mu_1 &= 15 \\
+            i(b,r,c) &= b(r-1)+(c-1) \\
+            a_{M1,M1} &= i(6,3,3) = 6(3-1)+(3-1) \\
+                &= 12 + 2 \\
+            a_{M1,M1} &= 14 \\
         \end{split}
     \end{equation}
-    Cell 15 ($i_{15}$) is the first center cell. It belongs to row 3 and column 3.
+    Cell 14 ($i_{14}$) is the first center cell. It belongs to row 3 and column 3.
     \begin{equation}
         \begin{split}
-            \mu_2 &= \mu_1 + 1 \\
-            \mu_2 &= 15 + 1 \\
-            \mu_2 &= 16 
+            a_{M2,M1} &= a_{M1,M1} + 1 \\
+              &= 14 + 1 \\
+            a_{M2,M1} &= 15 
         \end{split}
     \end{equation}
-    Cell 16 ($i_{16}$) is the second center cell. It belongs to row 3 and column 4.
+    Cell 15 ($i_{15}$) is the second center cell. It belongs to row 3 and column 4.
     \begin{equation}
         \begin{split}
-            \mu_3 &= \mu_1 + b \\
-            \mu_3 &= 15 + 6 \\
-            \mu_3 &= 21 
+            a_{M1,M2} &= a_{M1,M1} + b \\
+              &= 14 + 6 \\
+            a_{M1,M2} &= 20 
         \end{split}
     \end{equation}
-    Cell 21 ($i_{21}$) is the third center cell. It belongs to row 4 and column 3.
+    Cell 20 ($i_{20}$) is the third center cell. It belongs to row 4 and column 3.
     \begin{equation}
         \begin{split}
-            \mu_4 &= \mu_1 + b + 1 \\
-            \mu_4 &= 15 + 6 + 1 \\
-            \mu_4 &= 22
+            a_{M2,M2} &= a_{M1,M1} + b + 1 \\
+              &= 14 + 7 \\
+            a_{M2,M2} &= 21 
         \end{split}
     \end{equation}
-    Cell 22 ($i_{22}$) is the fourth center cell. It belongs to row 4 and column 4.
-
+    Cell 21 ($i_{21}$) is the fourth center cell. It belongs to row 4 and column 4.
     \newpage
-
     Visually, the second center cell is at the right of the first center cell, the third center cell is below the first center cell, and the fourth center cell is below the second cell.
 
-    \begin{figure}[ht]
+    \begin{figure}
         \setcounter{MaxMatrixCols}{6}
         \tikzset{highlight/.style={
             line width=0.8pt,
@@ -1651,12 +1639,12 @@ To check the top edge, the first row, we do
         \centering
         {$
         \begin{bNiceMatrix}
-            i_{1} & i_{2} & i_{3} & i_{4} & i_{5} & i_{6} \\
-            i_{7} & i_{8} & i_{9} & i_{10} & i_{11} & i_{12} \\
-            i_{13} & i_{14} & i_{15} & i_{16} & i_{17} & i_{18} \\
-            i_{19} & i_{20} & i_{21} & i_{22} & i_{23} & i_{24} \\
-            i_{25} & i_{26} & i_{27} & i_{28} & i_{29} & i_{30} \\
-            i_{31} & i_{32} & i_{33} & i_{34} & i_{35} & i_{36}
+            i_{0} & i_{1} & i_{2} & i_{3} & i_{4} & i_{5}  \\
+            i_{6} & i_{7} & i_{8} & i_{9} & i_{10} & i_{11}  \\
+            i_{12} & i_{13} & i_{14} & i_{15} & i_{16} & i_{17}  \\
+            i_{18} & i_{19} & i_{20} & i_{21} & i_{22} & i_{23}  \\
+            i_{24} & i_{25} & i_{26} & i_{27} & i_{28} & i_{29}  \\
+            i_{32} & i_{31} & i_{32} & i_{33} & i_{34} & i_{35}
             \CodeAfter 
             \tikz \node [highlight=(3-3)] {};
             \tikz \node [highlight=(3-4)] {};
@@ -1699,43 +1687,73 @@ To check the top edge, the first row, we do
     Set $O$ is the range whose elements are the corresponding opposite indices of each term.
 
     \section{The Horizontal Opposite} \label{horizontal_opposite}
-    All of the cells belong to their respective row; there has to be an opposite for each of the cells in a row. In a row, it is the \textbf{horizontal opposite} of a cell. It is important to determine the row and column index of the cell first (see Section \ref{rows} and \ref{columns}). Then we will find the opposite index of the column index of the chosen cell. Let $n$ be the chosen cell. We will search the opposite cell index of Cell 17 ($i_{17}$) in a 5-square.
+    All of the cells belong to their respective row; there has to be an opposite for each of the cells in a row. In a row, it is the \textbf{horizontal opposite} of a cell. It is important to determine the row and column index of the cell first (see Section \ref{rows} and \ref{columns}). Then we will find the opposite index of the column index of the chosen cell. Let $n$ be the chosen cell. We will search the opposite cell index of Cell 16 ($i_{16}$) in a 5-square.
     \begin{equation}
         \begin{split}
-            r(b,n) &= \left\lceil \frac{n}{b}\right\rceil \\
-            r(5,17) &= \left\lceil \frac{17}{5}\right\rceil \\
-            r(5,17) &= 4
+            r(b,n) &= \left\lfloor \frac{n}{b}\right\rfloor \\
+            r(5,16) &= \left\lfloor \frac{16}{5}\right\rfloor + 1\\
+            r(5,16) &= 4
         \end{split}
     \end{equation}
-    We will also find the column index of $n$.
+    Variable $r$ is equal to 4.
+    The opposite index of 2 in a length of 5 is 4. The next step is finding the column index of our chosen cell. However this can be skipped since we have $n = 16$ and $r = 4$. Let $o_{c}$ or $\operatorname{o}(b,c)$ be $b + 1 - c$ since it means finding the opposite of $c$, the column.
     \begin{equation}
         \begin{split}
-            c(b,n) &= n + b - b\left\lceil \frac{n}{b}\right\rceil \\
-            c(5,17) &= 17 + 5 - 5\left\lceil \frac{17}{5}\right\rceil \\
-                &= 17 + 5 - 5(4) \\
-                &= 17 + 5 - 20 \\
-            c(5,17) &= 2
+            n &= i(b,r,c) = b(r - 1) + (c - 1) \\
+            o_{c} &= \operatorname{o}(b,c) = b + 1 - c \\
+            n &= \operatorname{i}(b,r,o_{c}) = b(r - 1) + (o_{c} - 1) \\
+            n &= b(r-1)+((b+1-c) - 1) \\
+            n &= b(r-1)+(b+1-c-1) \\
+            n &= br - b + b + 1 - c - 1 \\
+            n &= br - c \\
+            n + c &= br \\
+            c &= br - n \\
+            c &= 20 - 16 \\
+            c &= 4 
         \end{split}
     \end{equation}
-    Variable $r$ is equal to 4 and $c$ to 2. We will apply the opposite function $o(l,x)$ to $(b,c)$.
+    Thus we create a shortcut equation for finding the opposite of a column index along a chosen cell and its row: $o_c = b(r(n)) - n$. If we insist on finding the original column, we can either do $\operatorname{o}(b,o_c) =  b + 1 - o_c$ or simply use function $\operatorname{c}(b,n)$ (see Chapter \ref{columns}) or do $c = -b(r-1) + 1 + n$.
+
+    However, we still do not have the exact cell index. We will use the shortcut equation we used earlier instead of using function $\operatorname{i}$ again. Let $b = 5; r = 4; n = 16$.
     \begin{equation}
         \begin{split}
-            o(b,c) &= b + 1 - c \\
-            o(5,2) &= 5 + 1 - 2 \\
-            o(5,2) &= 4
+            o_{c} &= b + 1 - c \\
+            b + 1 - c &= br - n \\
+            n &= br - b - 1 + c\\
+            n &= b(r - 1) + (c - 1) \\
+            n &= 5(4 - 1) + (c - 1) \\
+            16 &= 15 + (c - 1) \\
+            16 &= 15 + c - 1 \\
+            16 - c &= 15 - 1 \\
+            -c &= 15 - 1 - 16 \\
+            c &= -15 + 1 + 16 \\
+            c &= 2
         \end{split}
     \end{equation}
-    The opposite index of 2 in a length of 5 is 4. The final step is to apply the intersection function (see Section \ref{intersection}) to $(b,r,o(b,c))$.
+Oh, we got the function $\operatorname{i}$ again. But we painstakingly got the original $c$. This time we will introduce $h(b,n)$ instead and use function $\operatorname{o}$ again on the original $c$.
     \begin{equation}
         \begin{split}
-            i(b,r,c) &= br - b + c \\
-            i(5,4,4) &= 5(4) - 5 + 4 \\
-                &= 20 - 5 + 4 \\
-            i(5,4,4) &= 19 \\
+            n &= b(r - 1) - (c - 1) \\
+            -c &= b(r - 1) - 1 - n \\
+            c &= -b(r-1) + 1 + n \\ 
+            o_c &= \operatorname{o}(b,c) = b + 1 - c \\
+            b + 1 - c &= -b(r-1) + 1 + n \\ 
+            -c &= -br + b + 1 + n - b - 1 \\
+            -c &= -br + n \\
+            c &= br - n \\
+            h(b,n) &= \operatorname{i}(b,r,o_{c}) = b(r - 1) + (c - 1)\\
+            h(b,n) &= b(r-1)+((br - n) - 1)\\
+              &= b(r-1)+ br - n - 1 \\
+              &= br - b + br + 1 - n - 1 \\
+              &= 2br - b - n \\
+              &= 40 - 5 - 16 \\
+            h(b,n) &= 19
         \end{split}
     \end{equation}
 
-    In a row, the opposite cell of Cell 17 ($i_{17}$) is Cell 19 ($i_{19}$).
+
+
+    In a row, the opposite cell of Cell 16 ($i_{16}$) is Cell 17 ($i_{19}$).
     \begin{figure*}[ht]
         \tikzset{highlight/.style={
             line width=0.8pt,
@@ -1750,11 +1768,11 @@ To check the top edge, the first row, we do
         \centering
         {$
         \begin{bNiceMatrix}
-            i_{1} & i_{2} & i_{3} & i_{4} & i_{5} \\
-            i_{6} & i_{7} & i_{8} & i_{9} & i_{10} \\
-            i_{11} & i_{12} & i_{13} & i_{14} & i_{15} \\
-            i_{16} & i_{17} & i_{18} & i_{19} & i_{20} \\
-            i_{21} & i_{22} & i_{23} & i_{24} & i_{25}
+            i_{0} & i_{1} & i_{2} & i_{3} & i_{4} \\
+            i_{5} & i_{6} & i_{7} & i_{8} & i_{9} \\
+            i_{10} & i_{11} & i_{12} & i_{13} & i_{14} \\
+            i_{15} & i_{16} & i_{17} & i_{18} & i_{19} \\
+            i_{20} & i_{21} & i_{22} & i_{23} & i_{24}
             \CodeAfter 
             \tikz \node [highlight=(4-2)] {};
             \tikz \node [highlight=(4-4)] {};
