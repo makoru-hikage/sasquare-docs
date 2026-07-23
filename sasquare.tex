@@ -529,7 +529,26 @@
             $}
         \end{minipage}
     \end{figure*}
-
+    \section{The Intersection Identity} \label{intersection_identity}
+    The intersection function $\operatorname{i}$ needs the base, the row, and the column. What if we substitute the parameters for the row and the column? Let us see.
+    \begin{equation}
+      \begin{gathered}
+      \begin{split}
+        r(b,n) &= \left\lfloor \frac{n}{b} \right\rfloor + 1 \\
+        c(b,n) &= (n\bmod b) + 1 \\
+        i(b,r,c) &= b(r-1)+(c-1) \\
+        i(b,r(b,n),c(b,n)) &= b(\left\lfloor \frac{n}{b} \right\rfloor + 1 -1)+((n\bmod b) + 1 -1) \\
+        i(b,n) &= b\left\lfloor \frac{n}{b} \right\rfloor + (n\bmod b) \\
+      \end{split} \\
+        \text{Let us test Cell 16 (} i_{16} \text{) of the square of base } 5. \\
+      \begin{split}
+        i(5,16) &= 5\left\lfloor \frac{16}{5} \right\rfloor + (16\bmod 5) \\
+                &= 5(3) + 1 \\
+                &= 15 + 1 \\
+        i(5,16) &= 16 \\ 
+      \end{split} \\
+      \end{gathered} 
+    \end{equation}
     \newpage
 
     \chapter{The Slants} \label{slants}
@@ -1687,71 +1706,23 @@ To check the top edge, the first row, we do
     Set $O$ is the range whose elements are the corresponding opposite indices of each term.
 
     \section{The Horizontal Opposite} \label{horizontal_opposite}
-    All of the cells belong to their respective row; there has to be an opposite for each of the cells in a row. In a row, it is the \textbf{horizontal opposite} of a cell. It is important to determine the row and column index of the cell first (see Section \ref{rows} and \ref{columns}). Then we will find the opposite index of the column index of the chosen cell. Let $n$ be the chosen cell. We will search the opposite cell index of Cell 16 ($i_{16}$) in a 5-square.
+    All of the cells belong to their respective row; there has to be an opposite for each of the cells in a row. In a row, it is the \textbf{horizontal opposite} of a cell. Let it be $h(b,n)$ where $b$ is the base and $n$ is the chosen cell. Perhaps we need to determine the row and column index of the cell first (see Section \ref{rows} and \ref{columns}). However, we can add this new function $i_h$ to the Intersection Identity function $\operatorname{i}(b,n)$ (see Section \ref{intersection_identity}). Let us find the horizontal opposite of Cell 16 in 5-square.
     \begin{equation}
-        \begin{split}
-            r(b,n) &= \left\lfloor \frac{n}{b}\right\rfloor \\
-            r(5,16) &= \left\lfloor \frac{16}{5}\right\rfloor + 1\\
-            r(5,16) &= 4
-        \end{split}
+      \begin{split}
+        \operatorname{i}(b,n) &= b\left\lfloor \frac{n}{b} \right\rfloor + (n\bmod b) \\
+        \operatorname{i}_h(b,n) &= b + 1 - 2((n\bmod b) + 1) \\
+        \operatorname{h}(b,n) &= \operatorname{i}(b,n) + \operatorname{i}_h(b,n) \\
+        \operatorname{h}(b,n) &= b\left\lfloor \frac{n}{b} \right\rfloor + (n\bmod b) + b + 1 - 2((n\bmod b) + 1) \\
+        \\
+        \operatorname{i}(5,16) &= 16 \\
+        \operatorname{i}_h(5,16) &= 5 + 1 - 2((6\bmod 5) + 1) \\
+        \operatorname{i}_h(5,16) &= 5 + 1 - 2(2) \\
+        \operatorname{i}_h(5,16) &= 6 - 4 \\
+        \operatorname{i}_h(5,16) &= 2 \\
+        \operatorname{h}(5,16) &= 16 + 2 \\
+        \operatorname{h}(5,16) &= 18 \\
+      \end{split}
     \end{equation}
-    Variable $r$ is equal to 4.
-    The opposite index of 2 in a length of 5 is 4. The next step is finding the column index of our chosen cell. However this can be skipped since we have $n = 16$ and $r = 4$. Let $o_{c}$ or $\operatorname{o}(b,c)$ be $b + 1 - c$ since it means finding the opposite of $c$, the column.
-    \begin{equation}
-        \begin{split}
-            n &= i(b,r,c) = b(r - 1) + (c - 1) \\
-            o_{c} &= \operatorname{o}(b,c) = b + 1 - c \\
-            n &= \operatorname{i}(b,r,o_{c}) = b(r - 1) + (o_{c} - 1) \\
-            n &= b(r-1)+((b+1-c) - 1) \\
-            n &= b(r-1)+(b+1-c-1) \\
-            n &= br - b + b + 1 - c - 1 \\
-            n &= br - c \\
-            n + c &= br \\
-            c &= br - n \\
-            c &= 20 - 16 \\
-            c &= 4 
-        \end{split}
-    \end{equation}
-    Thus we create a shortcut equation for finding the opposite of a column index along a chosen cell and its row: $o_c = b(r(n)) - n$. If we insist on finding the original column, we can either do $\operatorname{o}(b,o_c) =  b + 1 - o_c$ or simply use function $\operatorname{c}(b,n)$ (see Chapter \ref{columns}) or do $c = -b(r-1) + 1 + n$.
-
-    However, we still do not have the exact cell index. We will use the shortcut equation we used earlier instead of using function $\operatorname{i}$ again. Let $b = 5; r = 4; n = 16$.
-    \begin{equation}
-        \begin{split}
-            o_{c} &= b + 1 - c \\
-            b + 1 - c &= br - n \\
-            n &= br - b - 1 + c\\
-            n &= b(r - 1) + (c - 1) \\
-            n &= 5(4 - 1) + (c - 1) \\
-            16 &= 15 + (c - 1) \\
-            16 &= 15 + c - 1 \\
-            16 - c &= 15 - 1 \\
-            -c &= 15 - 1 - 16 \\
-            c &= -15 + 1 + 16 \\
-            c &= 2
-        \end{split}
-    \end{equation}
-Oh, we got the function $\operatorname{i}$ again. But we painstakingly got the original $c$. This time we will introduce $h(b,n)$ instead and use function $\operatorname{o}$ again on the original $c$.
-    \begin{equation}
-        \begin{split}
-            n &= b(r - 1) - (c - 1) \\
-            -c &= b(r - 1) - 1 - n \\
-            c &= -b(r-1) + 1 + n \\ 
-            o_c &= \operatorname{o}(b,c) = b + 1 - c \\
-            b + 1 - c &= -b(r-1) + 1 + n \\ 
-            -c &= -br + b + 1 + n - b - 1 \\
-            -c &= -br + n \\
-            c &= br - n \\
-            h(b,n) &= \operatorname{i}(b,r,o_{c}) = b(r - 1) + (c - 1)\\
-            h(b,n) &= b(r-1)+((br - n) - 1)\\
-              &= b(r-1)+ br - n - 1 \\
-              &= br - b + br - n - 1 \\
-              &= 2br - b - n - 1 \\
-              &= 40 - 5 - 16 - 1 \\
-            h(b,n) &= 18
-        \end{split}
-    \end{equation}
-
-
 
     In a row, the opposite cell of Cell 16 ($i_{16}$) is Cell 18 ($i_{18}$).
     \begin{figure*}[ht]
@@ -1780,43 +1751,22 @@ Oh, we got the function $\operatorname{i}$ again. But we painstakingly got the o
         $}
     \end{figure*}
     \section{The Vertical Opposite} \label{vertical_opposite}
-    All of the cells belong to their respective column. To find the opposite cell in a column, we must first determine the cell's row and column index. Then we will find the opposite index of the row index along the length of $b$. We will find the \textbf{vertical opposite} of Cell 17 ($i_{17}$) in a 5-square. Let $n$ be the chosen cell index.
+    All of the cells belong to their respective column. To find the opposite cell in a column, we must first determine the cell's row and column index... or introduce another function. We will find the \textbf{vertical opposite} of Cell 16 ($i_{16}$) in a 5-square. Let $n$ be the chosen cell index. Function $\operatorname{i_v}(b,n)$ will show the number of vertical steps to the vertical opposite of the cell.
     \begin{equation}
-        \begin{split}
-            r(b,n) &= \left\lceil \frac{n}{b}\right\rceil \\
-            r(5,17) &= \left\lceil \frac{17}{5}\right\rceil \\
-            r(5,17) &= 4
-        \end{split}
+      \begin{split}
+        \operatorname{i}_v(b,n) &= b(b - 1 - 2(\left\lfloor \frac{n}{b} \right\rfloor + 1)) \\
+        \operatorname{v}(b,n) &= n + {i}_v(b,n) \\
+        \operatorname{v}(b,n) &= n + b(b + 1 - 2(\left\lfloor \frac{n}{b} \right\rfloor + 1)) \\
+        \operatorname{v}(5,16) &= 16 + 5(5 + 1 - 2(\left\lfloor \frac{16}{5} \right\rfloor + 1)) \\
+        											 &= 16 + 5(6 - 2(3 + 1)) \\
+        											 &= 16 + 5(6 - 2(4)) \\
+        											 &= 16 + 5(6 - 8) \\
+        											 &= 16 + 5(-2) \\
+        											 &= 16 - 10 \\
+        \operatorname{v}(5,16) &= 6 \\
+      \end{split}
     \end{equation}
-    We will also find the column index of $n$.
-    \begin{equation}
-        \begin{split}
-            c(b,n) &= n + b - b\left\lceil \frac{n}{b}\right\rceil \\
-            c(5,17) &= 17 + 5 - 5\left\lceil \frac{17}{5}\right\rceil \\
-                &= 17 + 5 - 5(4) \\
-                &= 17 + 5 - 20 \\
-            c(5,17) &= 2
-        \end{split}
-    \end{equation}
-    Variable $r$ is equal to 4 and $c$ to 2. We will apply the opposite function $o(l,x)$ to $(b,r)$.
-    \begin{equation}
-        \begin{split}
-            o(b,r) &= b + 1 - r \\
-            o(5,4) &= 5 + 1 - 4 \\
-            o(5,4) &= 2
-        \end{split}
-    \end{equation}
-    The opposite index of 4 in a length of 5 is 2. The final step is to apply the intersection function to $(b,o(b,r),c)$.
-    \begin{equation}
-        \begin{split}
-            i(b,r,c) &= br - b + c \\
-            i(5,2,2) &= 5(2) - 5 + 2 \\
-                &= 10 - 5 + 2 \\
-            i(5,2,2) &= 7 \\
-        \end{split}
-    \end{equation}
-    \newpage
-    In a column, the opposite cell of Cell 17 ($i_{17}$) is Cell 7 ($i_{7}$).
+    The opposite of the row index of cell 16 is 2. In a column, the opposite cell of Cell 16 ($i_{16}$) is Cell 2 ($i_{2}$).
     \begin{figure*}[ht]
         \tikzset{highlight/.style={
             line width=0.8pt,
@@ -1831,11 +1781,11 @@ Oh, we got the function $\operatorname{i}$ again. But we painstakingly got the o
         \centering
         {$
         \begin{bNiceMatrix}
-            i_{1} & i_{2} & i_{3} & i_{4} & i_{5} \\
-            i_{6} & i_{7} & i_{8} & i_{9} & i_{10} \\
-            i_{11} & i_{12} & i_{13} & i_{14} & i_{15} \\
-            i_{16} & i_{17} & i_{18} & i_{19} & i_{20} \\
-            i_{21} & i_{22} & i_{23} & i_{24} & i_{25}
+            i_{0} & i_{1} & i_{2} & i_{3} & i_{4} \\
+            i_{5} & i_{6} & i_{7} & i_{8} & i_{9} \\
+            i_{10} & i_{11} & i_{12} & i_{13} & i_{14} \\
+            i_{15} & i_{16} & i_{17} & i_{18} & i_{19} \\
+            i_{20} & i_{21} & i_{22} & i_{23} & i_{24}
             \CodeAfter 
             \tikz \node [highlight=(4-2)] {};
             \tikz \node [highlight=(2-2)] {};
