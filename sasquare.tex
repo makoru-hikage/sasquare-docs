@@ -532,22 +532,17 @@
     \section{The Intersection Identity} \label{intersection_identity}
     The intersection function $\operatorname{i}$ needs the base, the row, and the column. What if we substitute the parameters for the row and the column? Let us see.
     \begin{equation}
-      \begin{gathered}
-      \begin{split}
+      \begin{aligned}
         r(b,n) &= \left\lfloor \frac{n}{b} \right\rfloor + 1 \\
         c(b,n) &= (n\bmod b) + 1 \\
         i(b,r,c) &= b(r-1)+(c-1) \\
         i(b,r(b,n),c(b,n)) &= b(\left\lfloor \frac{n}{b} \right\rfloor + 1 -1)+((n\bmod b) + 1 -1) \\
         i(b,n) &= b\left\lfloor \frac{n}{b} \right\rfloor + (n\bmod b) \\
-      \end{split} \\
-        \text{Let us test Cell 16 (} i_{16} \text{) of the square of base } 5. \\
-      \begin{split}
-        i(5,16) &= 5\left\lfloor \frac{16}{5} \right\rfloor + (16\bmod 5) \\
+        i(5,16) &= 5\lfloor \frac{16}{5}\rfloor + (16\bmod 5) \\
                 &= 5(3) + 1 \\
                 &= 15 + 1 \\
-        i(5,16) &= 16 \\ 
-      \end{split} \\
-      \end{gathered} 
+        i(5,16) &= 16 
+      \end{aligned} 
     \end{equation}
     \newpage
 
@@ -1838,7 +1833,7 @@ To check the top edge, the first row, we do
         $}
     \end{figure*}
 
-    \section{The Antidiagonal opposite}
+    \section{The Antidiagonal Opposite}
     Of all the functions for finding an opposite of a cell, this one is the easiest. To find the \textbf{antidiagonal opposite} of a cell, we simply swap its row index with its column index. If its row index is equal to its column index, or $r=c$, the cardinality of its ascending slant is odd. However, in this Section, we will the do row-column swap while assigning value to neither $r$ nor $c$. A new function will be made from modifying the Intersection function $\operatorname{i}(b,r,n)$ We will find the ascending index of Cell 16 ($i_{16}$). Let $n$ be the chosen cell index.
     \begin{equation}
         \begin{split}
