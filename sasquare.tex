@@ -17,6 +17,7 @@
 \setlength{\textfloatsep}{10pt} % Space between floats and text
 \setlength{\floatsep}{10pt}    % Space between adjacent floats
 \raggedbottom
+\allowdisplaybreaks
 
 \title{Single Array Square Grid (SASQUARE)}
 \date{2021-04-28}
@@ -153,8 +154,20 @@
     The equations $\left\lceil x \right\rceil = 1$ and $\left\lfloor x \right\rfloor = 0$ are true when $0 < x < 1$ and $x \in \mathbb{Q} \setminus \mathbb{Z}$ (a rational number that has no fractional part).
 
     The equations $\left\lceil x \right\rceil = 0$ and $\left\lfloor x \right\rfloor = -1$ are true when $-1 < x < 0$ and $x \in \mathbb{Q} \setminus \mathbb{Z}$.
-
-
+    
+    \section{Division Theory and Modulo} \label{modulo}
+    First of all, the divisor must not be $0$. Let $x$ be the dividend and $y$ be the divisor. Dividing $x$ and $y$ may yield a remainder, yet it will surely yield a quotient. Let $r$ be the remainder and $q$ be the quotient.
+    \begin{equation}
+      q = \frac{x}{y} 
+    \end{equation}
+But it may yield a remainder. Should it yield a remainder, we will not be dealing with just integers anymore. We want to deal with integers only, thus...
+    \begin{equation}
+      x = qy + r
+    \end{equation}
+We will be using the Modulo function. It is a function that returns the remainder of $\frac{x}{y}$. Assume the $r$ earlier is $x\bmod y$.
+    \begin{equation}
+      x\bmod y = x - y\left\lfloor \frac{x}{y} \right\rfloor
+    \end{equation}
     \newpage
 
     \chapter{The Square Grid} \label{1_square_grid}
@@ -541,6 +554,19 @@
         i(5,16) &= 5\lfloor \frac{16}{5}\rfloor + (16\bmod 5) \\
                 &= 5(3) + 1 \\
                 &= 15 + 1 \\
+        i(5,16) &= 16 
+      \end{aligned} 
+    \end{equation}
+    Function $c$ may also be $n - b\left\lfloor \frac{n}{b} \right\rfloor + 1$ since it uses the modulo operator (see Section \ref{modulo}).
+    \begin{equation}
+      \begin{aligned}
+        r(b,n) &= \left\lfloor \frac{n}{b} \right\rfloor + 1 \\
+        c(b,n) &= n - b\left\lfloor \frac{n}{b} \right\rfloor + 1 \\
+        i(b,r,c) &= b(r-1)+(c-1) \\
+        i(b,r(b,n),c(b,n)) &= b(\left\lfloor \frac{n}{b} \right\rfloor + 1 -1)+(n - b\left\lfloor \frac{n}{b} \right\rfloor + 1 -1) \\
+                &= b(\left\lfloor \frac{n}{b} \right\rfloor)+(n - b\left\lfloor \frac{n}{b} \right\rfloor) \\
+                &= b\left\lfloor \frac{n}{b} \right\rfloor + n - b\left\lfloor \frac{n}{b} \right\rfloor \\
+        i(b,n) &= n \\
         i(5,16) &= 16 
       \end{aligned} 
     \end{equation}
@@ -1701,21 +1727,22 @@ To check the top edge, the first row, we do
     Set $O$ is the range whose elements are the corresponding opposite indices of each term.
 
     \section{The Horizontal Opposite} \label{horizontal_opposite}
-    All of the cells belong to their respective row; there has to be an opposite for each of the cells in a row. In a row, it is the \textbf{horizontal opposite} of a cell. Let it be $h(b,n)$ where $b$ is the base and $n$ is the chosen cell. Perhaps we need to determine the row and column index of the cell first (see Section \ref{rows} and \ref{columns}). However, we can add this new function $i_h$ to the Intersection Identity function $\operatorname{i}(b,n)$ (see Section \ref{intersection_identity}). Let us find the horizontal opposite of Cell 16 in 5-square.
+    All of the cells belong to their respective row; there has to be an opposite for each of the cells in a row. In a row, it is the \textbf{horizontal opposite} of a cell. Let it be $h(b,n)$ where $b$ is the base and $n$ is the chosen cell. Perhaps we need to determine the row and column index of the cell first (see Section \ref{rows} and \ref{columns}). However, we can add this new function $i_h$ to the cell index. Let us find the horizontal opposite of Cell 16 in 5-square.
     \begin{equation}
       \begin{split}
-        \operatorname{i}(b,n) &= b\left\lfloor \frac{n}{b} \right\rfloor + (n\bmod b) \\
-        \operatorname{i}_h(b,n) &= b + 1 - 2((n\bmod b) + 1) \\
-        \operatorname{h}(b,n) &= \operatorname{i}(b,n) + \operatorname{i}_h(b,n) \\
-        \operatorname{h}(b,n) &= b\left\lfloor \frac{n}{b} \right\rfloor + (n\bmod b) + b + 1 - 2((n\bmod b) + 1) \\
-        \\
-        \operatorname{i}(5,16) &= 16 \\
-        \operatorname{i}_h(5,16) &= 5 + 1 - 2((6\bmod 5) + 1) \\
-        												 &= 5 + 1 - 2(2) \\
-        												 &= 6 - 4 \\
+        \operatorname{i}_h(b,n) &= 2(b\left\lfloor \frac{n}{b} \right\rfloor - n) + (b + 1) \\
+        \operatorname{i}_h(b,n) &= 2(5\left\lfloor \frac{16}{5} \right\rfloor - 16) + (5 + 1) \\
+        \operatorname{i}_h(b,n) &= 2(5(3) - 16) + 4 \\
+                                 &= 2(15 - 16) + 4 \\
+                                 &= -2 + 4 \\
         \operatorname{i}_h(5,16) &= 2 \\
-        \operatorname{h}(5,16) &= 16 + 2 \\
-        \operatorname{h}(5,16) &= 18 \\
+        \operatorname{h}(b,n) &= \operatorname{i}(b,n) + \operatorname{i}_h(b,n) \\
+        \operatorname{h}(b,n) &= n + 2(b\left\lfloor \frac{n}{b} \right\rfloor - n) + (b + 1) \\
+        \operatorname{h}(b,n) &= 16 + 2(5\left\lfloor \frac{16}{5} \right\rfloor - 16) + (5 + 1) \\
+        \operatorname{h}(b,n) &= 16 + 2(5(3) - 16) + 4 \\
+                              &= 16 + 2(15 - 16) + 4 \\
+                              &= 16 - 2 + 4 \\
+        \operatorname{h}(5,16) &= 18
       \end{split}
     \end{equation}
 
@@ -1748,21 +1775,21 @@ To check the top edge, the first row, we do
     \section{The Vertical Opposite} \label{vertical_opposite}
     All of the cells belong to their respective column. To find the opposite cell in a column, we must first determine the cell's row and column index... or introduce another function. We will find the \textbf{vertical opposite} of Cell 16 ($i_{16}$) in a 5-square. Let $n$ be the chosen cell index. Function $\operatorname{i_v}(b,n)$ will show the number of vertical steps to the vertical opposite of the cell.
     \begin{equation}
-      \begin{split}
-        \operatorname{i}_h(b,n) &= b + 1 - 2((n\bmod b) + 1) \\
-        \operatorname{i}_v(b,n) &= b(b - 1 - 2(\left\lfloor \frac{n}{b} \right\rfloor + 1)) \\
-        \operatorname{v}(b,n) &= n + {i}_v(b,n) \\
-        \operatorname{v}(b,n) &= n + b(b + 1 - 2(\left\lfloor \frac{n}{b} \right\rfloor + 1)) \\
-        \operatorname{v}(5,16) &= 16 + 5(5 + 1 - 2(\left\lfloor \frac{16}{5} \right\rfloor + 1)) \\
-        											 &= 16 + 5(6 - 2(3 + 1)) \\
-        											 &= 16 + 5(6 - 2(4)) \\
-        											 &= 16 + 5(6 - 8) \\
-        											 &= 16 + 5(-2) \\
-        											 &= 16 - 10 \\
+      \begin{split} 
+        \operatorname{i}_v(b,n) &= b(b - 2\left\lfloor \frac{n}{b} \right\rfloor - 1) \\
+        \operatorname{i}_v(5,16) &= 5(5 - 2\left\lfloor \frac{16}{5} \right\rfloor - 1) \\
+                              &= 5(5 - 2(3) - 1) \\
+                              &= 5(4 - 6) \\
+                              &= 5(-2) \\
+                              &= -10 \\
+        \operatorname{v}(b,n) &= \operatorname{i}(b,n) + \operatorname{i}_v(b,n) \\
+                              &= n + b(b - 2\left\lfloor \frac{n}{b} \right\rfloor - 1) \\
+        \operatorname{v}(5,16) &= 16 + (-10) \\
+                               &= 16 - 10 \\
         \operatorname{v}(5,16) &= 6 \\
       \end{split}
     \end{equation}
-    The opposite of the row index of cell 16 is 2. In a column, the opposite cell of Cell 16 ($i_{16}$) is Cell 2 ($i_{2}$).
+    In a column, the opposite cell of Cell 16 ($i_{16}$) is Cell 2 ($i_{2}$).
     \begin{figure*}[ht]
         \tikzset{highlight/.style={
             line width=0.8pt,
@@ -1789,14 +1816,12 @@ To check the top edge, the first row, we do
         $}
     \end{figure*}
 
-    \section{The Diagonal Opposite}
-    In a row, two opposite cells have opposite columns. In a column, they have opposite rows. In a diagonal slant, both their rows and columns are opposite. To find $\operatorname{d}(b,n)$, we will add $\operatorname{i}_h$ and $\operatorname{i}_v$ to $n$ We will find the \textbf{diagonal opposite} of Cell 6 ($i_{6}$) in a 5-square.
+    \section{The Antidiagonal Opposite}
+    We can find the \textbf{antidiagonal opposite} of a cell by going along its diagonal slant. To find $\operatorname{a}(b,n)$, we will introduce another function made from the Intersection function $\operatorname{i}$. We will find the \textbf{diagonal opposite} of Cell 6 ($i_{6}$) in a 5-square.
       \begin{equation}
       \begin{split}
-        \operatorname{i}_h(b,n) &= b + 1 - 2((n\bmod b) + 1) \\
-        \operatorname{i}_v(b,n) &= b(b - 1 - 2(\left\lfloor \frac{n}{b} \right\rfloor + 1)) \\
-        \operatorname{d}(b,n) &= n + \operatorname{i}(b,n) + \operatorname{i}_h(b,n) \\
-        \operatorname{d}(b,n) &= n + b + 1 - 2((n\bmod b) + 1) + b(b - 1 - 2(\left\lfloor \frac{n}{b} \right\rfloor + 1)) \\
+        \operatorname{a}(b,n) &= n + \operatorname{i}(b,n) + \operatorname{i}_h(b,n) \\
+        \operatorname{a}(b,n) &= n + b + 1 - 2((n\bmod b) + 1) + b(b - 1 - 2(\left\lfloor \frac{n}{b} \right\rfloor + 1)) \\
         \operatorname{d}(b,n) &= n + b - 1 - 2(n\bmod b) + b(b - 1 - 2(\left\lfloor \frac{n}{b} \right\rfloor + 1)) \\
         \operatorname{d}(b,n) &= n + b - 1 - 2(n\bmod b) + b(b - 1 - 2\left\lfloor \frac{n}{b} \right\rfloor) \\
         \operatorname{d}(5,6) &= 6 + 5 - 1 - 2(6\bmod 5) + 5(5 - 1 - 2\left\lfloor \frac{6}{5} \right\rfloor) \\
@@ -1833,8 +1858,8 @@ To check the top edge, the first row, we do
         $}
     \end{figure*}
 
-    \section{The Antidiagonal Opposite}
-    Of all the functions for finding an opposite of a cell, this one is the easiest. To find the \textbf{antidiagonal opposite} of a cell, we simply swap its row index with its column index. If its row index is equal to its column index, or $r=c$, the cardinality of its ascending slant is odd. However, in this Section, we will the do row-column swap while assigning value to neither $r$ nor $c$. A new function will be made from modifying the Intersection function $\operatorname{i}(b,r,n)$ We will find the ascending index of Cell 16 ($i_{16}$). Let $n$ be the chosen cell index.
+    \section{The Diagonal Opposite}
+    Of all the functions for finding an opposite of a cell, this one is the easiest. To find the \textbf{diagonal opposite} of a cell, we simply swap its row index with its column index. If its row index is equal to its column index, or $r=c$, the cardinality of its ascending slant is odd. However, in this Section, we will the do row-column swap while assigning value to neither $r$ nor $c$. A new function will be made from modifying the Intersection function $\operatorname{i}(b,r,n)$ We will find the ascending index of Cell 16 ($i_{16}$). Let $n$ be the chosen cell index.
     \begin{equation}
         \begin{split}
           r(b,n) &= \left\lfloor \frac{n}{b} \right\rfloor + 1 \\
