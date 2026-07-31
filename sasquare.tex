@@ -1695,6 +1695,24 @@ To check the top edge, the first row, we do
     \caption{The four center cells of an even-base square}
     \end{figure}
 
+    \section{The Quadrants} \label{quadrant}
+    The word \textit{square} is derived from the Latin word \textit{ex-quadra}; it means "out of a square". The word \textit{quadrilateral} literally means "four-sided". Those two words are cognates; they share the same word roots: \textit{quattor} that means "four". A square grid may be divided into four except a 1-square; all the quadrants of a 1-square have nothing but $1$. In a 1-square, our defined functions so far will result in $1$, for it is a \textbf{unit square}. A quadrant is also a \textbf{sub-square} that has $\lceil\frac{b}{2}\rceil^2$ cells. In an odd square, a quadrant will overlap with all the other quadrants: one in the center row, one in the center column, one in both center row and column. We will use the Intersection function $\operatorname{i}(b,r,c)$ (see Chapter \ref{intersection}) to describe the cell, row, and column indices in each quadrant.
+    \begin{itemize}
+      \item The \textbf{first quadrant} is the \textbf{top-left quadrant}.
+        
+        $Q_1 = \{ \operatorname{i}(b,r,c) : r=c=1,\dots,\lceil\frac{b}{2}\rceil \}$
+      \item The \textbf{second quadrant} is the \textbf{top-right quadrant}.
+        
+        $Q_2 = \{ \operatorname{i}(b,r,c) : r=1,\dots,\lceil\frac{b}{2}\rceil; c=(\lceil\frac{b}{2}\rceil +1)-(b - 2\lceil\frac{b}{2}\rceil ),\dots,b\}$
+
+      \item The \textbf{third quadrant} is the \textbf{bottom-left quadrant}.
+        
+        $Q_3 = \{ \operatorname{i}(b,r,c) :  r=(\lceil\frac{b}{2}\rceil +1)-(b - 2\lceil\frac{b}{2}\rceil ),\dots,b; c=1,\dots,\lceil\frac{b}{2}\rceil\}$
+      \item The \textbf{fourth quadrant} is the \textbf{bottom-right quadrant}.
+        
+        $Q_4 = \{ \operatorname{i}(b,r,c) :  r=c=(\lceil\frac{b}{2}\rceil +1)-(b - 2\lceil\frac{b}{2}\rceil ),\dots,b\}$
+    \end{itemize}
+
     \newpage
 
     \chapter{The Opposites}
