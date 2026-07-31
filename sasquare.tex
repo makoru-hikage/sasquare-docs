@@ -2,7 +2,7 @@
 \usepackage[backend=biber,style=apa,autocite=inline]{biblatex}
 \DeclareLanguageMapping{english}{english-apa}
 \addbibresource{sasquare.bib}
-\usepackage{amsmath}
+\usepackage{mathtools}
 \usepackage{amssymb}
 \usepackage{graphics}
 \usepackage{float}
@@ -17,7 +17,7 @@
 \setlength{\textfloatsep}{10pt} % Space between floats and text
 \setlength{\floatsep}{10pt}    % Space between adjacent floats
 \raggedbottom
-\allowdisplaybreaks
+\allowdisplaybreaks[4]
 
 \title{Single Array Square Grid (SASQUARE)}
 \date{2021-04-28}
@@ -172,7 +172,7 @@ We will be using the Modulo function. It is a function that returns the remainde
 
     \chapter{The Square Grid} \label{1_square_grid}
     We will represent a single array with square number of indices using a row vector. The array elements shall be indexed from 0 up to the number of elements minus 1.\footnote{Programming languages, such as Python or C, often start their array indices from 0 rather than 1. Since this is a math paper, we will start with 1 for the indices of the rows, columns, and the like.}
-    \begin{figure}[ht]
+    \begin{figure}[h]
     \centering
     \resizebox{\textwidth}{!}{%
     \begin{tikzpicture} [nodes in empty cells,
@@ -192,7 +192,7 @@ We will be using the Modulo function. It is a function that returns the remainde
     \caption{A grid representation of a single array} \label{1f1}
     \end{figure}
 
-    \begin{figure}[ht]
+    \begin{figure}[h]
         \centering
         \resizebox{\textwidth}{!}{$
         A = 
@@ -270,7 +270,7 @@ We will be using the Modulo function. It is a function that returns the remainde
 
     \section{Example: Row and Column of Cell 16 in 5-Square}
     \label{1_example_1}
-    \begin{figure*}[ht]
+    \begin{figure*}[h]
         \centering
         \setcounter{MaxMatrixCols}{25}
             \tikzset{highlight/.style={
@@ -327,7 +327,7 @@ We will be using the Modulo function. It is a function that returns the remainde
 
     If $i_{16}$ belongs to row $a_{4,*}$ and column $a_{*,2}$, then $i_{16} = a_{4,2}$.
 
-    \begin{figure*}[ht]
+    \begin{figure*}[h]
         \centering
         \begin{minipage}{0.45\textwidth}
             \setcounter{MaxMatrixCols}{5}
@@ -469,7 +469,7 @@ We will be using the Modulo function. It is a function that returns the remainde
 
     The intersection of $a_{4,*}5$ and $a_{*,2}5$ is $i_{16}$ or $a_{4,2}$.
 
-    \begin{figure*}[ht]
+    \begin{figure*}[h]
         \centering
         \begin{minipage}{0.45\textwidth}
             \setcounter{MaxMatrixCols}{5}
@@ -606,7 +606,7 @@ We will be using the Modulo function. It is a function that returns the remainde
     \end{equation}
 
     The intersection sum is crucial to finding all the antidiagonal slants in a square grid.
-    \begin{figure}[ht]
+    \begin{figure}[h]
         \centering
         {$
         \begin{bNiceMatrix}
@@ -635,7 +635,7 @@ We will be using the Modulo function. It is a function that returns the remainde
 
     The intersection difference is crucial to finding all the descending slants in a square grid.
 
-    \begin{figure}[ht]
+    \begin{figure}[h]
         \centering
         \begin{minipage}{0.45\textwidth}
             \centering
@@ -773,7 +773,7 @@ We will be using the Modulo function. It is a function that returns the remainde
 
     To further illustrate the superdiagonal and subdiagonal cells, we will show two matrices where the highlighted cells together resembles two triangles.
 
-    \begin{figure}[ht]
+    \begin{figure}[h]
         \centering
         \begin{minipage}{0.45\textwidth}
             \tikzset{row_hl/.style={
@@ -869,7 +869,7 @@ We will be using the Modulo function. It is a function that returns the remainde
 
     Like the off-diagonal cells, they can resemble triangles.
 
-    \begin{figure}[ht]
+    \begin{figure}[h]
         \centering
         \begin{minipage}{0.45\textwidth}
             \tikzset{row_hl/.style={
@@ -1133,7 +1133,7 @@ We will be using the Modulo function. It is a function that returns the remainde
         \end{split}
     \end{equation*}
     Cell 16 is the 2nd cell of descending slant 3 because $d_{3,2}5 = 17$
-    \begin{figure*}[ht]
+    \begin{figure*}[h]
         \tikzset{highlight/.style={
             line width=0.8pt,
             draw=gray!80,
@@ -1210,7 +1210,7 @@ We will be using the Modulo function. It is a function that returns the remainde
         \end{split}
     \end{equation*}
     Cell 17 is the 2nd cell of antidiagonal slant 5 because $\upsilon_{5,2}5 = 17$
-    \begin{figure*}[ht]
+    \begin{figure*}[h]
         \tikzset{highlight/.style={
             line width=0.8pt,
             draw=gray!80,
@@ -1383,7 +1383,7 @@ To check the top edge, the first row, we do
 
     Cell 7 ($i_{7}$) is the center of row 2. Cell 7 belongs to column 3.
 
-    \begin{figure*}[ht]
+    \begin{figure*}[h]
         \tikzset{highlight/.style={
             line width=0.8pt,
             draw=gray!80,
@@ -1437,7 +1437,7 @@ To check the top edge, the first row, we do
         \end{split}
     \end{equation}
     Cell 10 ($i_{10}$) is the secondary center cell of row 3. Cell 10 belongs to column 3.
-    \begin{figure*}[ht]
+    \begin{figure*}[h]
         \tikzset{highlight/.style={
             line width=0.8pt,
             draw=gray!80,
@@ -1474,7 +1474,7 @@ To check the top edge, the first row, we do
         \end{split}
     \end{equation}
     Cell 25 ($i_{25}$) is the center cell of column 5. It belongs to row 4.
-    \begin{figure*}[ht]
+    \begin{figure*}[h]
         \setcounter{MaxMatrixCols}{7}
         \tikzset{highlight/.style={
             line width=0.8pt,
@@ -1587,7 +1587,7 @@ To check the top edge, the first row, we do
 
     The first way is rather a simple way. The second way involves the application of the center index function ($M(x)$) to $b$ (see Section \ref{center_index} and \ref{center_base}) and using its value as an argument to $r$ and $c$ of the intersection function ($i(b,r,c)$) (see Chapter \ref{intersection}).
 
-    \begin{figure}[ht]
+    \begin{figure}[h]
         \tikzset{highlight/.style={
             line width=0.8pt,
             draw=gray!80,
@@ -1743,7 +1743,71 @@ To check the top edge, the first row, we do
         \end{split}
     \end{equation*}
     Set $O$ is the range whose elements are the corresponding opposite indices of each term.
+    
+    \section{Rotation Zero: 0 Degree Rotation}
+    This is the initial state of the Square. The cell stays or ends up in the same place. $e(b,n)=\operatorname{i}(b,n) = n$. Subsequent rotations start clockwise or in the right direction. 
+    \begin{itemize}
+      \item Rotation One ($e_{90}$): The cells of the first quadrant will end up in the second quadrant.
+      \item Rotation Two ($e_{180}$): The cells of the first quadrant will end up in the fourth quadrant.
+      \item Rotation Three ($e_{270}$): The cells of the first quadrant will end up in the third quadrant.
+    \end{itemize}
+    Only Rotation One and Three will involve swapping the row and the column index. Three of the Rotations involve finding the opposite index of either one or both of them. We will use the Intersection function on the swapped indices thereafter. We will use this for reference.
+\par\nopagebreak
+    \begin{align*}
+        r &= \left\lfloor \frac{n}{b} \right\rfloor + 1 \\
+        o_r &= b + 1 - (\left\lfloor \frac{n}{b} \right\rfloor + 1) = b - \left\lfloor \frac{n}{b} \right\rfloor\\
+        c &= n - b\left\lfloor \frac{n}{b} \right\rfloor + 1 \\
+        o_c &= b + 1 - (n - b\left\lfloor \frac{n}{b} \right\rfloor + 1) = b - n - b\left\lfloor \frac{n}{b} \right\rfloor \\
+        \operatorname{i}(b,r',c') &= b(r'-1) + (c'-1) 
+    \end{align*}
+    \section{Rotation One: 90 Degree Rotation}
+    To see the destination of the starting cell, we need to swap the row and column index of a cell first. The new column will now be expressed as $c' = o_r$; the new row index is $c$. We will find the destination of starting Cell 1 ($i_1$). 
+    \begin{equation}
+      \begin{split} 
+        r' = c &= n - b\left\lfloor \frac{n}{b} \right\rfloor + 1 \\
+        c' = o_r &= b - \left\lfloor \frac{n}{b} \right\rfloor \\
+        \operatorname{i}(b,r',c') &= b(r'-1) + (c'-1) \\ 
+            &= b(n - b\left\lfloor \frac{n}{b} \right\rfloor + 1 -1) + (b - \left\lfloor \frac{n}{b} \right\rfloor-1) \\
+        e_1(b,n) &= b(n - b\left\lfloor \frac{n}{b} \right\rfloor) + (b - \left\lfloor \frac{n}{b} \right\rfloor - 1) \\
+        e_1(5,1) &= 5(1 - 5\left\lfloor \frac{1}{5} \right\rfloor) + (5 - \left\lfloor \frac{1}{5} \right\rfloor - 1) \\
+                 &= 5(1 - 5(0)) + (5 - 0 - 1) \\
+                 &= 5(1) + 4 \\
+        e_1(5,1) &= 9
+      \end{split}
+    \end{equation}
+    Cell 1 ($i_1$) ended up in Cell 9 ($i_9$).
 
+    \section{Rotation Two: 180 Degree Rotation}
+    This time, there is no swap, the opposite function will now apply to both new row and column indices. We will find the destination of starting Cell 1 ($i_1$). 
+    \begin{align*}
+        o_r &= b - \left\lfloor \frac{n}{b} \right\rfloor \\
+        o_c &= b - n - b\left\lfloor \frac{n}{b} \right\rfloor \\
+        \operatorname{i}(b,o_r,o_c) &= b(o_r-1) + (o_c-1) \\ 
+            &= b(b - \left\lfloor \frac{n}{b} \right\rfloor-1) + (b - n - b\left\lfloor \frac{n}{b} \right\rfloor -1) \\
+        e_2(b,n) &= b(b - \left\lfloor \frac{n}{b} \right\rfloor-1) + (b - n - b\left\lfloor \frac{n}{b} \right\rfloor -1) \\
+        e_2(5,1) &= 5(5 - \left\lfloor \frac{1}{5} \right\rfloor - 1) + (5 - 1 - 5\left\lfloor \frac{1}{5} \right\rfloor - 1) \\
+                 &= 5(5 - 0 - 1) + (5 - 1 - 5(0) - 1) \\
+                 &= 5(4) + 3 \\
+                 &= 20 + 3 \\
+        e_2(5,1) &= 23
+    \end{align*}
+    Cell 1 ($i_1$) ended up in Cell 23 ($i_{23}$).
+
+    \section{Rotation Three: 270 Degree Rotation}
+    After the swap the opposite function will now apply to the new row index. We will find the destination of starting Cell 1 ($i_1$). 
+    \begin{align*}
+        r' = o_c &= b - n - b\left\lfloor \frac{n}{b} \right\rfloor \\
+        c' = r &= \left\lfloor \frac{n}{b} \right\rfloor + 1 \\
+        \operatorname{i}(b,r',c') &= b(r'-1) + (c'-1) \\ 
+            &= b(b - n - b\left\lfloor \frac{n}{b} \right\rfloor -1) + (\left\lfloor \frac{n}{b} \right\rfloor + 1 - 1) \\
+        e_2(b,n) &= b(b - n - b\left\lfloor \frac{n}{b} \right\rfloor - 1) + (\left\lfloor \frac{n}{b} \right\rfloor) \\
+        e_3(5,1) &= 5(5 - 1 - 5\left\lfloor \frac{1}{5} \right\rfloor - 1) + (\left\lfloor \frac{1}{5} \right\rfloor) \\
+                 &= 5(5 - 1 - 5(0) - 1) + (0) \\
+                 &= 5(3) \\
+        e_3(5,1) &= 15
+    \end{align*}
+
+    Cell 1 ($i_1$) ended up in Cell 15 ($i_{15}$).
     \section{The Horizontal Opposite} \label{horizontal_opposite}
     All of the cells belong to their respective row; there has to be an opposite for each of the cells in a row. In a row, it is the \textbf{horizontal opposite} of a cell. Let it be $h(b,n)$ where $b$ is the base and $n$ is the chosen cell. Perhaps we need to determine the row and column index of the cell first (see Section \ref{rows} and \ref{columns}). However, we can add this new function $i_h$ to the cell index. Let us find the horizontal opposite of Cell 16 in 5-square.
     \begin{equation}
@@ -1765,7 +1829,7 @@ To check the top edge, the first row, we do
     \end{equation}
 
     In a row, the opposite cell of Cell 16 ($i_{16}$) is Cell 18 ($i_{18}$).
-    \begin{figure*}[ht]
+    \begin{figure*}[h]
         \tikzset{highlight/.style={
             line width=0.8pt,
             draw=gray!80,
@@ -1808,7 +1872,7 @@ To check the top edge, the first row, we do
       \end{split}
     \end{equation}
     In a column, the opposite cell of Cell 16 ($i_{16}$) is Cell 2 ($i_{2}$).
-    \begin{figure*}[ht]
+    \begin{figure*}[h]
         \tikzset{highlight/.style={
             line width=0.8pt,
             draw=gray!80,
@@ -1856,7 +1920,7 @@ To check the top edge, the first row, we do
       \end{split} 
     \end{equation}
     The descending opposite of Cell 6 ($i_{6}$) is Cell 18 ($i_{18}$).
-    \begin{figure*}[ht]
+    \begin{figure*}[h]
         \tikzset{highlight/.style={
             line width=0.8pt,
             draw=gray!80,
