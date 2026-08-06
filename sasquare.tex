@@ -11,6 +11,7 @@
 \usepackage{nicematrix}
 \usepackage{colortbl}
 \usepackage{titlesec}
+\usepackage{hyperref}
 
 \titlespacing*{\section}{0pt}{12pt}{6pt plus 0pt minus 0pt}
 \setlength{\intextsep}{10pt}   % Space above and below figures
@@ -171,7 +172,7 @@ We will be using the Modulo function. It is a function that returns the remainde
     \newpage
 
     \chapter{The Square Grid} \label{1_square_grid}
-    We will represent a single array with square number of indices using a row vector. The array elements shall be indexed from 0 up to the number of elements minus 1.\footnote{Programming languages, such as Python or C, often start their array indices from 0 rather than 1. Since this is a math paper, we will start with 1 for the indices of the rows, columns, and the like.}
+    We will represent a single array with square number of indices using a row vector. The array elements shall be indexed from 0 up to the number of elements minus 1.\footnote{Programming languages, such as Python or C, often start their array indices from 0 rather than 1. Since we are dealing with arrays, we will always start with 0.}
     \begin{figure}[h]
     \centering
     \resizebox{\textwidth}{!}{%
