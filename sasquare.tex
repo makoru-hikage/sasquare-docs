@@ -961,7 +961,7 @@ We will be using the Modulo function. It is a function that returns the remainde
       \operatorname{u}(b,n) = b - \delta(b,n)
     \end{equation}
 
-    We shall call the index of an antidiagonal slant an \textbf{antidiagonal (slant) index} or $a$ index. To determine the $a$ index of the cell, we shall use function $\operatorname{a}$ which requires the intersection sum function (See Section \ref{intersection_sum}).
+    We shall call the index of an antidiagonal slant an \textbf{antidiagonal (slant) index} or $d'$ index. To determine the $d'$ index of the cell, we shall use function $\operatorname{a}$ which requires the intersection sum function (See Section \ref{intersection_sum}).
     \begin{equation}
       \operatorname{a}(b,n) = \sigma(b,n) - 1
     \end{equation}
@@ -1001,46 +1001,40 @@ We will be using the Modulo function. It is a function that returns the remainde
     \end{figure}
 
     \section{The Cardinality of a Given Slant} \label{slant_cardinality}
-    Not all slants have the same number of cells. Only $b-1$ pairs of slants of have the same number of cells for each kind of slants. To get the number of cells in a given slant index. Let $x$ be either a diagonal ($d$) or an antidiagonal ($a$) index. Let $X$ be a set of cells belonging to a chosen slant. The vertical bar notation ($|A|$) denotes the \textbf{cardinality} of a set (\cite{math_vault}). However, the vertical bar notation can also denote an absolute number; we shall use $n(X)$ to denote the cardinality of set $X$. We shall use the vertical bars for denoting absolute values.
+    Not all slants have the same number of cells. Only $b-1$ pairs of slants of have the same number of cells for each kind of slant. To get the number of cells in a given slant index. Let $x$ be either a diagonal ($d$) or an antidiagonal ($d'$) index. Let $X$ be a set of cells belonging to a chosen slant. The vertical bar notation ($|A|$) denotes the \textbf{cardinality} of a set (\cite{math_vault}). However, the vertical bar notation can also denote an absolute number; we shall use $n(X)$ to denote the cardinality of set $X$. We shall use the vertical bars for denoting absolute values.
     \begin{equation}
         n(X) = b - |b - x|
     \end{equation}
     Only slants with index $b$ have the most number of cells which has a count of $b$.
 
     \section{The Letter L and Capital Gamma} \label{u_and_w}
-    Function $f$ shall denote any function in this subsection. Set $X$ shall denote any set in this subsection. Function $f$ will surely cover all the cells of the first column and either the first or the last row.
-    \begin{equation}\
-            X = \{ f(b,x) : x \in \mathbb{N}, 0 \leq x \leq 2b \}
-    \end{equation}
-    The range of the any set in this subsection has these traits:
-    \begin{itemize}
-        \item When $x = b$ then $f(b,x) = 0$. This covers the first column
-        \item When $1 \leq x \leq b$ then $f(b,x) = b^2 - bx$. This may cover the first or the last row.
-    \end{itemize}
+    We will introduce two new functions that covers the starting cells of a slant. The starting cells all the diagonal slants forms an capital Gamma ($\Gamma$) shape in the grid. As for the antidiagonal slants, their starting cells form a capital L.
+
+
     Function $\operatorname{u}$ is a function that either yields a multiple of $b$ or subtracts $b$ from $x$ depending on whether $x$ exceeds or fall short of $b$. This forms an capital gamma-shape ($\Gamma$) in the square matrix as it covers the first column then the first row.
-    \begin{equation}
+    \begin{equation*}
         u(b,x) = b^{2 + \left\lfloor -\frac{x}{b} \right\rfloor }|b-x|
-    \end{equation}
-    \begin{equation}
+    \end{equation*}
+    \begin{equation*}
         U = \{ u(b,x) : x \in \mathbb{N}, 1 \leq x \leq 2b - 1 \}
-    \end{equation}
+    \end{equation*}
     The range of set $U$ has these own traits:
     \begin{itemize}
         \item When $x < b$ then $u(b,x)$ will be a multiple of $b$ from $0$ to $b^2-b$
-        \item When $x \geq b$ then $u(b,x) = |b - x|$
+        \item When $x \geq b$ then $u(b,x) = 0$ to $b-1$
     \end{itemize}
 
     Function $\operatorname{w}$ also works like function $\operatorname{u}$ but it rather forms an L-shape as it covers the first column then the last row.
-    \begin{equation}
-      w(b,x) = (1 - \left\lfloor \frac{x}{b} \right\rfloor)(b|b-x|) + (\left\lfloor \frac{x}{b} \right\rfloor)(x - b)
-    \end{equation}
-    \begin{equation}
+    \begin{equation*}
+      w(b,x) = b(x - 1) - \left\lfloor \frac{x}{b} \right\rfloor(x - b)(b - 1)
+    \end{equation*}
+    \begin{equation*}
         W = \{ w(b,x) : x \in \mathbb{N}, 1 \leq x \leq 2b - 1 \}
-    \end{equation}
+    \end{equation*}
     The range of set $W$ has these own traits:
     \begin{itemize}
         \item When $x < b$ then $w(b,x)$ will be a multiple of $b$ from $0$ to $b^2-b$
-        \item When $x \geq b$ then $w(b,x) = b^2 - |b - x|$
+        \item When $x \geq b$ then $w(b,x) = b^2 - b$ to $b^2 - 1$.
     \end{itemize}
 
     \section{The Cells of a Slant} \label{cells_of_a_slant}
@@ -1073,11 +1067,11 @@ We will be using the Modulo function. It is a function that returns the remainde
         K = \{ d_{x,o}b : 1 \leq o \leq n(d_{x,*}b) \}
     \end{equation}
 
-    To enumerate the cells of an ascending slant, we shall subtract the results of function $w$ (see Section \ref{u_and_w}) from the results of the function $\operatorname{A}$ that enumerates the anti-diagonal cells (see Section \ref{antidiagonal}).
+    To enumerate the cells of an ascending slant, we shall add the results of function $w$ (see Section \ref{u_and_w}) to $(o-1)(b-1)$. This enumerates the anti-diagonal cells (see Section \ref{antidiagonal}).
     \begin{equation}
         \begin{split}
-            d'_{x,o}b &= A(b,o) - w(b,x) \\
-                &= (b^2 - bo + o - 1) + (1 - \left\lfloor \frac{x}{b} \right\rfloor)(b|b-x|) + (\left\lfloor \frac{x}{b} \right\rfloor)(x - b)
+            d'_{x,o}b &= w(b,x) \\
+                &= b(x - 1) - \left\lfloor \frac{x}{b} \right\rfloor(x - b)(b - 1) - (o-1)(b-1)
         \end{split}
     \end{equation}
 
@@ -1113,7 +1107,6 @@ We will be using the Modulo function. It is a function that returns the remainde
             n(d_{x,*}b) &= b - |b - x| \\
             n(d_{3,*}5) &= 5 - |5 - 3| \\
                 &= 5 - |2| \\
-                &= 5 - 2 \\
             n(d_{3,*}5) &= 3 
         \end{split}
     \end{equation*}
@@ -1188,7 +1181,6 @@ We will be using the Modulo function. It is a function that returns the remainde
         \begin{split}
             n(d'_{x,*}b) &= b - |b - x| \\
             n(d'_{5,*}5) &= 5 - |5 - 5| \\
-                &= 5 - |0| \\
             n(d'_{5,*}5) &= 5
         \end{split}
     \end{equation*}
@@ -1199,20 +1191,22 @@ We will be using the Modulo function. It is a function that returns the remainde
             d'_{5,*}5 &= \{ d'_{5,o}5 : 1 \leq o \leq 5 \} \\
         \end{split}
     \end{equation*}
-    Since there are only 5 cells in the slant, we will enumerate up to the 5th cell of antidiagonal slant 5.
+    Since there are only 5 cells in the slant, we will enumerate up to the 5th cell of antidiagonal slant 5. First we will find the starting cell of our slant.
     \begin{equation*}
         \begin{split}
-            d'_{x,o}b &= (b^2 - bo + o - 1) + (1 - \left\lfloor \frac{x}{b} \right\rfloor)(b|b-x|) + (\left\lfloor \frac{x}{b} \right\rfloor)(x - b) \\
-            d'_{5,1}5 &= (5^2 - 5(1) + 1 - 1) + (1-0)(0) + (1)(0) = 20\\
-            d'_{5,1}5 &= (5^2 - 5(2) + 2 - 1) + (1-0)(0) + (1)(0) = 16\\
-            d'_{5,1}5 &= (5^2 - 5(3) + 3 - 1) + (1-0)(0) + (1)(0) = 12\\
-            d'_{5,1}5 &= (5^2 - 5(4) + 4 - 1) + (1-0)(0) + (1)(0) = 8\\
-            d'_{5,1}5 &= (5^2 - 5(5) + 5 - 1) + (1-0)(0) + (1)(0) = 4\\
+            w(5,5) &= b(5 - 1) - \left\lfloor \frac{5}{5} \right\rfloor(5 - 5)(5 - 1) = 20 \\
+            d'_{x,o}b &= b(x - 1) - \left\lfloor \frac{x}{b} \right\rfloor(x - b)(b - 1) - (o-1)(b-1) \\
+            d'_{x,o}b &= 20 - (o-1)(b-1) \\
+            d'_{5,1}b &= 20 - (1-1)(5-1) = 20 \\
+            d'_{5,2}b &= 20 - (2-1)(5-1) = 16\\
+            d'_{5,3}b &= 20 - (3-1)(5-1) = 12\\
+            d'_{5,4}b &= 20 - (4-1)(5-1) = 8\\
+            d'_{5,5}b &= 20 - (5-1)(5-1) = 4\\
             d'_{5,*}5 &= \{20, 16, 12, 8, 4\}
         \end{split}
     \end{equation*}
-    Cell 17 is the 2nd cell of antidiagonal slant 5 because $\upsilon_{5,2}5 = 17$
-    \begin{figure*}[h]
+    Cell 17 is the 2nd cell of antidiagonal slant 5 because $d'_{5,2}5 = 17$
+    \begin{figure*}[h!]
         \tikzset{highlight/.style={
             line width=0.8pt,
             draw=gray!80,
