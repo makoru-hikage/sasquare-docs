@@ -958,7 +958,7 @@ We will be using the Modulo function. It is a function that returns the remainde
 
     We shall call the index of a diagonal slant a \textbf{diagonal (slant) index} or $d$ index. To determine the $d$ index of the cell, we shall use function $\operatorname{d}$ which requires the intersection difference function (See Section \ref{intersection_diff}).
     \begin{equation}
-      \operatorname{u}(b,n) = b - \delta(b,n)
+      \operatorname{d}(b,n) = b - \delta(b,n)
     \end{equation}
 
     We shall call the index of an antidiagonal slant an \textbf{antidiagonal (slant) index} or $d'$ index. To determine the $d'$ index of the cell, we shall use function $\operatorname{a}$ which requires the intersection sum function (See Section \ref{intersection_sum}).
@@ -1094,8 +1094,8 @@ We will be using the Modulo function. It is a function that returns the remainde
     After finding $\delta(5,16)$ we will find the diagonal index of $i_{16}$.
     \begin{equation*}
         \begin{split}
-            d(b,n) &= b + \delta(b,n)\\
-            d(5,16) &= 5 + \delta(5,16)\\
+            d(b,n) &= b - \delta(b,n)\\
+            d(5,16) &= 5 - \delta(5,16)\\
                 &= 5 - 2\\
             d(5,16) &= 3\\
         \end{split}
@@ -1807,15 +1807,15 @@ To check the top edge, the first row, we do
     All of the cells belong to their respective row; there has to be an opposite for each of the cells in a row. In a row, it is the \textbf{horizontal opposite} of a cell. Let it be $h(b,n)$ where $b$ is the base and $n$ is the chosen cell. Perhaps we need to determine the row and column index of the cell first (see Section \ref{rows} and \ref{columns}). However, we can add this new function $i_h$ to the cell index. Let us find the horizontal opposite of Cell 16 in 5-square.
     \begin{equation}
       \begin{split}
-        \operatorname{i}_h(b,n) &= 2(b\left\lfloor \frac{n}{b} \right\rfloor - n) + (b + 1) \\
-        \operatorname{i}_h(b,n) &= 2(5\left\lfloor \frac{16}{5} \right\rfloor - 16) + (5 + 1) \\
+        \operatorname{i}_h(b,n) &= 2(b\left\lfloor \frac{n}{b} \right\rfloor - n) + (b - 1) \\
+        \operatorname{i}_h(b,n) &= 2(5\left\lfloor \frac{16}{5} \right\rfloor - 16) + (5 - 1) \\
         \operatorname{i}_h(b,n) &= 2(5(3) - 16) + 4 \\
                                  &= 2(15 - 16) + 4 \\
                                  &= -2 + 4 \\
         \operatorname{i}_h(5,16) &= 2 \\
         \operatorname{h}(b,n) &= \operatorname{i}(b,n) + \operatorname{i}_h(b,n) \\
-        \operatorname{h}(b,n) &= n + 2(b\left\lfloor \frac{n}{b} \right\rfloor - n) + (b + 1) \\
-        \operatorname{h}(b,n) &= 16 + 2(5\left\lfloor \frac{16}{5} \right\rfloor - 16) + (5 + 1) \\
+        \operatorname{h}(b,n) &= n + 2(b\left\lfloor \frac{n}{b} \right\rfloor - n) + (b - 1) \\
+        \operatorname{h}(b,n) &= 16 + 2(5\left\lfloor \frac{16}{5} \right\rfloor - 16) + (5 - 1) \\
         \operatorname{h}(b,n) &= 16 + 2(5(3) - 16) + 4 \\
                               &= 16 + 2(15 - 16) + 4 \\
                               &= 16 - 2 + 4 \\
