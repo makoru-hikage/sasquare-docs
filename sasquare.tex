@@ -741,22 +741,23 @@ We will be using the Modulo function. It is a function that returns the remainde
         \caption{An anti-diagonal is highlighted in a 5-square matrix} \label{fig:antidiagonal}
     \end{figure}
 
-    To enumerate the cell indices within the anti-diagonal, we shall use the function $\operatorname{A}$ for finding the nth cell of the anti-diagonal. We get the function $\operatorname{A}$ using the $\operatorname{i}$ function (see Chapter \ref{intersection}) where $r = b - c + 1$, then we replace $c$ with $n$ For this example, we will find the antidiagonal cell indices in a 5-square. In function $\operatorname{A}, $The expression $b^2 - bn$ signifies the start of the ascension in the antidiagonal slant whilst the whole equation means the antidiagonal ascending step done $n$ times.
+    To enumerate the cell indices within the anti-diagonal, we shall use the function $\operatorname{A}$ for finding the nth cell of the anti-diagonal. We get the function $\operatorname{A}$ using the $\operatorname{i}$ function (see Chapter \ref{intersection}) where $r = b - c + 1$, then we replace $c$ with $n$; let $n$ be the nth cell of the slant. For this example, we will find the antidiagonal cell indices in a 5-square. In function $\operatorname{A}, $The expression $b(b - c)$ signifies the start of the ascension in the antidiagonal slant whilst the whole equation means the antidiagonal ascending step done $n$ times.
     \begin{equation}
         \begin{split}
             \operatorname{i}(b,r,c) &= b(r-1)+(c-1) \\
                 &= b((b - c + 1) - 1) + (c-1) \\
                 &= b^2 - bc + b - b + (c-1) \\
                 &= b^2 - bc + c - 1 \\
+                &= b(b - c) + c - 1 \\
                (n &= c) \\
-            \operatorname{A}(b,n) &= b^2 - bn + b - 1 \\
+            \operatorname{A}(b,n) &= b(b - n) + n - 1 \\
             A &= \{ \operatorname{A}(b,n) : n = 1, \dots, b \} \\
             \\
-            \operatorname{A}(5,1) &= 5^2 - (5)(1) + (1) - 1 = 20\\
-            \operatorname{A}(5,2) &= 5^2 - (5)(2) + (2) - 1 = 16\\
-            \operatorname{A}(5,3) &= 5^2 - (5)(3) + (3) - 1 = 12\\
-            \operatorname{A}(5,4) &= 5^2 - (5)(4) + (4) - 1 = 8\\
-            \operatorname{A}(5,5) &= 5^2 - (5)(5) + (5) - 1 = 4\\
+            \operatorname{A}(5,1) &= 5(5 - 1) + (1) - 1 = 20\\
+            \operatorname{A}(5,2) &= 5(5 - 2) + (2) - 1 = 16\\
+            \operatorname{A}(5,3) &= 5(5 - 3) + (3) - 1 = 12\\
+            \operatorname{A}(5,4) &= 5(5 - 4) + (4) - 1 = 8\\
+            \operatorname{A}(5,5) &= 5(5 - 5) + (5) - 1 = 4\\
             A &= \{ 20, 16, 12, 8, 4 \} \\
         \end{split}
     \end{equation}
