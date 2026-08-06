@@ -1205,7 +1205,7 @@ We will be using the Modulo function. It is a function that returns the remainde
             d'_{5,*}5 &= \{20, 16, 12, 8, 4\}
         \end{split}
     \end{equation*}
-    Cell 17 is the 2nd cell of antidiagonal slant 5 because $d'_{5,2}5 = 17$
+    Cell 16 is the 2nd cell of antidiagonal slant 5 because $d'_{5,2}5 = 17$
     \begin{figure*}[h!]
         \tikzset{highlight/.style={
             line width=0.8pt,
@@ -1303,7 +1303,7 @@ The function $\operatorname{r}$ or this part $\left\lfloor \frac{n}{b} \right\rf
 
 To move up, we simply do
     \begin{equation} 
-      x = n + b
+      x = n - b
     \end{equation}
 To check the top edge, the first row, we do
     \begin{equation}
@@ -1795,7 +1795,7 @@ To check the top edge, the first row, we do
         c' = r &= \left\lfloor \frac{n}{b} \right\rfloor + 1 \\
         \operatorname{i}(b,r',c') &= b(r'-1) + (c'-1) \\ 
             &= b(b - n - b\left\lfloor \frac{n}{b} \right\rfloor -1) + (\left\lfloor \frac{n}{b} \right\rfloor + 1 - 1) \\
-        e_2(b,n) &= b(b - n - b\left\lfloor \frac{n}{b} \right\rfloor - 1) + (\left\lfloor \frac{n}{b} \right\rfloor) \\
+        e_3(b,n) &= b(b - n - b\left\lfloor \frac{n}{b} \right\rfloor - 1) + (\left\lfloor \frac{n}{b} \right\rfloor) \\
         e_3(5,1) &= 5(5 - 1 - 5\left\lfloor \frac{1}{5} \right\rfloor - 1) + (\left\lfloor \frac{1}{5} \right\rfloor) \\
                  &= 5(5 - 1 - 5(0) - 1) + (0) \\
                  &= 5(3) \\
